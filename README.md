@@ -71,7 +71,7 @@ The purpose of this website is to provide lego owners with instructions to build
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/ER%20Diagram%20.png)
+![ER Diagram](./images/ER%20Diagram%202.png)
 
 ## Teaser (MS3)
 
