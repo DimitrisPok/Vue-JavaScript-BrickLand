@@ -61,7 +61,8 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+The purpose of this website is to provide lego owners with instructions to build various lego models. This website serves as an inspirational and educational platform for people that want to build something other than the standard lego ideas that the company provides.
+
 
 ### Pages
 
