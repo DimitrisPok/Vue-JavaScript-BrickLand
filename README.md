@@ -66,8 +66,18 @@ The purpose of this website is to provide lego owners with instructions to build
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+* Login as user / guest: Users can either choose to log in or sign up. The signup will lead the users to another page. Users can either log in with their username and password or log in as a guest and enter the website.  
+
+* Sign up: If users don't have an account and don't want to log in as guests they can create a new account by writing their username, password and email address. 
+
+* Home: The home page will show the latest trending posts, a sidebar menu that shows different categories, a search bar to look for specific posts and a button that leads the user to their profile. 
+
+* Specific category: All posts will be part of categories so that they can be easily found by all users that are looking for a specific theme (for example fantasy). Each category page will contain their posts according to the most liked order. 
+
+* Specific post: If a user clicks on a post they want to view, they will be redirected to a page dedicated to that post & its instructions. The users then can rate and comment on the post.
+
+* Profile page: The users can change their email address, password and log out.
+
 
 ### Entity-Relationship (ER) Diagram
 
