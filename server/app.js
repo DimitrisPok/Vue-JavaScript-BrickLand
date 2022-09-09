@@ -5,6 +5,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
+
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
 var port = process.env.PORT || 3000;
@@ -30,9 +31,31 @@ app.use(morgan('dev'));
 app.options('*', cors());
 app.use(cors());
 
+//testing out importing imgane...........................................
+var multer = require('multer');
+const { Router } = require('express');
+var storageMulti = multer.diskStorage({
+    destination:  (req, file, cb) => {
+        cb(null, "./images");
+    },
+    filename: (req, file, cb) =>{
+        cb(null, Date.now()+ '--' + file.originalname)
+    } 
+}
+);
+var upload = multer({
+    storage:storageMulti});
+
+app.post("/single", upload.single('image'), async (req,res)=>
+{
+   console.log(req.file);
+   res.send("Success");
+});
+//.............................................
+
 // Import routes
 app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to your DIT342 backend ExpressJS project!'});
+    res.json({'message': 'Welcome to your DIT342 backend ExpressJS project and your ! '});
 });
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
@@ -73,3 +96,4 @@ app.listen(port, function(err) {
 });
 
 module.exports = app;
+// create storage for camels
