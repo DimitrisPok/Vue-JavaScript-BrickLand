@@ -8,11 +8,12 @@ var bodyParser = require('body-parser');
 
 
 
-//doping router
+//calling the router
 var router = express.Router();
 
 //using another file in the app
 var v1 = require('./v1');
+var user = require('./controllers/UserC');
 
 
 
@@ -40,18 +41,22 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//using the controllers
+app.use(user);
+app.use(v1);
+
+
 // HTTP request logger
 app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
 
-//using v1
-app.use(v1);
 
 //testing out importing imgane...........................................
 var multer = require('multer');
 const { Router } = require('express');
+const user = require('./schemas/User');
 var storageMulti = multer.diskStorage({
     destination:  (req, file, cb) => {
         cb(null, "./images");
