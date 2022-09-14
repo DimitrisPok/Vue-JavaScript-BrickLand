@@ -14,6 +14,10 @@ var router = express.Router();
 //using another file in the app
 var v1 = require('./v1');
 
+var signup = require('./routes/signup');
+
+var user = require('./controllers/Users');
+
 
 
 // Variables
@@ -48,6 +52,8 @@ app.use(cors());
 
 //using v1
 app.use(v1);
+app.use(signup);
+app.use(user);
 
 //testing out importing imgane...........................................
 var multer = require('multer');
@@ -75,12 +81,6 @@ app.post("/single", upload.single('image'), async (req,res)=>
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project! '});
 });
-
-app.get('/yes', function(req,res){
-    res.json({ name: 'Yoshi'});
-});
-
-
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
