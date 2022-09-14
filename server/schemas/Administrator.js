@@ -8,3 +8,6 @@ var AdministratorSchema = new Schema(
         email : {type: String},
     }
 );
+
+const Admin = mongoose.model('admin', AdministratorSchema);
+module.exports = Admin;
