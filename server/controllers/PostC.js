@@ -66,7 +66,7 @@ router.delete('/posts/:id', function(req, res, next) {
 });
 
 //to update certain attributes of a user 
-router.patch('/users/:id', function(req, res, next) {
+router.patch('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(id, function(err, post) {
         if (err) { return next(err); }
@@ -82,7 +82,7 @@ router.patch('/users/:id', function(req, res, next) {
   });
 
   //delete an entire collection
-router.delete('/users', function(req, res, next) {
+router.delete('/posts', function(req, res, next) {
     Post.deleteMany(function(err, posts) {
         if (err) { return next(err); }
         if (posts == null) {
