@@ -14,6 +14,7 @@ var router = express.Router();
 //using another file in the app
 var v1 = require('./v1');
 var user = require('./controllers/UserC');
+var post = require('./controllers/PostC');
 
 
 
@@ -44,6 +45,7 @@ app.use(express.json());
 //using the controllers
 app.use(user);
 app.use(v1);
+app.use(post);
 
 
 // HTTP request logger
