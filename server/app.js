@@ -8,6 +8,13 @@ var bodyParser = require('body-parser');
 
 
 
+//doping router
+var router = express.Router();
+
+//using another file in the app
+var v1 = require('./v1');
+
+
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://Group21:26i4vNezpiAqElok@legomodels.1y6koci.mongodb.net/?retryWrites=true&w=majority';
@@ -38,6 +45,9 @@ app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
+
+//using v1
+app.use(v1);
 
 //testing out importing imgane...........................................
 var multer = require('multer');
