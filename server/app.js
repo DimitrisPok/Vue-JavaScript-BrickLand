@@ -70,7 +70,6 @@ app.get('/yes', function(req,res){
     res.json({ name: 'Yoshi'});
 });
 
-app.use(routes);
 
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
