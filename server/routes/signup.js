@@ -17,7 +17,7 @@ router.get('/',function(req, res, next){
 //router.post('/signup', (req, res) 
 
 /* get a ist of users from the db */
-router.get('/',function(req, res){
+router.get('/user',function(req, res){
     res.json({type:'GET'});
 });
 
@@ -44,7 +44,7 @@ router.get('/',function(req, res){
 /*
 
 /* to add a new user to the database with a mongoose method, shorter way*/
-router.post('/',function(req, res){
+router.post('/user',function(req, res){
     User.create(req.body).then(function(user){
         res.send(user);
     }); //the 'User' is the one being imported in the beginning 
@@ -52,13 +52,12 @@ router.post('/',function(req, res){
 });
 
 /* update a user in the database */
-router.put('/users/:id',function(req, res){
+router.put('/user/:id',function(req, res){
     res.json({type:'PUT'});
 });
 
 /* delete a user from database */
-router.delete('/users/:id',function(req, res){
-    console.log(req.params.id);
+router.delete('/user/:id',function(req, res){
     res.json({type:'DELETE'});
 });
 
