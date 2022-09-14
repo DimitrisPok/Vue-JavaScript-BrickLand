@@ -11,17 +11,20 @@ var PostSchema = new Schema(
 
         caption : {
             type: String,
-            required:[true,'The title of the post is required.']
+            
         },
 
         instructions : {
             type: String,
-            required:[true,'The title of the post is required.']
+          
         },
 
         entryDate: {type:Date, default:Date.now}
 
     }
 );
+
+const Post = mongoose.model('post', PostSchema);
+module.exports = Post;
 
 
