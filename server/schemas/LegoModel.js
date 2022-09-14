@@ -3,18 +3,29 @@ var Schema = mongoose.Schema;
 
 var legoModel = new Schema(
     {
-        modelName: { type: String },
+        modelName: { 
+            type: String, 
+            required:[true,'Name of the model is required'] 
+        },
 
-        creatorName: {type: String},
+        creatorName: {
+            type: String,
+            default: "Anonymous"
+        },
 
         legoPieces: {
             numberOfPieces:{type: Number},
             typeOfPieces: {type: Array}
         },
 
-        categoryName: {type: String},
+        categoryName: {
+            type: String,
+            default: "Is not categorized."
+        },
 
-        instructions: {type: Array}
+        instructions: {
+            type: Array
+        }
 
     }
 
