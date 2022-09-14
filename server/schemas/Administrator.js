@@ -3,8 +3,27 @@ var Schema = mongoose.Schema;
 
 var AdministratorSchema = new Schema(
     {
-        userName : {type: String},
-        password : {type: String},
-        email : {type: String},
+
+        adminName : {
+            type: String, 
+            required:[true,'Name is required']
+        },
+
+        password : {
+            type: String, 
+            required:[true, 'Password is required']
+        },
+
+        email : {
+            type: String, 
+            required:[true, 'Email is required']
+        },
+
+        entryDate: {
+            type:Date, 
+            default:Date.now
+        }
     }
 );
+
+
