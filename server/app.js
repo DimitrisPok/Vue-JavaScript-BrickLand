@@ -8,8 +8,6 @@ var bodyParser = require('body-parser');
 
 
 
-const routes = require('./routes/signup')
-
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://Group21:26i4vNezpiAqElok@legomodels.1y6koci.mongodb.net/?retryWrites=true&w=majority';
