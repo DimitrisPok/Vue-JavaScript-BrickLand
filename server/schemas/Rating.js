@@ -3,10 +3,17 @@ var Schema = mongoose.Schema;
 
 var RatingSchema = new Schema(
     {
-        postId : {type: Number},
+        postId : {
+            type: Number
+        },
 
-        comment : {type:String},
+        comment : {
+            type:String
+        },
 
-        like : {type:Boolean}
+        like : {
+            type:Boolean,
+            default: false
+        }
     }
 );
