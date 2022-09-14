@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="%= BASE_URL %>favicon.ico">
     <title>client</title>
   </head>
   <body>
@@ -12,6 +12,15 @@
       <strong>We're sorry but client doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+
+    <h1> %=title %> </h1>
+
+    <form action="" method="POST">
+      <p> <input type="text" name="Username" placeholder="userName"> </p>
+      <p> <input type="text" name="Password" placeholder="password"> </p>
+      <p> <input type="text" name="Email" placeholder="email"> </p>
+      <p> <button type="submit">Save</button> </p> 
+    </form>
     <!-- built files will be auto injected -->
   </body>
 </html>
