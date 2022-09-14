@@ -5,6 +5,13 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 
+//doping router
+var router = express.Router();
+
+//using another file in the app
+var v1 = require('./v1');
+
+
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
@@ -30,6 +37,9 @@ app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
+
+//using v1
+app.use(v1);
 
 //testing out importing imgane...........................................
 var multer = require('multer');

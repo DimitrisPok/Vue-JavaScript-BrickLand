@@ -7,7 +7,13 @@ var PostSchema = new Schema(
 
         caption : {type: String},
 
-        instructions : {type: String}
+        instructions : {type: String},
+
+        //trying adding image
+        img: {
+            data : buffer,
+            contentType : String
+        }
 
     }
 );
