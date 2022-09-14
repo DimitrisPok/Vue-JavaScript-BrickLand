@@ -14,7 +14,7 @@ var router = express.Router();
 //using another file in the app
 var v1 = require('./v1');
 var user = require('./controllers/UserC');
-var post = require('./controllers/PostC');
+var post = require('./controllers/PostsC');
 
 var signup = require('./routes/signup');
 
