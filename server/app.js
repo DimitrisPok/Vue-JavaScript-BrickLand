@@ -8,11 +8,13 @@ var bodyParser = require('body-parser');
 
 
 
-//doping router
+//calling the router
 var router = express.Router();
 
 //using another file in the app
 var v1 = require('./v1');
+var user = require('./controllers/UserC');
+var post = require('./controllers/PostC');
 
 var signup = require('./routes/signup');
 
@@ -43,6 +45,12 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//using the controllers
+app.use(user);
+app.use(v1);
+app.use(post);
+
 
 // HTTP request logger
 app.use(morgan('dev'));

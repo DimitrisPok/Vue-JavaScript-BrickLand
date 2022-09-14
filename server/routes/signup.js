@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
+var app = express();
+var mongoose = require('mongoose');
+
+
 const User = require('../schemas/User');
 
 
@@ -56,8 +60,6 @@ router.put('/user/:id',function(req, res){
 router.delete('/user/:id',function(req, res){
     res.json({type:'DELETE'});
 });
-
-
 
 
 

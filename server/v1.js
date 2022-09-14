@@ -49,6 +49,19 @@ app.post('/admins', function(req, res){
 
 //..................................
 
+const LegoModel = require("./schemas/LegoModel");
+
+
+router.post("/legoModels", function(req,res){
+    LegoModel.create(req.body).then(function(legoModel){
+        res.send(legoModel);
+    });
+});
+
+router.get("/legoModel", function(req,res){
+    res.send({type: 'GET'});
+});
+
 app.use(bodyParser.json());
 
 var camels = [];
@@ -102,5 +115,12 @@ router.patch('/camels/:id', function(req, res) {
     camels[id] = updated_camel;
     res.json(updated_camel);
 });
+
+router.delete('/camels/:id', function(req, res, next){
+    User.findByIdAndDelete({_id: req.params.id}).then(function(user){
+        res.send(user);
+    }); 
+    res.json({type:'DELETE'});
+})
 
 module.exports = router;
