@@ -56,7 +56,6 @@ app.use(cors());
 //testing out importing imgane...........................................
 var multer = require('multer');
 const { Router } = require('express');
-const user = require('./schemas/User');
 var storageMulti = multer.diskStorage({
     destination:  (req, file, cb) => {
         cb(null, "./images");
