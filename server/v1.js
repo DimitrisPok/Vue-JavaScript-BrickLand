@@ -116,4 +116,11 @@ router.patch('/camels/:id', function(req, res) {
     res.json(updated_camel);
 });
 
+router.delete('/camels/:id', function(req, res, next){
+    User.findByIdAndDelete({_id: req.params.id}).then(function(user){
+        res.send(user);
+    }); 
+    res.json({type:'DELETE'});
+})
+
 module.exports = router;
