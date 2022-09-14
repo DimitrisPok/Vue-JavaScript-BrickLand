@@ -49,6 +49,19 @@ app.post('/admins', function(req, res){
 
 //..................................
 
+const LegoModel = require("./schemas/LegoModel");
+
+
+router.post("/legoModels", function(req,res){
+    LegoModel.create(req.body).then(function(legoModel){
+        res.send(legoModel);
+    });
+});
+
+router.get("/legoModel", function(req,res){
+    res.send({type: 'GET'});
+});
+
 app.use(bodyParser.json());
 
 var camels = [];
