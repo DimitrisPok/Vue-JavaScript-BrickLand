@@ -17,7 +17,7 @@ router.get('/',function(req, res, next){
 //router.post('/signup', (req, res) 
 
 /* get a ist of users from the db */
-router.get('/users',function(req, res){
+router.get('/',function(req, res){
     res.json({type:'GET'});
 });
 
@@ -44,7 +44,7 @@ router.get('/users',function(req, res){
 /*
 
 /* to add a new user to the database with a mongoose method, shorter way*/
-router.post('/users',function(req, res){
+router.post('/',function(req, res){
     User.create(req.body).then(function(user){
         res.send(user);
     }); //the 'User' is the one being imported in the beginning 
