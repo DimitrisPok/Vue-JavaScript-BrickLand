@@ -18,7 +18,17 @@ router.get('/legoModels',function(req, res){
         }
     res.json({"legoModel": legoModel});
     });
-});
+})
+
+/*router.get('/legoModels',function(req, res){
+    legoModel.find(function(err, creatorName){
+      if(err){
+        return res.status(500).send(err);
+    }
+res.json({"legoModel": LegoModel});
+    });
+});*/
+
 
 router.delete("/legoModels", function (req, res) {
     LegoModel.deleteMany(function (err, legoModel) {
@@ -30,7 +40,7 @@ router.delete("/legoModels", function (req, res) {
     });
   });
 
-/*router.delete("/legoModels/:id", function (req, res, next) {
+router.delete("/legoModels/:id", function (req, res, next) {
     var id = req.params.id;
     LegoModel.findByIdAndDelete(id, function (err, legoModel) {
       if (err) {
@@ -42,6 +52,6 @@ router.delete("/legoModels", function (req, res) {
       console.log("Legomodel successfully deleted :", legoModel.name);
       res.status(200).json(legoModel);
     });
-  });*/
+  });
 
 module.exports = router;

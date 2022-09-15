@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 const router = express.Router();
 const LegoPiece = require("../schemas/legoPiece");
 
-
 router.post("/legoPieces",function (req,res){
     var legoPiece = new LegoPiece(req.body);
     legoPiece.save(function(err){
@@ -14,7 +13,6 @@ router.post("/legoPieces",function (req,res){
     res.status(201).json(legoPiece);
     console.log(legoPiece);
 });
-
 
 router.get('/LegoPieces',function(req, res){
     LegoPiece.find(function(err, LegoPiece){
