@@ -30,3 +30,5 @@ var legoModel = new Schema(
     }
 
 );
+
+module.exports = mongoose.model("legoModels", legoModel);

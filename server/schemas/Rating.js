@@ -17,3 +17,5 @@ var RatingSchema = new Schema(
         }
     }
 );
+
+module.exports = mongoose.model("ratings", RatingSchema);

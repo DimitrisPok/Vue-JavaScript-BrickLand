@@ -20,3 +20,5 @@ var legoPiece = new Schema(
         }
     }
 );
+
+module.exports = mongoose.model("legoPieces", legoPiece);
