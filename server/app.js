@@ -6,7 +6,10 @@ var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var bodyParser = require('body-parser');
 
-
+var Admins = require('./controllers/Admins');
+var Ratings = require('./controllers/Ratings');
+var legoModels = require('./controllers/legoModels');
+var legoPieces = require('./controllers/legoPieces');
 
 //calling the router
 var router = express.Router();
@@ -50,7 +53,8 @@ app.use(express.json());
 app.use(user);
 app.use(v1);
 app.use(post);
-
+app.use(legoPieces);
+app.use(legoModels);
 
 // HTTP request logger
 app.use(morgan('dev'));
