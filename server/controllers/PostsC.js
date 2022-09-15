@@ -93,4 +93,19 @@ router.delete('/posts', function(req, res, next) {
     });
   });
 
+//filtering using caption
+
+router.get("/api/posts?caption=:house", function (req, res, next) {
+    console.log("finding");
+    Post.find({ caption: { $all: [req.params.caption] } }).exec(function (
+      err,
+      post
+    ) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      console.log("success");
+      return res.status(200).json(post);
+    });
+  });
 module.exports = router;
