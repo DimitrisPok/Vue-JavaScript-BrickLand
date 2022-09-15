@@ -107,5 +107,6 @@ router.get("/api/posts?caption=:house", function (req, res, next) {
       console.log("success");
       return res.status(200).json(post);
     });
-  });
+});
+
 module.exports = router;
