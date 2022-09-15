@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+
 //generate user id
 
 //this is the schema 
@@ -25,10 +26,21 @@ var UserSchema = new Schema(
         entryDate: {
             type:Date, 
             default:Date.now
-        }
+        },
+
+        posts: [{ 
+            type: Schema.Types.ObjectId,
+            ref: 'post', 
+        }],
+
+        reviews: [{ 
+            type: Schema.Types.ObjectId,
+            ref: 'review', 
+        }],
         
         //likedPosts : {type: Array}
-    }
+    },
+    
 );
 
 //this is the model, where users is the name of it

@@ -6,28 +6,25 @@ var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var bodyParser = require('body-parser');
 
-var Admins = require('./controllers/Admins');
-var Ratings = require('./controllers/Ratings');
-var legoModels = require('./controllers/legoModels');
-var legoPieces = require('./controllers/legoPieces');
+
 
 //calling the router
 var router = express.Router();
 
 //using another file in the app
 var v1 = require('./v1');
-var user = require('./controllers/UserC');
 var post = require('./controllers/PostsC');
-
 var signup = require('./routes/signup');
 
 var user = require('./controllers/Users');
+var review = require('./controllers/Review');
 
 
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://Group21:26i4vNezpiAqElok@legomodels.1y6koci.mongodb.net/?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
+
 
 
 // Connect to MongoDB
@@ -53,8 +50,8 @@ app.use(express.json());
 app.use(user);
 app.use(v1);
 app.use(post);
-app.use(legoPieces);
-app.use(legoModels);
+app.use(review);
+
 
 // HTTP request logger
 app.use(morgan('dev'));
@@ -63,9 +60,10 @@ app.options('*', cors());
 app.use(cors());
 
 //using v1
-app.use(v1);
-app.use(signup);
-app.use(user);
+//app.use(v1);
+//app.use(signup);
+//app.use(user);
+//app.use(review);
 
 //testing out importing imgane...........................................
 var multer = require('multer');

@@ -5,26 +5,35 @@ var Schema = mongoose.Schema;
 
 var PostSchema = new Schema(
     {
-        postId : {
-            type: Number
-        },
+       // postId : {
+           // type: Number
+       // },
 
         caption : {
-            type: String,
-            
+            type: String
         },
 
         instructions : {
-            type: String,
-          
+            type: String
         },
 
-        entryDate: {type:Date, default:Date.now}
+        user: { 
+            type: Schema.Types.ObjectId, 
+            ref: "user" 
+        },
 
-    }
+        review: { 
+            type: Schema.Types.ObjectId, 
+            ref: "reviews" 
+        },
+    
+    },
+
+    { timestamps : true },
 );
 
 const Post = mongoose.model('post', PostSchema);
 module.exports = Post;
+
 
 
