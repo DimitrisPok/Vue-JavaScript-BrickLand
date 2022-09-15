@@ -85,7 +85,7 @@ router.get("/users/:id/posts", function (req, res, next) {
 
 
 // GET /cars/:car_id/drivers/:driver_id (relationship) - THIS IS ALSO WORKING BUT EMPTY 
-router.get("/users/:user_id/posts/:post_id", function (req, res) {
+router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   /*var id = req.params.user_id;
   User.findById(id).populate({
     path: "post", 
@@ -103,8 +103,22 @@ router.get("/users/:user_id/posts/:post_id", function (req, res) {
   });
 
 });*/
+//findOne({ _id: req.params.user_id })
 
-  User.findOne({ _id: req.params.user_id })
+  var id = req.params.user_id;
+  User.findById(id).populate({path: 'post', match: {_id:req.params.post_id} }).exec(function (err, user) {
+    if (err) {
+        return next(err);
+    }
+    if (err) {
+      return res.status(404).json({"message": "User is not found"});
+    }
+  console.log(user.posts);
+  return res.status(200).json(user.posts);
+  });
+
+
+  /*User.findOne({ _id: req.params.user_id })
     .populate("posts", {
       match: { _id: { $ne: req.params.post_id } },
     })
@@ -112,9 +126,9 @@ router.get("/users/:user_id/posts/:post_id", function (req, res) {
       if (err) {
         return res.status(500).send(err);
       }
-      console.log(user.posts);
-      return res.status(200).send(user.posts);
-    });
+      //console.log(user.posts);
+      return res.status(200).json(user.posts);
+    });*/
 });
 
 
