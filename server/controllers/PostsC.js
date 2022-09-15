@@ -71,11 +71,11 @@ router.patch('/posts/:id', function(req, res, next) {
     Post.findById(id, function(err, post) {
         if (err) { return next(err); }
         if (post == null) {
-            return res.status(404).json({"message": "user not found"});
+            return res.status(404).json({"message": "post not found"});
         }
-        post.name = req.body.name || post.name;
-        post.password = req.body.password || post.password;
-        post.email = req.body.email || user.email;
+        post.postId = req.body.postId || post.postId;
+        post.caption = req.body.caption || post.caption;
+        post.instructions = req.body.instructions || post.instructions;
         post.save();
         res.json(post);
     });
@@ -94,4 +94,19 @@ router.delete('/posts', function(req, res, next) {
 });
 
 
+//filtering using caption
+
+router.get("/api/posts?caption=:house", function (req, res, next) {
+    console.log("finding");
+    Post.find({ caption: { $all: [req.params.caption] } }).exec(function (
+      err,
+      post
+    ) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      console.log("success");
+      return res.status(200).json(post);
+    });
+  });
 module.exports = router;
