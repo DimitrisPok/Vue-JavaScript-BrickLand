@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var RatingSchema = new Schema(
+var ReviewSchema = new Schema(
     {
         postId : {
             type: Number

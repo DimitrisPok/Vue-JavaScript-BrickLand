@@ -12,11 +12,17 @@ var RatingC = require('./controllers/Ratings');
 var LegoModelC = require('./controllers/legoModels');
 var LegoPieceC = require('./controllers/LegoPieces');
 
-//doping router
+//calling the router
 var router = express.Router();
 
 //using another file in the app
 var v1 = require('./v1');
+var user = require('./controllers/UserC');
+var post = require('./controllers/PostsC');
+
+var signup = require('./routes/signup');
+
+var user = require('./controllers/Users');
 
 
 
@@ -44,6 +50,12 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//using the controllers
+app.use(user);
+app.use(v1);
+app.use(post);
+
+
 // HTTP request logger
 app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
@@ -52,6 +64,8 @@ app.use(cors());
 
 //using v1
 app.use(v1);
+app.use(signup);
+app.use(user);
 
 //testing out importing imgane...........................................
 var multer = require('multer');
@@ -79,16 +93,6 @@ app.post("/single", upload.single('image'), async (req,res)=>
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project! '});
 });
-
-app.get('/yes', function(req,res){
-    res.json({ name: 'Yoshi'});
-});
-
-app.use(Ratings);
-app.use(Admins);
-app.use(LegoModels);
-app.use(LegoPieces);
-
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
