@@ -13,18 +13,17 @@ var router = express.Router();
 
 //using another file in the app
 var v1 = require('./v1');
-var user = require('./controllers/UserC');
 var post = require('./controllers/PostC');
-
 var signup = require('./routes/signup');
-
 var user = require('./controllers/Users');
+var review = require('./controllers/Reviews');
 
 
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://Group21:26i4vNezpiAqElok@legomodels.1y6koci.mongodb.net/?retryWrites=true&w=majority';
 var port = process.env.PORT || 3000;
+
 
 
 // Connect to MongoDB
@@ -50,6 +49,7 @@ app.use(express.json());
 app.use(user);
 app.use(v1);
 app.use(post);
+app.use(review);
 
 
 // HTTP request logger
@@ -59,9 +59,10 @@ app.options('*', cors());
 app.use(cors());
 
 //using v1
-app.use(v1);
-app.use(signup);
-app.use(user);
+//app.use(v1);
+//app.use(signup);
+//app.use(user);
+//app.use(review);
 
 //testing out importing imgane...........................................
 var multer = require('multer');

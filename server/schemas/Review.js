@@ -3,17 +3,44 @@ var Schema = mongoose.Schema;
 
 var ReviewSchema = new Schema(
     {
-        postId : {
-            type: Number
-        },
+        //postId : {
+           // type: Number
+        //},
 
         comment : {
-            type:String
+            type: String,
+            default: "No comment"
         },
 
         like : {
-            type:Boolean,
+            type: Boolean,
             default: false
+        },
+
+        user: { 
+            type: Schema.Types.ObjectId, 
+            ref: "users" 
+        },
+
+        post: { 
+            type: Schema.Types.ObjectId, 
+            ref: "posts" 
         }
-    }
+
+        /*user: { 
+            type: Schema.Types.ObjectId, 
+            ref: "users" 
+        },
+
+        post: {
+            type: Schema.Types.ObjectId, 
+            ref: "posts"
+        }*/
+    },
+    { timestamps : true },
+
+
 );
+
+const review = mongoose.model('review', ReviewSchema);
+module.exports = review;

@@ -79,9 +79,9 @@ router.patch('/posts/:id', function(req, res, next) {
         post.save();
         res.json(post);
     });
-  });
+});
 
-  //delete an entire collection
+//delete an entire collection
 router.delete('/posts', function(req, res, next) {
     Post.deleteMany(function(err, posts) {
         if (err) { return next(err); }
@@ -91,6 +91,7 @@ router.delete('/posts', function(req, res, next) {
         }
         res.status(201).json({"post": posts});
     });
-  });
+});
+
 
 module.exports = router;
