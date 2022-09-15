@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var legoPiece = new Schema(
+var legoPieceSchema = new Schema(
     {
         category : {
             type: String
@@ -20,3 +20,4 @@ var legoPiece = new Schema(
         }
     }
 );
+module.exports = mongoose.model("legoPieces", legoPieceSchema);
