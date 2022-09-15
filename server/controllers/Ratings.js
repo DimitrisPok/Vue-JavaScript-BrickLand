@@ -3,7 +3,7 @@ var app = express();
 const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 const router = express.Router();
-const  Rating = require("../schemas/Rating");
+const  rating = require("../schemas/Rating");
 
 
 
