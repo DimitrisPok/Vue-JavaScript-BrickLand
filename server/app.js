@@ -7,6 +7,10 @@ var history = require('connect-history-api-fallback');
 var bodyParser = require('body-parser');
 
 
+var AdminC = require('./controllers/Admins');
+var RatingC = require('./controllers/Ratings');
+var LegoModelC = require('./controllers/legoModels');
+var LegoPieceC = require('./controllers/LegoPieces');
 
 //doping router
 var router = express.Router();
@@ -80,6 +84,10 @@ app.get('/yes', function(req,res){
     res.json({ name: 'Yoshi'});
 });
 
+app.use(Ratings);
+app.use(Admins);
+app.use(LegoModels);
+app.use(LegoPieces);
 
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
