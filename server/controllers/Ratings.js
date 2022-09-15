@@ -6,7 +6,8 @@ const router = express.Router();
 const  Rating = require("../schemas/Rating");
 
 
-router.get('/ratings',function(req, res){
+
+router.get('/Ratings',function(req, res){
     res.json({type:'GET'});
 });
 
