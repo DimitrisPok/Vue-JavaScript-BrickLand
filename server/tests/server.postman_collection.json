@@ -58,7 +58,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\r\n    \r\n{\r\n    \"postId\" : 16,\r\n    \"caption\" : \":buildning\",\r\n    \"instructions\" : \"step 14\"\r\n}\r\n",
+					"raw": "\n{\n    \"_id\": \"632459bab11b2f1f51f7389b\",\n    \"caption\" : \":test 7\",\n    \"instructions\" : \"step 7\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -66,12 +66,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/posts",
+					"raw": "http://localhost:3001/posts",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3001",
 					"path": [
 						"posts"
 					]
