@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 
 //using another file in the app
-var v1 = require('./v1');
+//var v1 = require('./extras/v1')
 var post = require('./controllers/PostsC');
 var signup = require('./routes/signup');
 
