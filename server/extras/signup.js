@@ -14,7 +14,7 @@ router.get('/',function(req, res, next){
     res.render('index', {title: 'Express'});
 });
 
-//router.post('/signup', (req, res) 
+//router.post('/signup', (req, res) yes
 
 /* get a ist of users from the db */
 router.get('/user',function(req, res){
