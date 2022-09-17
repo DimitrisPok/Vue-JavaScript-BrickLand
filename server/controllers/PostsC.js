@@ -23,7 +23,7 @@ var storageMulti = multer.diskStorage({
 var upload = multer({
     storage:storageMulti});
 
-app.post("/single", upload.single('img'), async (req,res)=>
+router.post("/single", upload.single('img'), async (req,res)=>
 {
     var post = new Post(req.body);
 
@@ -48,8 +48,11 @@ app.post("/single", upload.single('img'), async (req,res)=>
 
 
 //post posts
-router.post('/posts', function(req,res, next){
+router.post('/posts', upload.single('img'), function(req,res, next){
     var post = new Post(req.body);
+     if(req.file){
+            post.img = req.file.path
+        }
     post.save(function(err){
         if (err){return res.status(500).send(err);}
     res.status(201).json({"post": post});
