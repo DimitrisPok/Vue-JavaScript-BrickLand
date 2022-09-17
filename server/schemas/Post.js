@@ -22,15 +22,15 @@ var PostSchema = new Schema(
             type: String
         },
 
-        user: { 
+        user: [{ 
             type: Schema.Types.ObjectId, 
             ref: "user" 
-        },
+        }],
 
-        review: { 
+        review: [{ 
             type: Schema.Types.ObjectId, 
-            ref: "reviews" 
-        },
+            ref: "review" 
+        }],
     
     },
 
