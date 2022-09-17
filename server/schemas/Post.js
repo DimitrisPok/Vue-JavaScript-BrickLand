@@ -17,6 +17,11 @@ var PostSchema = new Schema(
             type: String
         },
 
+        img:
+        {
+            type: String
+        },
+
         user: { 
             type: Schema.Types.ObjectId, 
             ref: "user" 
