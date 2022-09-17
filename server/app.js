@@ -48,7 +48,7 @@ app.use(express.json());
 
 //using the controllers
 app.use(user);
-app.use(v1);
+//app.use(v1);
 app.use(post);
 app.use(review);
 
