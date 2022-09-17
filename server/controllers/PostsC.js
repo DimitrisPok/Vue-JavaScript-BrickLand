@@ -6,6 +6,47 @@ const router = express.Router();
 const Post = require('../schemas/Post');
 
 
+
+//testing out importing imgane...........................................
+
+var multer = require('multer');
+const { Router } = require('express');
+var storageMulti = multer.diskStorage({
+    destination:  (req, file, cb) => {
+        cb(null, "./images");
+    },
+    filename: (req, file, cb) =>{
+        cb(null, Date.now()+ '--' + file.originalname)
+    } 
+}
+);
+var upload = multer({
+    storage:storageMulti});
+
+app.post("/single", upload.single('img'), async (req,res)=>
+{
+    var post = new Post(req.body);
+
+    post.save(function(err){
+        if(req.file){
+            post.img = req.file.path
+        }
+        if (err){return res.status(500).send(err);}
+    res.status(201).json({"post": post});
+    console.log(req.file)
+    });
+    
+});
+
+//.............................................
+
+
+
+
+
+
+
+
 //post posts
 router.post('/posts', function(req,res, next){
     var post = new Post(req.body);

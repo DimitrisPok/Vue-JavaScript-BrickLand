@@ -65,28 +65,6 @@ app.use(cors());
 //app.use(user);
 //app.use(review);
 
-//testing out importing imgane...........................................
-var multer = require('multer');
-const { Router } = require('express');
-var storageMulti = multer.diskStorage({
-    destination:  (req, file, cb) => {
-        cb(null, "./images");
-    },
-    filename: (req, file, cb) =>{
-        cb(null, Date.now()+ '--' + file.originalname)
-    } 
-}
-);
-var upload = multer({
-    storage:storageMulti});
-
-app.post("/single", upload.single('image'), async (req,res)=>
-{
-   console.log(req.file);
-   res.send("Success");
-});
-//.............................................
-
 // Import routes
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project! '});
