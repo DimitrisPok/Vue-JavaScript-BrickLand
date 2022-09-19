@@ -30,12 +30,12 @@ var UserSchema = new Schema(
 
         posts: [{ 
             type: Schema.Types.ObjectId,
-            ref: 'posts', 
+            ref: 'post', 
         }],
 
         reviews: [{ 
             type: Schema.Types.ObjectId,
-            ref: 'reviews', 
+            ref: 'review', 
         }],
         
         //likedPosts : {type: Array}
