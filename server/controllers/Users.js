@@ -25,7 +25,7 @@ router.post('/users', function(req,res, next){
   });
 });
 
-// post post(s) with user ID - AND IT FKN WORKSSSSS
+// post post(s) with user ID 
 router.post("/users/:id/posts", function (req, res, next) {
   User.findById(req.params.id, function (err, user) {
     if (err) {
@@ -43,7 +43,7 @@ router.post("/users/:id/posts", function (req, res, next) {
     });
     user.posts.push(post);
     user.save();
-    console.log("Post" + post.caption + "were added to ", user.name);
+    console.log("Post " + post.caption + " was added to ", user.name);
     return res.status(201).json(user);
   });
 });
@@ -211,7 +211,6 @@ router.delete("/users/:user_id/posts/:post_id", function (req, res, next) {
         return res.status(404).json(
 
                   {"message": "Post not found"});
-                  
     }
   }
   );
