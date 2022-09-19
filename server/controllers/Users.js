@@ -63,8 +63,8 @@ router.post("/users/:id/posts", upload.single('img'), function (req, res, next) 
     });
     user.posts.push(post);
     user.save();
-    console.log("Post" + post.caption + "were added to ", user.name);
-    return res.status(201).json( user);
+    console.log("Post " + post.caption + " was added to ", user.name);
+    return res.status(201).json(user);
   });
 });
 
@@ -235,7 +235,6 @@ router.delete("/users/:user_id/posts/:post_id", function (req, res, next) {
         return res.status(404).json(
 
                   {"message": "Post not found"});
-                  
     }
   }
   );

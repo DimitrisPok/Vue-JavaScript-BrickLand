@@ -14,18 +14,18 @@ var ReviewSchema = new Schema(
 
         like : {
             type: Boolean,
-            default: false
+            default: "false"
         },
 
-        user: [{ 
+        user: { 
             type: Schema.Types.ObjectId, 
             ref: "users" 
-        }],
+        },
 
-        post: [{ 
+        post: { 
             type: Schema.Types.ObjectId, 
             ref: "posts" 
-        }]
+        }
 
         /*user: { 
             type: Schema.Types.ObjectId, 
