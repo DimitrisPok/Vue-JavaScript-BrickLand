@@ -188,4 +188,18 @@ router.get("/api/posts?caption=:house", function (req, res, next) {
     });
 });
 
+//Functions that allows u to search on a specific post
+router.get('/posts/search/:key', async (req, res) =>{
+    var data = await Post.find(
+        {
+           "$or" : [
+                {caption:{$regex: req.params.key}}
+            ]
+        }
+    )
+    res.send(data);
+});
+
+
+
 module.exports = router;

@@ -19,12 +19,12 @@ var ReviewSchema = new Schema(
 
         user: { 
             type: Schema.Types.ObjectId, 
-            ref: "users" 
+            ref: "user" 
         },
 
         post: { 
             type: Schema.Types.ObjectId, 
-            ref: "posts" 
+            ref: "post" 
         }
 
         /*user: { 

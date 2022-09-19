@@ -69,6 +69,21 @@ router.post("/users/:id/posts", upload.single('img'), function (req, res, next) 
 });
 
 
+
+//get user's reviews with id - 
+/*router.get('/users/:id/:reviews', function(req, res, next) {
+  User.findOne({ _id: req.params.id })
+    .populate("reviews")
+    .exec(function (err, user) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      console.log(user.reviews);
+      return res.status(200).send(user.reviews);
+    });
+});*/
+
+
 // get the user's posts.
 router.get("/users/:id/posts", function (req, res, next) {
   User.findOne({ _id: req.params.id })
@@ -90,19 +105,20 @@ router.get("/users/:id/posts", function (req, res, next) {
 });
 
 
-//get user's reviews with id - 
-/*router.get('/users/:id/:reviews', function(req, res, next) {
-  User.findOne({ _id: req.params.id })
-    .populate("reviews")
+              
+router.get("/users/:user_id/posts/:post_id/test", function (req, res, next) {
+  User.findOne({ _id: req.params.user_id })
+    .populate({ path: "posts", model: "post", 
+      match: { _id: { _id : req.params.post_id } },
+    })
     .exec(function (err, user) {
       if (err) {
         return res.status(500).send(err);
       }
-      console.log(user.reviews);
-      return res.status(200).send(user.reviews);
+      console.log(user.posts);
+      return res.status(200).send(user.posts);
     });
-});*/
-
+});
 
 // GET /cars/:car_id/drivers/:driver_id (relationship) - THIS IS ALSO WORKING BUT EMPTY 
 router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
@@ -128,7 +144,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   var id = req.params.user_id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
     // Yes, it's a valid ObjectId, proceed with `findById` call.
-     User.findById(id).populate({path: 'post', match: {_id:req.params.post_id} }).exec(function (err, user) {
+     User.findById(id).populate({path: 'post', match: {_id: req.params.post_id} }).exec(function (err, user) {
     if (err) {
         return next(err);
     }
