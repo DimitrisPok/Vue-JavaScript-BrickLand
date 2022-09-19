@@ -40,12 +40,45 @@ router.post("/single", upload.single('img'), async (req,res)=>
 
 //.............................................
 
+//.......................testing querys out
+/*
+router.get('/posts/query', (req, res, next ) => {
+    const query = req.query 
+   const sorting= Post.find(function(err, posts) {
+        if (err){return res.status(500).send(err);}
+   const sorted = sorting.sort({posts});
+     res.json(sorted)
+   });
+    
+});
 
 
+router.get('posts/sorted',  async (req, res)=> {
+    const result =  Post.find({}).sort({
+    caption: 1,
+});
+res.json(result);
+})
+
+router.get('posts/', function(req, res){
+    const sorted = Post.find({Post}).sort({
+        createdAt : 1,
+    });
+res.send(sorted);
+});
 
 
+router.get('/posts/sort',function(req, res){
+    const postSort = Post.find(function(err, posts) {
+       const sortedPost = postSort.sort({caption : 1});
+         if (err){return res.status(500).send(err);}
+    res.status(201).json({sortedPost});
+   
+    });
+});
+*/
 
-
+//..................................
 
 //post posts
 router.post('/posts', upload.single('img'), function(req,res, next){
@@ -68,6 +101,7 @@ router.get('/posts',function(req, res){
 });
 
 //getting an post with a specific id
+
 router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(req.params.id, function(err, post) {
@@ -80,6 +114,7 @@ router.get('/posts/:id', function(req, res, next) {
         console.log(post);
     });
 });
+
 
 //put method for posts
 router.put('/posts/:id', function(req, res, next) {
