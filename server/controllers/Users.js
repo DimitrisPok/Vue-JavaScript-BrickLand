@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 const router = express.Router();
 const User = require("../schemas/User");
 const Post = require("../schemas/Post");
+const Posts = require('./Posts');
 
 
 //get all users
@@ -26,7 +27,23 @@ router.post('/users', function(req,res, next){
 });
 
 // post post(s) with user ID - AND IT FKN WORKSSSSS
-router.post("/users/:id/posts", function (req, res, next) {
+
+//adding dependencies for image upload
+var multer = require('multer');
+const { Router } = require('express');
+var storageMulti = multer.diskStorage({
+    destination:  (req, file, cb) => {
+        cb(null, "./images");
+    },
+    filename: (req, file, cb) =>{
+        cb(null, Date.now()+ '--' + file.originalname)
+    } 
+}
+);
+var upload = multer({
+    storage:storageMulti})
+//..............................
+router.post("/users/:id/posts", upload.single('img'), function (req, res, next) {
   User.findById(req.params.id, function (err, user) {
     if (err) {
       return res.status(500);
@@ -35,6 +52,9 @@ router.post("/users/:id/posts", function (req, res, next) {
       return res.status(404).json({ message: "User not found" });
     }
     var post = new Post(req.body);
+    if(req.file){
+      post.img = req.file.path
+  }
     post.save(function (err) {
       if (err) {
         return res.status(500);
@@ -44,7 +64,7 @@ router.post("/users/:id/posts", function (req, res, next) {
     user.posts.push(post);
     user.save();
     console.log("Post" + post.caption + "were added to ", user.name);
-    return res.status(201).json(user);
+    return res.status(201).json( user);
   });
 });
 
@@ -106,7 +126,9 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
 //findOne({ _id: req.params.user_id })
 
   var id = req.params.user_id;
-  User.findById(id).populate({path: 'post', match: {_id:req.params.post_id} }).exec(function (err, user) {
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    // Yes, it's a valid ObjectId, proceed with `findById` call.
+     User.findById(id).populate({path: 'post', match: {_id:req.params.post_id} }).exec(function (err, user) {
     if (err) {
         return next(err);
     }
@@ -116,6 +138,8 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   console.log(user.posts);
   return res.status(200).json(user.posts);
   });
+  }
+ 
 
 
   /*User.findOne({ _id: req.params.user_id })
