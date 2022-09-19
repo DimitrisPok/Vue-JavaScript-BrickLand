@@ -4,6 +4,9 @@ const router = express.Router();
 const Review = require('../schemas/Review');
 var mongoose = require('mongoose');
 const review = require("../schemas/Review");
+const Post = require("../schemas/Post");
+
+const toId = mongoose.Types.ObjectId
 
 
 
@@ -92,7 +95,58 @@ router.delete('/reviews', function(req, res, next) {
         res.status(201).json({"review": reviews});
     });
 });
+
+
   
+// post reviews(s) with post ID 
+router.post("/posts/:id/reviews", function (req, res, next) {
+    Post.findById(req.params.id, function (err, post) {
+      if (err) {
+        return res.status(500);
+      }
+      if (post == null) {
+        return res.status(404).json({ message: "Post does not exist" });
+      }
+      var review = new Review(req.body);
+      review.save(function (err) {
+        if (err) {
+          return res.status(500);
+        }
+        console.log("Review was successfully created."); 
+        post.review.push(review);
+        post.save();
+        console.log("Review was added to ", post.caption);
+        return res.status(201).json(post);
+      });
+    
+      
+    });
+});
+
+
+
+// get all reviews from a post.
+router.get("/posts/:id/reviews", function (req, res, next) {
+    Review.findOne({ _id: req.params.id })
+      .populate({
+        path: "reviews",
+        model: "review",
+        populate: {
+          path: "posts",
+          model: "post",
+        },
+      })
+      .exec(function (err, post) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        console.log(post.reviews);
+        return res.status(200).send(post.reviews);
+      });
+});
+
+
+
 
 
 
