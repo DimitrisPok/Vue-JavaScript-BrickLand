@@ -27,7 +27,7 @@ var PostSchema = new Schema(
             ref: "user" 
         },
 
-        review: { 
+        review: [{ 
             type: Schema.Types.ObjectId, 
             ref: "review" 
         }],
