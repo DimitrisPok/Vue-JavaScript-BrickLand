@@ -121,7 +121,7 @@ router.get("/users/:user_id/posts/:post_id/test", function (req, res, next) {
 });
 
 // GET /cars/:car_id/drivers/:driver_id (relationship) - THIS IS ALSO WORKING BUT EMPTY 
-router.get("/users/:user_id/posts/:post_id/test", function (req, res, next) {
+router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   /*var id = req.params.user_id;
   User.findById(id).populate({
     path: "post", 
@@ -171,7 +171,8 @@ router.get("/users/:user_id/posts/:post_id/test", function (req, res, next) {
     });*/
 });
 
-
+/*
+This mehtod show an error where the post is null
 router.get('/users/:user_id/posts/:post_id', function(req, res){
   var id = req.params.user_id;
   Post.findById(id).populate({path: "post", match: {_id: req.params.post_id} }).exec(function(err, user){
@@ -179,10 +180,10 @@ router.get('/users/:user_id/posts/:post_id', function(req, res){
   if (Post == null) {
       return res.status(404).json({"message": "Post not found"});
   }
-  res.status(200).send(user.post);
+  res.status(200).send(user.posts);
   })
 });
-
+*/
 router.get("/users/:id", function (req, res, next) {
   User.findOne({ _id: req.params.id })
     .populate("posts")
