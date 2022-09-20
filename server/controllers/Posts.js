@@ -23,6 +23,12 @@ var storageMulti = multer.diskStorage({
 var upload = multer({
     storage:storageMulti});
 
+
+
+
+
+
+    
 router.post("/single", upload.single('img'), async (req,res)=>
 {
     var post = new Post(req.body);

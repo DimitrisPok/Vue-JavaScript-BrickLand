@@ -31,6 +31,16 @@ var PostSchema = new Schema(
             type: Schema.Types.ObjectId, 
             ref: "review" 
         }],
+
+        legoPieces : [{
+        category : {type: String },
+
+        subCategory : {type: String},
+
+        elementId : {type: Number},
+
+        DesignId : {type: Number}
+        }]
     
     },
 
