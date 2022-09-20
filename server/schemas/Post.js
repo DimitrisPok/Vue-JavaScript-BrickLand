@@ -31,7 +31,7 @@ var PostSchema = new Schema(
             type: Schema.Types.ObjectId, 
             ref: "review" 
         }],
-
+        
         legoPieces : [{
         category : {type: String },
 
