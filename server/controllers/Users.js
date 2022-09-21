@@ -181,6 +181,8 @@ router.get('/users/:user_id/posts/:post_id', function(req, res){
   })
 });
 */
+
+
 router.get("/users/:id", function (req, res, next) {
   User.findOne({ _id: req.params.id })
     .populate("posts")
@@ -189,14 +191,14 @@ router.get("/users/:id", function (req, res, next) {
       if (err) {
         return res.status(500).send(err);
       }
-      console.log(user);
-      return res.status(200).json(user);
+      
+        console.log(user);
+      return res.status(200).send(user);
+      
+      
     });
     
 });
-
-
-
 
 
 //to update an entire user 
