@@ -6,7 +6,21 @@ const router = express.Router();
 const User = require("../schemas/User");
 const Post = require("../schemas/Post");
 const Posts = require('./Posts');
-
+//adding dependencies for image upload
+var multer = require('multer');
+const { Router } = require('express');
+var storageMulti = multer.diskStorage({
+    destination:  (req, file, cb) => {
+        cb(null, "./images");
+    },
+    filename: (req, file, cb) =>{
+        cb(null, Date.now()+ '--' + file.originalname)
+    } 
+}
+);
+var upload = multer({
+    storage:storageMulti})
+//..............................
 
 //get all users
 router.get('/users',function(req, res){
@@ -27,22 +41,6 @@ router.post('/users', function(req,res, next){
 });
 
 // post post(s) with user ID - AND IT FKN WORKSSSSS
-
-//adding dependencies for image upload
-var multer = require('multer');
-const { Router } = require('express');
-var storageMulti = multer.diskStorage({
-    destination:  (req, file, cb) => {
-        cb(null, "./images");
-    },
-    filename: (req, file, cb) =>{
-        cb(null, Date.now()+ '--' + file.originalname)
-    } 
-}
-);
-var upload = multer({
-    storage:storageMulti})
-//..............................
 router.post("/users/:id/posts/image", upload.single('img'), function (req, res, next) {
   User.findById(req.params.id, function (err, user) {
     if (err) {
@@ -121,7 +119,8 @@ router.get("/users/:user_id/posts/:post_id/test", function (req, res, next) {
 });
 
 // GET /cars/:car_id/drivers/:driver_id (relationship) - THIS IS ALSO WORKING BUT EMPTY 
-router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
+
+/*router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   /*var id = req.params.user_id;
   User.findById(id).populate({
     path: "post", 
@@ -140,7 +139,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
 
 });*/
 //findOne({ _id: req.params.user_id })
-
+/*
   var id = req.params.user_id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
     // Yes, it's a valid ObjectId, proceed with `findById` call.
@@ -155,8 +154,6 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   return res.status(200).json(user.posts);
   });
   }
- 
-
 
   /*User.findOne({ _id: req.params.user_id })
     .populate("posts", {
@@ -169,7 +166,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       //console.log(user.posts);
       return res.status(200).json(user.posts);
     });*/
-});
+//});
 
 /*
 This mehtod show an error where the post is null

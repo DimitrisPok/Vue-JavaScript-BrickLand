@@ -14,7 +14,8 @@ var PostSchema = new Schema(
         },
 
         instructions : {
-            type: String
+            type: String, 
+            Default: "there are no instructions available"
         },
 
         img:
@@ -24,12 +25,12 @@ var PostSchema = new Schema(
 
         user: { 
             type: Schema.Types.ObjectId, 
-            ref: "user" 
+            ref: "users" 
         },
 
         review: [{ 
             type: Schema.Types.ObjectId, 
-            ref: "review" 
+            ref: "reviews" 
         }],
         
         legoPieces : [{
