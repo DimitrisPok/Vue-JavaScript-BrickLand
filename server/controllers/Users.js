@@ -194,6 +194,7 @@ router.get("/users/:id", function (req, res, next) {
     
 });
 
+
 //to update an entire user 
 router.put('/users/:id', function(req, res, next) {
   var id = req.params.id;
