@@ -187,7 +187,7 @@ router.get("/users/:id", function (req, res, next) {
     .populate("reviews")
     .exec(function (err, user) {
       if (err) {
-        return res.status(500).send(err);
+        return res.status(500).json(err);
       }
       return res.status(200).send(user);
     });
