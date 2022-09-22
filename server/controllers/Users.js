@@ -85,7 +85,7 @@ router.post("/users/:id/posts/image", upload.single('img'), function (req, res, 
 
 
 // get the user's posts.
-router.get("/users/:id/posts", function (req, res, next) {
+router.get("/users/:id/posts/test", function (req, res) {
   User.findOne({ _id: req.params.id })
     .populate({
       path: "posts",
@@ -98,15 +98,19 @@ router.get("/users/:id/posts", function (req, res, next) {
     .exec(function (err, user) {
       if (err) {
         return res.status(500).send(err);
+      } 
+      if (user == null){
+        return res.status(404).json(
+          {"message": "There are no posts to this user!"});
       }
-      console.log(user.posts);
+      //console.log(user.posts);
       return res.status(200).send(user.posts);
     });
 });
 
 
 // Added this methods to try out to see if it works
-router.get("/users/:user_id/posts/:post_id/test", function (req, res, next) {
+router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   User.findOne({ _id: req.params.user_id })
     .populate({ path: "posts", model: "post", 
       match: { _id: { _id : req.params.post_id } },
@@ -120,6 +124,7 @@ router.get("/users/:user_id/posts/:post_id/test", function (req, res, next) {
     });
 });
 
+ /*
 // GET /cars/:car_id/drivers/:driver_id (relationship) - THIS IS ALSO WORKING BUT EMPTY 
 router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   /*var id = req.params.user_id;
@@ -138,7 +143,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
     res.status(200).json(user.posts);
   });
 
-});*/
+});
 //findOne({ _id: req.params.user_id })
 
   var id = req.params.user_id;
@@ -168,22 +173,24 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       }
       //console.log(user.posts);
       return res.status(200).json(user.posts);
-    });*/
+    });
 });
 
-/*
-This mehtod show an error where the post is null
+
+//This mehtod show an error where the post is null
 router.get('/users/:user_id/posts/:post_id', function(req, res){
   var id = req.params.user_id;
-  Post.findById(id).populate({path: "post", match: {_id: req.params.post_id} }).exec(function(err, user){
+  Post.findById(id).populate({path: 'post', match: {_id: req.params.post_id} }).exec(function(err, user){
   if (err) {return res.status(500).send(err);}
   if (Post == null) {
       return res.status(404).json({"message": "Post not found"});
   }
-  res.status(200).send(user.posts);
+  console.log(user.posts);
+  res.status(200).json(user.posts);
   })
 });
-*/
+*/ 
+
 router.get("/users/:id", function (req, res, next) {
   User.findOne({ _id: req.params.id })
     .populate("posts")
@@ -192,10 +199,17 @@ router.get("/users/:id", function (req, res, next) {
       if (err) {
         return res.status(500).send(err);
       }
+      console.log(user);
       return res.status(200).send(user);
+      
     });
     
 });
+
+
+
+
+
 
 //to update an entire user 
 router.put('/users/:id', function(req, res, next) {
@@ -306,5 +320,28 @@ router.put('/users/:id',function(req, res){
 /*router.get('/users',function(req, res){
    res.json({type:'GET'});
 });*/
+
+
+
+
+
+//Trying to get the reviews to show up when getting all the users posts for a certain id
+router.get("/users/:id/posts", function (req, res) {
+  User.findOne({ _id: req.params.id })
+    .populate("posts")
+    .populate('reviews')
+    .exec(function (err, user) {
+      if (err) {
+        return res.status(500).send(err);
+      } 
+      if (user == null){
+        return res.status(404).json(
+          {"message": "There are no posts to this user!"});
+      }
+      //console.log(user.posts);
+  
+      return res.status(200).send(user.posts);
+    });
+});
 
 module.exports = router;

@@ -107,7 +107,8 @@ router.get('/posts',function(req, res){
 });
 
 //getting an post with a specific id
-
+/*
+Trying out some other methods
 router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(req.params.id, function(err, post) {
@@ -120,6 +121,7 @@ router.get('/posts/:id', function(req, res, next) {
         console.log(post);
     });
 });
+*/
 
 
 //put method for posts
@@ -208,4 +210,44 @@ router.get('/posts/search/:key', async (req, res) =>{
 
 
 
+
+
+
+
+//trying to get the reviews to show up on the posts
+router.get("/posts/:id/test", function (req, res, next) {
+    Post.findOne({ _id: req.params.id })
+      .populate({
+        path: "reviews",
+        model: "review",
+        populate: {
+            path: "posts",
+            model: "post ",
+        },
+      })
+      .exec(function (err, post) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        console.log(post.reviews);
+        return res.status(200).send(post.reviews);
+        
+      });
+      
+  });
+  
+  router.get("/posts/:id", function (req, res, next) {
+    Post.findOne({ _id: req.params.id })
+      .populate("review")
+      .exec(function (err, post) {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        console.log("hello");
+        return res.status(200).send(post);
+        
+      });
+      
+  });
+  
 module.exports = router;
