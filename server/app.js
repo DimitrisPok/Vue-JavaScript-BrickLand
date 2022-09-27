@@ -5,6 +5,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 
 
@@ -42,9 +43,12 @@ mongoose.Promise = global.Promise;
 // Create Express app
 var app = express();
 // Parse requests of content-type 'application/json'
+app.use(morgan('combined'))
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
+
 
 //using the controllers
 app.use(user);
@@ -55,6 +59,7 @@ app.use(review);
 
 // HTTP request logger
 app.use(morgan('dev'));
+app.use(bodyParser.json())
 // Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
@@ -66,9 +71,10 @@ app.use(cors());
 //app.use(review);
 
 // Import routes
-app.get('/api', function(req, res) {
+/*app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project! '});
-});
+});*/
+
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
@@ -99,6 +105,7 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.json(err_res);
 });
+
 
 app.listen(port, function(err) {
     if (err) throw err;

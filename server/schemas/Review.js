@@ -44,3 +44,5 @@ var ReviewSchema = new Schema(
 
 const review = mongoose.model('review', ReviewSchema);
 module.exports = review;
+
+// you need 'reviews'

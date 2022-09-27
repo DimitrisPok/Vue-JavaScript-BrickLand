@@ -33,6 +33,7 @@ router.get('/posts/:id', function(req, res, next) {
         console.log(post);
     });
 });
+
 //Deleta a specific user
 router.delete('/users/:id', function(req, res, next) {
     var id = req.params.id;

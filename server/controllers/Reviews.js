@@ -8,8 +8,6 @@ const Post = require("../schemas/Post");
 
 const toId = mongoose.Types.ObjectId
 
-
-
 //get all reviews
 router.get('/reviews',function(req, res){
     Review.find(function(err, reviews) {
@@ -18,7 +16,7 @@ router.get('/reviews',function(req, res){
     });
 });
 
-// create a review
+// create a review 
 router.post('/reviews', function(req,res, next){
     var review = new Review(req.body);
     review.save(function(err){

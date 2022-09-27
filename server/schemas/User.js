@@ -10,17 +10,18 @@ var UserSchema = new Schema(
     {
         name : {
             type: String, 
-            required:[true,'Name is required']
+            required: true
         },
 
         password : {
             type: String, 
-            required:[true, 'Password is required']
+            required: true
         },
 
         email : {
             type: String, 
-            required:[true, 'Email is required']
+            required: true,
+            unique: true
         },
 
         entryDate: {
@@ -44,5 +45,5 @@ var UserSchema = new Schema(
 );
 
 //this is the model, where users is the name of it
-const user = mongoose.model('user', UserSchema);
+const user = mongoose.model('users', UserSchema);
 module.exports = user;
