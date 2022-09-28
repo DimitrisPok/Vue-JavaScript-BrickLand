@@ -103,24 +103,6 @@ router.get('/user', (req, res, next) => {
     })
   })
 })
-
-
-  if(!registeredUser){
-  const newUser = new User({
-    name: req.body.name,
-    password: bcrypt.hashSync(req.body.password, 10),
-    email: req.body.email,
-  })
-  newUser.save(err => {
-    if (err) {
-      return res.status(500).send(err)
-    }
-    return res.status(200).json({
-      title: 'signup success'
-    })
-  })
-  return console.log(newUser);
-};
 // post post(s) with user ID - AND IT FKN WORKSSSSS
 
 //adding dependencies for image upload
