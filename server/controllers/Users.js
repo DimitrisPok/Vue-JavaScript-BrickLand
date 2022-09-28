@@ -188,7 +188,7 @@ router.get("/users/:id/posts/test", function (req, res) {
 
 
 // Added this methods to try out to see if it works
-router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
+/* router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   User.findOne({ _id: req.params.user_id })
     .populate({ path: "posts", model: "post", 
       match: { _id: { _id : req.params.post_id } },
@@ -200,7 +200,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       console.log(user.posts);
       return res.status(200).send(user.posts);
     });
-});
+}); */
 
  /*
 <<<<<<< HEAD
