@@ -5,6 +5,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 
 
@@ -42,9 +43,11 @@ mongoose.Promise = global.Promise;
 // Create Express app
 var app = express();
 // Parse requests of content-type 'application/json'
+app.use(morgan('combined'))
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 //using the controllers
 app.use(user);
@@ -71,9 +74,9 @@ app.get('/api', function(req, res) {
 });
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
-app.use('/api/*', function (req, res) {
+/*app.use('/api/*', function (req, res) {
     res.status(404).json({ 'message': 'Not Found' });
-});
+});*/
 
 // Configuration for serving frontend in production mode
 // Support Vuejs HTML 5 history mode

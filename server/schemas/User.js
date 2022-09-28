@@ -20,7 +20,8 @@ var UserSchema = new Schema(
 
         email : {
             type: String, 
-            required:[true, 'Email is required']
+            required:[true, 'Email is required'],
+            unique: true
         },
 
         entryDate: {
@@ -44,5 +45,5 @@ var UserSchema = new Schema(
 );
 
 //this is the model, where users is the name of it
-const user = mongoose.model('user', UserSchema);
+const user = mongoose.model('users', UserSchema);
 module.exports = user;
