@@ -11,7 +11,6 @@
       <p>
         hello
       </p>
-      <my-footer/>
       <button @click="logout">logout</button>
     </div>
   </div>
@@ -20,13 +19,9 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-import MyFooter from '../components/MyFooter.vue'
 
 export default {
   name: 'home',
-  components: {
-    MyFooter
-  },
   data() {
     return {
       name: '',
