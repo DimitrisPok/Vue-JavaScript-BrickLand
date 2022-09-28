@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 
 
 
+
 //calling the router
 var router = express.Router();
 
@@ -29,7 +30,7 @@ var port = process.env.PORT || 3000;
 
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, function(err) {
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, function(err) {
     if (err) {
         console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
         console.error(err.stack);
@@ -58,6 +59,7 @@ app.use(review);
 
 // HTTP request logger
 app.use(morgan('dev'));
+app.use(bodyParser.json())
 // Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
@@ -69,9 +71,9 @@ app.use(cors());
 //app.use(review);
 
 // Import routes
-app.get('/api', function(req, res) {
+/* app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to your DIT342 backend ExpressJS project! '});
-});
+});*/
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 /*app.use('/api/*', function (req, res) {

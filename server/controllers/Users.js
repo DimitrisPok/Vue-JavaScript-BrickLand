@@ -103,6 +103,24 @@ router.get('/user', (req, res, next) => {
     })
   })
 })
+
+
+  if(!registeredUser){
+  const newUser = new User({
+    name: req.body.name,
+    password: bcrypt.hashSync(req.body.password, 10),
+    email: req.body.email,
+  })
+  newUser.save(err => {
+    if (err) {
+      return res.status(500).send(err)
+    }
+    return res.status(200).json({
+      title: 'signup success'
+    })
+  })
+  return console.log(newUser);
+};
 // post post(s) with user ID - AND IT FKN WORKSSSSS
 
 //adding dependencies for image upload
@@ -117,6 +135,7 @@ var storageMulti = multer.diskStorage({
     } 
 }
 );
+
 var upload = multer({
     storage:storageMulti})
 //..............................
@@ -202,7 +221,11 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
 });
 
  /*
+<<<<<<< HEAD
 // doesnt work properly, confirm later and take it away 
+=======
+// doesnt work properly, confirm later and take it away
+>>>>>>> bc9608e217ccfc3bdb4f555dec0b3fa11d57b126
 router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   /*var id = req.params.user_id;
   User.findById(id).populate({
