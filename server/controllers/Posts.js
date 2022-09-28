@@ -20,16 +20,12 @@ var storageMulti = multer.diskStorage({
     } 
 }
 );
-var upload = multer({
-    storage:storageMulti});
-
-
-
+var upload = multer({storage:storageMulti});
 
 
 
     
-router.post("/single", upload.single('img'), async (req,res)=>
+router.post("/api/single", upload.single('img'), async (req,res)=>
 {
     var post = new Post(req.body);
 
@@ -87,7 +83,7 @@ router.get('/posts/sort',function(req, res){
 //..................................
 
 //post posts
-router.post('/posts', upload.single('img'), function(req,res, next){
+router.post('/api/posts', upload.single('img'), function(req,res, next){
     var post = new Post(req.body);
      if(req.file){
             post.img = req.file.path
@@ -99,7 +95,7 @@ router.post('/posts', upload.single('img'), function(req,res, next){
 });
 
 //get all the posts
-router.get('/posts',function(req, res){
+router.get('/api/posts',function(req, res){
     Post.find(function(err, posts) {
          if (err){return res.status(500).send(err);}
     res.status(201).json({"post": posts});
@@ -125,7 +121,7 @@ router.get('/posts/:id', function(req, res, next) {
 
 
 //put method for posts
-router.put('/posts/:id', function(req, res, next) {
+router.put('/api/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(id, function(err, post) {
         if (err) { return next(err); }
@@ -140,7 +136,7 @@ router.put('/posts/:id', function(req, res, next) {
 });
 
 //deleting post
-router.delete('/posts/:id', function(req, res, next) {
+router.delete('/api/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findOneAndDelete({_id: id}, function(err, post) {
         if (err) { return next(err); }
@@ -153,7 +149,7 @@ router.delete('/posts/:id', function(req, res, next) {
 });
 
 //to update certain attributes of a user 
-router.patch('/posts/:id', function(req, res, next) {
+router.patch('/api/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(id, function(err, post) {
         if (err) { return next(err); }
@@ -169,7 +165,7 @@ router.patch('/posts/:id', function(req, res, next) {
   });
 
   //delete an entire collection
-router.delete('/posts', function(req, res, next) {
+router.delete('/api/posts', function(req, res, next) {
     Post.deleteMany(function(err, posts) {
         if (err) { return next(err); }
         if (posts == null) {
@@ -197,7 +193,7 @@ router.get("/api/posts?caption=:house", function (req, res, next) {
 });
 
 //Functions that allows u to search on a specific post
-router.get('/posts/search/:key', async (req, res) =>{
+router.get('/api/posts/search/:key', async (req, res) =>{
     var data = await Post.find(
         {
            "$or" : [
@@ -215,7 +211,7 @@ router.get('/posts/search/:key', async (req, res) =>{
 
 
 //trying to get the reviews to show up on the posts
-router.get("/posts/:id/test", function (req, res, next) {
+router.get("/api/posts/:id/test", function (req, res, next) {
     Post.findOne({ _id: req.params.id })
       .populate({
         path: "reviews",
@@ -236,7 +232,7 @@ router.get("/posts/:id/test", function (req, res, next) {
       
   });
   
-  router.get("/posts/:id", function (req, res, next) {
+  router.get("/api/posts/:id", function (req, res, next) {
     Post.findOne({ _id: req.params.id })
       .populate("review")
       .exec(function (err, post) {

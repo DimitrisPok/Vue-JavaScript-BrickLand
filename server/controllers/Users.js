@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken')
 
 
 //get all users
-router.get('/users',function(req, res){
+router.get('/api/users',function(req, res){
   User.find(function(err, users) {
        if (err){return res.status(500).send(err);}
   res.status(201).json({"users": users});
@@ -20,7 +20,7 @@ router.get('/users',function(req, res){
 
 
 // post user
-router.post('/signup', async (req,res, next) => {
+router.post('/api/signup', async (req,res, next) => {
   
   const registeredUser = await User.findOne({email: req.body.email}, function(err, regUser){
     if(err){res.status(500).send(err)}
@@ -51,7 +51,7 @@ router.post('/signup', async (req,res, next) => {
 }}
 );
 
-router.post('/login', (req,res, next) => {
+router.post('/api/login', (req,res, next) => {
   console.log(req.body)
   User.findOne({
     email: req.body.email
@@ -84,7 +84,7 @@ router.post('/login', (req,res, next) => {
 })
 
 // grabbing user info 
-router.get('/user', (req, res, next) => {
+router.get('/api/user', (req, res, next) => {
   let token = req.headers.token // token
   jwt.verify(token, 'secretkey123456789', (err, decoded) => {
     if (err) return res.status(401).json({
@@ -121,7 +121,7 @@ var storageMulti = multer.diskStorage({
 var upload = multer({
     storage:storageMulti})
 //..............................
-router.post("/users/:id/posts/image", upload.single('img'), function (req, res, next) {
+router.post("/api/users/:id/posts/image", upload.single('img'), function (req, res, next) {
   User.findById(req.params.id, function (err, user) {
     if (err) {
       return res.status(500);
@@ -163,7 +163,7 @@ router.post("/users/:id/posts/image", upload.single('img'), function (req, res, 
 
 
 // get the user's posts.
-router.get("/users/:id/posts/test", function (req, res) {
+router.get("/api/users/:id/posts/test", function (req, res) {
   User.findOne({ _id: req.params.id })
     .populate({
       path: "posts",
@@ -188,7 +188,7 @@ router.get("/users/:id/posts/test", function (req, res) {
 
 
 // Added this methods to try out to see if it works
-router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
+router.get("/api/users/:user_id/posts/:post_id", function (req, res, next) {
   User.findOne({ _id: req.params.user_id })
     .populate({ path: "posts", model: "post", 
       match: { _id: { _id : req.params.post_id } },
@@ -269,7 +269,7 @@ router.get('/users/:user_id/posts/:post_id', function(req, res){
 });
 */ 
 
-router.get("/users/:id", function (req, res, next) {
+router.get("/api/users/:id", function (req, res, next) {
   User.findOne({ _id: req.params.id })
     .populate("posts")
     .populate("reviews")
@@ -290,7 +290,7 @@ router.get("/users/:id", function (req, res, next) {
 
 
 //to update an entire user 
-router.put('/users/:id', function(req, res, next) {
+router.put('/api/users/:id', function(req, res, next) {
   var id = req.params.id;
   User.findById(id, function(err, user) {
       if (err) { return next(err); }
@@ -306,7 +306,7 @@ router.put('/users/:id', function(req, res, next) {
 });
 
 // to delete a user 
-router.delete('/users/:id', function(req, res, next) {
+router.delete('/api/users/:id', function(req, res, next) {
   var id = req.params.id;
   User.findOneAndDelete({_id: id}, function(err, user) {
       if (err) { return next(err); }
@@ -319,7 +319,7 @@ router.delete('/users/:id', function(req, res, next) {
 });
 
 //to update certain attributes of a user 
-router.patch('/users/:id', function(req, res, next) {
+router.patch('/api/users/:id', function(req, res, next) {
   var id = req.params.id;
   User.findById(id, function(err, user) {
       if (err) { return next(err); }
@@ -335,7 +335,7 @@ router.patch('/users/:id', function(req, res, next) {
 });
 
 //delete an entire collection
-router.delete('/users', function(req, res, next) {
+router.delete('/api/users', function(req, res, next) {
   User.deleteMany(function(err, users) {
       if (err) { return next(err); }
       if (users == null) {
@@ -347,7 +347,7 @@ router.delete('/users', function(req, res, next) {
 });
 
 //DELETE TASK 3 LAST - deletes in post but does not delete from user 
-router.delete("/users/:user_id/posts/:post_id", function (req, res, next) {
+router.delete("/api/users/:user_id/posts/:post_id", function (req, res, next) {
   Post.findOneAndDelete({ _id: req.params.post_id }, function(err, post) {
     if (err) { return res.status(500).send(err); }
     if (post == null) {
