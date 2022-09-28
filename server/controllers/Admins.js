@@ -8,7 +8,7 @@ const Post = require('./Posts');
 const User = require('./Users');
 
 //Delete a specific post with id
-router.delete('/posts/:id', function(req, res, next) {
+router.delete('/api/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findOneAndDelete({_id: id}, function(err, post) {
         if (err) { return next(err); }
@@ -21,7 +21,7 @@ router.delete('/posts/:id', function(req, res, next) {
 });
 
 //Get a specific post with an id
-router.get('/posts/:id', function(req, res, next) {
+router.get('/api/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(req.params.id, function(err, post) {
         if (err) { return next(err); }
@@ -34,7 +34,7 @@ router.get('/posts/:id', function(req, res, next) {
     });
 });
 //Deleta a specific user
-router.delete('/users/:id', function(req, res, next) {
+router.delete('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
     User.findOneAndDelete({_id: id}, function(err, user) {
         if (err) { return next(err); }
@@ -47,7 +47,7 @@ router.delete('/users/:id', function(req, res, next) {
   });
 
   //Delete a specfic user
-router.get("/users/:id", function (req, res, next) {
+router.get("/api/users/:id", function (req, res, next) {
     User.findOne({ _id: req.params.id })
       .populate("posts")
       .populate("reviews")

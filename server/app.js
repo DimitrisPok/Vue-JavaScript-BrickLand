@@ -5,6 +5,8 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+
 
 
 
@@ -28,7 +30,7 @@ var port = process.env.PORT || 3000;
 
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, function(err) {
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, function(err) {
     if (err) {
         console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
         console.error(err.stack);
@@ -42,9 +44,11 @@ mongoose.Promise = global.Promise;
 // Create Express app
 var app = express();
 // Parse requests of content-type 'application/json'
+app.use(morgan('combined'))
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 //using the controllers
 app.use(user);

@@ -6,26 +6,103 @@ const router = express.Router();
 const User = require("../schemas/User");
 const Post = require("../schemas/Post");
 const Posts = require('./Posts');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
 
 
 //get all users
 router.get('/users',function(req, res){
   User.find(function(err, users) {
        if (err){return res.status(500).send(err);}
-  res.status(201).json({"user": users});
+  res.status(201).json({"users": users});
   });
 });
 
 
 // post user
-router.post('/users', function(req,res, next){
-  var user = new User(req.body);
-  user.save(function(err){
-      if (err){return res.status(500).send(err);}
-  res.status(201).json({"user": user});
-  });
-});
+router.post('/signup', async (req,res, next) => {
+  
+  const registeredUser = await User.findOne({email: req.body.email}, function(err, regUser){
+    if(err){res.status(500).send(err)}
+    if(regUser){
+      return res.status(409).json({
+        title : 'error',
+        error: 'email in use'
+      })
+    }
+    console.log(regUser)
+  })
 
+  if(!registeredUser){
+  const newUser = new User({
+    name: req.body.name,
+    password: bcrypt.hashSync(req.body.password, 10),
+    email: req.body.email,
+  })
+  newUser.save(err => {
+    if (err) {
+      return res.status(500).send(err)
+    }
+    return res.status(200).json({
+      title: 'signup success'
+    })
+  })
+  return console.log(newUser);
+}}
+);
+
+router.post('/login', (req,res, next) => {
+  console.log(req.body)
+  User.findOne({
+    email: req.body.email
+  },
+  (err,user) => {
+    if (err) return res.status(500).json({
+      title: 'server error',
+      error: err
+    })
+    if (!user) {
+      return res.status(401).json({ 
+       title: 'user not found',
+       error: 'invalid credentials' 
+      });
+    }
+    // incorrect password
+    if (!bcrypt.compareSync(req.body.password, user.password)) {
+      return res.status(401).json({
+        title: 'login failed',
+        error: 'invalid credentials'
+      })
+    }
+    // if all is good, create a token and send to frontend
+    let token = jwt.sign({ userId: user._id}, 'secretkey123456789');
+    return res.status(200).json ({
+      title: 'login succes',
+      token: token
+    })
+  })
+})
+
+// grabbing user info 
+router.get('/user', (req, res, next) => {
+  let token = req.headers.token // token
+  jwt.verify(token, 'secretkey123456789', (err, decoded) => {
+    if (err) return res.status(401).json({
+      title: 'unauthorized'
+    })
+    // token is valid 
+    User.findOne({ _id: decoded.userId }, (err, user) => {
+      if (err) return console.log(err)
+      return res.status(200).json({
+        title: 'user grabbed',
+        user: {
+          name: user.name,
+          email: user.email
+        }
+      })
+    })
+  })
+})
 // post post(s) with user ID - AND IT FKN WORKSSSSS
 
 //adding dependencies for image upload
@@ -40,6 +117,7 @@ var storageMulti = multer.diskStorage({
     } 
 }
 );
+
 var upload = multer({
     storage:storageMulti})
 //..............................
@@ -92,7 +170,7 @@ router.get("/users/:id/posts/test", function (req, res) {
       model: "post",
       populate: {
         path: "users",
-        model: "user",
+        model: "users",
       },
     })
     .exec(function (err, user) {
@@ -110,7 +188,7 @@ router.get("/users/:id/posts/test", function (req, res) {
 
 
 // Added this methods to try out to see if it works
-router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
+/* router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   User.findOne({ _id: req.params.user_id })
     .populate({ path: "posts", model: "post", 
       match: { _id: { _id : req.params.post_id } },
@@ -122,10 +200,14 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       console.log(user.posts);
       return res.status(200).send(user.posts);
     });
-});
+}); */
 
  /*
-// GET /cars/:car_id/drivers/:driver_id (relationship) - THIS IS ALSO WORKING BUT EMPTY 
+<<<<<<< HEAD
+// doesnt work properly, confirm later and take it away 
+=======
+// doesnt work properly, confirm later and take it away
+>>>>>>> bc9608e217ccfc3bdb4f555dec0b3fa11d57b126
 router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   /*var id = req.params.user_id;
   User.findById(id).populate({
