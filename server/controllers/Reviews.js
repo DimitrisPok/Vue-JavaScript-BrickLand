@@ -11,7 +11,7 @@ const toId = mongoose.Types.ObjectId
 
 
 //get all reviews
-router.get('/api/reviews',function(req, res){
+router.get('/reviews',function(req, res){
     Review.find(function(err, reviews) {
          if (err){return res.status(500).send(err);}
     res.status(201).json({"review": reviews});

@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home </router-link>
-      <router-link to="/SignIn">| Sign In </router-link>
-      <router-link to="/login">| Log In </router-link>
-      <router-link to="users">| Users </router-link>
+    <div id="nav" class="navigation">
+      <img src="@/htmlPics/lego-head.png"><router-link class="homeNav" to="/">Home </router-link>
+      <router-link class="homeNav" to="/SignIn">| Sign In </router-link>
+      <router-link class="homeNav" to="/login">| Log In </router-link>
+      <router-link class="homeNav" to="users">| Users </router-link>
+      <router-link class="homeNav" to="/reviews"> Reviews</router-link>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -25,5 +26,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
+}
+.homeNav{
+  color: bisque;
 }
 </style>

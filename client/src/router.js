@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 import Users from './views/Users.vue'
 import SignIn from '../src/views/SignIn.vue'
 import Login from '../src/components/Login.vue'
-
+import Review from './views/Reviews.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +30,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/reviews',
+      name: 'reviews',
+      component: Review
     }
   ]
 })
