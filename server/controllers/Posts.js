@@ -4,7 +4,10 @@ const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 const router = express.Router();
 const Post = require('../schemas/Post');
-
+const fs = require('fs');
+const path = require('path');
+app.use("/static", express.static('images'))
+require('dotenv/config'); 
 
 
 //testing out importing imgane...........................................
@@ -42,60 +45,37 @@ router.post("/api/single", upload.single('img'), async (req,res)=>
 
 //.............................................
 
-//.......................testing querys out
-/*
-router.get('/posts/query', (req, res, next ) => {
-    const query = req.query 
-   const sorting= Post.find(function(err, posts) {
-        if (err){return res.status(500).send(err);}
-   const sorted = sorting.sort({posts});
-     res.json(sorted)
-   });
-    
-});
-
-
-router.get('posts/sorted',  async (req, res)=> {
-    const result =  Post.find({}).sort({
-    caption: 1,
-});
-res.json(result);
-})
-
-router.get('posts/', function(req, res){
-    const sorted = Post.find({Post}).sort({
-        createdAt : 1,
-    });
-res.send(sorted);
-});
-
-
-router.get('/posts/sort',function(req, res){
-    const postSort = Post.find(function(err, posts) {
-       const sortedPost = postSort.sort({caption : 1});
-         if (err){return res.status(500).send(err);}
-    res.status(201).json({sortedPost});
-   
-    });
-});
-*/
-
-//..................................
-
 //post posts
-router.post('/api/posts', upload.single('img'), function(req,res, next){
-    var post = new Post(req.body);
-     if(req.file){
-            post.img = req.file.path
-        }
-    post.save(function(err){
-        if (err){return res.status(500).send(err);}
-    res.status(201).json({"post": post});
+router.post('/posts', upload.single('img'), function(req,res, next){
+    var newPost = new Post({
+        caption: req.body.caption,
+        instructions: req.body.instructions,
+        img: req.file.filename
+           // data:  req.file.path, req.file.originalname,  // req.file.filename,fs.readFileSync('images/'), only the posting with postman works with this one req.file.filename), req.files yo can post with both but images are not being saved, req.file.originalname works with postman
+            // contentType: 'multipart/form-data',    //"multipart/form-data"
+            
     });
+    newPost.save()
+    .then(() => res.send('successfully uploaded')).catch(err=>console.log(err))
+    console.log(newPost.img)
 });
+
+
+//Get the images
+router.get('/posts/:id/assets', function(req,res,next) {
+    Post.findById( req.params.id, function(err,post) {
+        if (err) return next(err);
+        console.log(post.file)
+        console.log(post.path)
+        res.render("posts.ejs", {post: file.path});
+        // res.contentType(post.img.contentType);
+        // res.send(user.img.data);
+    });
+  });
+
 
 //get all the posts
-router.get('/api/posts',function(req, res){
+router.get('/posts',function(req, res){
     Post.find(function(err, posts) {
          if (err){return res.status(500).send(err);}
     res.status(201).json({"post": posts});
@@ -245,5 +225,62 @@ router.get("/api/posts/:id/test", function (req, res, next) {
       });
       
   });
+
   
+
+
+//.......................testing querys out
+/*
+router.get('/posts/query', (req, res, next ) => {
+    const query = req.query 
+   const sorting= Post.find(function(err, posts) {
+        if (err){return res.status(500).send(err);}
+   const sorted = sorting.sort({posts});
+     res.json(sorted)
+   });
+    
+});
+
+
+router.get('posts/sorted',  async (req, res)=> {
+    const result =  Post.find({}).sort({
+    caption: 1,
+});
+res.json(result);
+})
+
+router.get('posts/', function(req, res){
+    const sorted = Post.find({Post}).sort({
+        createdAt : 1,
+    });
+res.send(sorted);
+});
+
+
+router.get('/posts/sort',function(req, res){
+    const postSort = Post.find(function(err, posts) {
+       const sortedPost = postSort.sort({caption : 1});
+         if (err){return res.status(500).send(err);}
+    res.status(201).json({sortedPost});
+   
+    });
+});
+*/
+
+//..................................
+
+//post posts
+/*
+router.post('/posts', upload.single('img'), function(req,res, next){
+    var post = new Post(req.body);
+     if(req.file){
+            post.img = req.file.path
+        }
+    post.save(function(err){
+        if (err){return res.status(500).send(err);}
+    res.status(201).json({"post": post});
+    });
+});
+*/
+
 module.exports = router;

@@ -1,0 +1,60 @@
+<template>
+    <div>
+      <h1>Our websites name</h1>
+        <p>Here are all the posts:</p>
+        <div v-for="post in posts" v-bind:key="post._id">
+          <post-item v-bind:post="post" v-on:del-post="deletePost" />
+        </div>
+    </div>
+
+</template>
+
+<script>
+import { Api } from '@/Api'
+import PostItem from '../components/PostItem.vue'
+
+export default {
+  name: 'posts',
+  components: { PostItem },
+  mounted() {
+    console.log('Page is ready')
+    Api.get('/posts').then(response => {
+      console.log(response.data.post)
+      this.posts = response.data.post
+      console.log(response.data.posts)
+    })
+      .catch(error => {
+        console.error(error)
+      })
+  },
+  data() {
+    return {
+      posts: []
+    }
+  },
+  methods: {
+    getMessage() {
+      Api.get('/')
+        .then(response => {
+          this.message = response.data.message
+        })
+        .catch(error => {
+          this.message = error
+        })
+    },
+    deletePost(id) {
+      const index = this.posts.findIndex(post => post._id === id)
+      this.posts.slice(index, 1)
+    }
+  }
+}
+</script>
+<style scoped>
+p {
+  background-color: aqua;
+}
+
+.btn_message{
+  margin-bottom: 1em;
+}
+</style>

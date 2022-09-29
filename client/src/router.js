@@ -5,6 +5,8 @@ import Users from './views/Users.vue'
 import SignIn from '../src/views/SignIn.vue'
 import Login from '../src/components/Login.vue'
 import Review from './views/Reviews.vue'
+import Post from './views/Post.vue'
+import Posts from './views/Posts.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +37,16 @@ export default new Router({
       path: '/reviews',
       name: 'reviews',
       component: Review
+    },
+    {
+      path: '/post',
+      name: 'post',
+      component: Post
+    },
+    {
+      path: '/posts',
+      name: 'posts',
+      component: Posts
     }
   ]
 })
