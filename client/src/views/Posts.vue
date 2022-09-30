@@ -50,8 +50,15 @@ export default {
         })
     },
     deletePost(id) {
-      const index = this.posts.findIndex(post => post._id === id)
-      this.posts.slice(index, 1)
+      Api.delete(`/posts/${id}`)
+        .then(response => {
+          const index = this.posts.findIndex(post => post._id === id)
+          this.posts.slice(index, 1)
+          console.log(index)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

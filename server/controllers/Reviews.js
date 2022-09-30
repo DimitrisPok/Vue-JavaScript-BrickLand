@@ -19,7 +19,7 @@ router.get('/reviews',function(req, res){
 });
 
 // create a review
-router.post('/api/reviews', function(req,res, next){
+router.post('/reviews', function(req,res, next){
     var review = new Review(req.body);
     review.save(function(err){
         if (err){return res.status(500).send(err);}
@@ -28,7 +28,7 @@ router.post('/api/reviews', function(req,res, next){
 });
 
 //get review with id
-router.get('/api/reviews/:id', function(req, res, next) {
+router.get('/reviews/:id', function(req, res, next) {
     var id = req.params.id;
     Review.findById(req.params.id, function(err, review) {
         if (err) { return next(err); }
@@ -42,7 +42,7 @@ router.get('/api/reviews/:id', function(req, res, next) {
 });
 
 //to update an entire review 
-router.put('/api/reviews/:id', function(req, res, next) {
+router.put('/reviews/:id', function(req, res, next) {
     var id = req.params.id;
     Review.findById(id, function(err, review) {
         if (err) { return next(err); }
@@ -57,7 +57,7 @@ router.put('/api/reviews/:id', function(req, res, next) {
 });
 
 // to delete a review 
-router.delete('/api/reviews/:id', function(req, res, next) {
+router.delete('/reviews/:id', function(req, res, next) {
     var id = req.params.id;
     Review.findOneAndDelete({_id: id}, function(err, review) {
         if (err) { return next(err); }
@@ -70,7 +70,7 @@ router.delete('/api/reviews/:id', function(req, res, next) {
 });
 
 //to update certain attributes of a review 
-router.patch('/api/reviews/:id', function(req, res, next) {
+router.patch('/reviews/:id', function(req, res, next) {
     var id = req.params.id;
     Review.findById(id, function(err, review) {
         if (err) { return next(err); }
@@ -85,7 +85,7 @@ router.patch('/api/reviews/:id', function(req, res, next) {
 });
 
 //delete an entire collection
-router.delete('/api/reviews', function(req, res, next) {
+router.delete('/reviews', function(req, res, next) {
     Review.deleteMany(function(err, reviews) {
         if (err) { return next(err); }
         if (reviews == null) {
@@ -126,7 +126,7 @@ router.post("/posts/:id/reviews", function (req, res, next) {
 
 
 // get all reviews from a post.
-router.get("/api/posts/:id/reviews", function (req, res, next) {
+router.get("/posts/:id/reviews", function (req, res, next) {
     Review.findOne({ _id: req.params.id })
       .populate({
         path: "reviews",
