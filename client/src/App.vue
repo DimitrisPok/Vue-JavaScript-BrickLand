@@ -5,8 +5,8 @@
       <router-link class="homeNav" to="/SignUp">| Sign Up </router-link>
       <router-link class="homeNav" to="/login">| Log In </router-link>
       <router-link class="homeNav" to="users">| Users </router-link>
-      <router-link class="homeNav" to="/posts">| Posts</router-link>
-      <router-link class="homeNav" to="/post">| Post</router-link>
+      <router-link class="homeNav" to="/posts">| Posts </router-link>
+      <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/reviews">| Reviews</router-link>
     </div>
     <!-- Render the content of the current page view -->

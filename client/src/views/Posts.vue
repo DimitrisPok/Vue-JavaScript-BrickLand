@@ -1,7 +1,7 @@
 <template>
     <div>
-      <h1>Our websites name</h1>
-        <p>Here are all the posts:</p>
+      <h1>Brick Land</h1>
+        <p>Here Is The Feed:</p>
         <div class="video-container">
            <div v-for="post in posts" v-bind:key="post._id">
             <div class="video-box">
@@ -58,7 +58,7 @@ export default {
 </script>
 <style scoped>
 p {
-  background-color: aqua;
+  background-color: bisque;
 }
 
 .btn_message{
