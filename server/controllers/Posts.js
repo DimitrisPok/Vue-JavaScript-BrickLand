@@ -28,7 +28,7 @@ var upload = multer({storage:storageMulti});
 
 
     
-router.post("/api/single", upload.single('img'), async (req,res)=>
+router.post("/single", upload.single('img'), async (req,res)=>
 {
     var post = new Post(req.body);
 
@@ -50,7 +50,7 @@ router.post('/posts', upload.single('img'), function(req,res, next){
     var newPost = new Post({
         caption: req.body.caption,
         instructions: req.body.instructions,
-        img: req.file.filename
+        img: req.body.img
            // data:  req.file.path, req.file.originalname,  // req.file.filename,fs.readFileSync('images/'), only the posting with postman works with this one req.file.filename), req.files yo can post with both but images are not being saved, req.file.originalname works with postman
             // contentType: 'multipart/form-data',    //"multipart/form-data"
             
@@ -74,6 +74,7 @@ router.get('/posts/:id/assets', function(req,res,next) {
   });
 
 
+
 //get all the posts
 router.get('/posts',function(req, res){
     Post.find(function(err, posts) {
@@ -82,9 +83,7 @@ router.get('/posts',function(req, res){
     });
 });
 
-//getting an post with a specific id
-/*
-Trying out some other methods
+
 router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(req.params.id, function(err, post) {
@@ -97,11 +96,49 @@ router.get('/posts/:id', function(req, res, next) {
         console.log(post);
     });
 });
-*/
+//get all the posts
+
+router.get('/posts/:posts_id/reviews',function(req, res){
+    var id = req.params.posts_id;
+    Post.findById(id).populate("review").exec(function(err,post){
+        if (err) {return res.status(500).send(err);}
+    if (post == null) {
+        return res.status(404).json({"message": "Post not found"});
+    }
+    res.status(200).send(post);
+    })
+});
+//get the reviews of the individual post
+router.get('/posts/:id/reviews', async (req, res) => {
+    try {
+        var id = req.params._id;
+        const posts = await Post.findById(id).populate('review')
+        // The Post documents returned should have their owner subdocument populated
+        res.status(201).send(posts)
+    } catch (e) {
+        console.log(e)
+    }
+})
+
+// get the reviews of the post
+/*
+router.get('/posts/:posts_id/reviews',function(req, res){
+    var id = req.params.posts_id;
+    Post.findById(id).populate("reviews").exec(function(err,post){
+        if (err) {return res.status(500).send(err);}
+    if (post == null) {
+        return res.status(404).json({"message": "Post not found"});
+    }
+    res.status(200).send(post.reviews);
+    })
+});
+
+/*
+//getting an post with a specific id
 
 
 //put method for posts
-router.put('/api/posts/:id', function(req, res, next) {
+router.put('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(id, function(err, post) {
         if (err) { return next(err); }
@@ -116,7 +153,7 @@ router.put('/api/posts/:id', function(req, res, next) {
 });
 
 //deleting post
-router.delete('/api/posts/:id', function(req, res, next) {
+router.delete('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findOneAndDelete({_id: id}, function(err, post) {
         if (err) { return next(err); }
@@ -129,7 +166,7 @@ router.delete('/api/posts/:id', function(req, res, next) {
 });
 
 //to update certain attributes of a user 
-router.patch('/api/posts/:id', function(req, res, next) {
+router.patch('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(id, function(err, post) {
         if (err) { return next(err); }
@@ -145,7 +182,7 @@ router.patch('/api/posts/:id', function(req, res, next) {
   });
 
   //delete an entire collection
-router.delete('/api/posts', function(req, res, next) {
+router.delete('/posts', function(req, res, next) {
     Post.deleteMany(function(err, posts) {
         if (err) { return next(err); }
         if (posts == null) {
@@ -158,7 +195,7 @@ router.delete('/api/posts', function(req, res, next) {
 
 //filtering using caption
 
-router.get("/api/posts?caption=:house", function (req, res, next) {
+router.get("/posts?caption=:house", function (req, res, next) {
     console.log("finding");
     Post.find({ caption: { $all: [req.params.caption] } }).exec(function (
       err,
@@ -173,7 +210,7 @@ router.get("/api/posts?caption=:house", function (req, res, next) {
 });
 
 //Functions that allows u to search on a specific post
-router.get('/api/posts/search/:key', async (req, res) =>{
+router.get('/posts/search/:key', async (req, res) =>{
     var data = await Post.find(
         {
            "$or" : [
@@ -191,14 +228,14 @@ router.get('/api/posts/search/:key', async (req, res) =>{
 
 
 //trying to get the reviews to show up on the posts
-router.get("/api/posts/:id/test", function (req, res, next) {
+router.get("/posts/:id/test", function (req, res, next) {
     Post.findOne({ _id: req.params.id })
       .populate({
-        path: "reviews",
-        model: "review",
+        path: "posts",
+        model: "post",
         populate: {
-            path: "posts",
-            model: "post ",
+            path: "reviews",
+            model: "review",
         },
       })
       .exec(function (err, post) {
@@ -212,7 +249,7 @@ router.get("/api/posts/:id/test", function (req, res, next) {
       
   });
   
-  router.get("/api/posts/:id", function (req, res, next) {
+  router.get("/posts/:id", function (req, res, next) {
     Post.findOne({ _id: req.params.id })
       .populate("review")
       .exec(function (err, post) {
