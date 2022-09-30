@@ -19,7 +19,7 @@ var PostSchema = new Schema(
 
         img:
         {
-            type: String
+            Type: String 
         },
 
         user: { 

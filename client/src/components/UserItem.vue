@@ -1,6 +1,7 @@
 <template>
     <div>
-        <p>{{user._id}}'s name is {{user.name}}</p>
+        <h2>{{user.name}}</h2>
+        <h3>{{user.posts}}</h3>
         <b-button variant="danger" v-on:click="$emit('del-user', user._id)">DELETE</b-button>
     </div>
 </template>
@@ -21,6 +22,6 @@ export default {
 
 <style scoped>
 p {
-    background-color: rgb(241, 147, 214);
+    background-color: rgb(132, 80, 236);
 }
 </style>

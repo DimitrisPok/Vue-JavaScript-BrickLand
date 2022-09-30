@@ -2,11 +2,18 @@
     <div>
       <h1>Our websites name</h1>
         <p>Here are all the posts:</p>
-        <div v-for="post in posts" v-bind:key="post._id">
+        <div class="video-container">
+           <div v-for="post in posts" v-bind:key="post._id">
+            <div class="video-box">
+
+               <img :src="posts.img"/>
+            <div>
           <post-item v-bind:post="post" v-on:del-post="deletePost" />
         </div>
-    </div>
-
+            </div>
+        </div>
+        </div>
+  </div>
 </template>
 
 <script>
@@ -57,4 +64,20 @@ p {
 .btn_message{
   margin-bottom: 1em;
 }
+</style>
+
+<style scoped lang="scss">
+  .video-container{
+    .video-box{
+      border: 1px solid rgb(108, 45, 233);
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+
+      text-align: left;
+
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
 </style>
