@@ -1,8 +1,12 @@
 <template>
-    <div>
-       EMAIL: <input type="text" v-model="email" required pattern="\S(.*\S)?" title="This field is required"/> <br/>
-       PASSWORD: <input type="password" v-model="password" required pattern="\S(.*\S)?" title="This field is required"/> <br/>
-       <button @click="login">login</button>
+    <div class="page">
+    <div class="header">
+      <h1>Welcome to Brick Land</h1>
+    </div>
+          <h2>Login</h2>
+       <input type="text" placeholder="email" v-model="email" required pattern="\S(.*\S)?" title="This field is required"/> <br/>
+       <input type="password" placeholder="password" v-model="password" required pattern="\S(.*\S)?" title="This field is required"/> <br/>
+       <b-button @click="login">Login</b-button>
        {{ error }}
     </div>
 </template>
@@ -42,3 +46,17 @@ export default {
   }
 }
 </script>
+<style>
+.header {
+  text-align: center;
+  color: bisque;
+  background-color: rgb(25, 39, 34);
+}
+.page {
+  background-color: bisque;
+}
+.button1 {
+ float: center;
+}
+
+</style>
