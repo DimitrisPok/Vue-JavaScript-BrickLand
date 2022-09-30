@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <div id="nav" class="navigation">
-      <img src="@/htmlPics/lego-head.png"><router-link class="homeNav" to="/">Home </router-link>
-      <router-link class="homeNav" to="/SignIn">| Sign In </router-link>
+      <img src="@/htmlPics/lego-head.png"><router-link class="homeNav" to="/Home">Home </router-link>
+      <router-link class="homeNav" to="/SignUp">| Sign Up </router-link>
       <router-link class="homeNav" to="/login">| Log In </router-link>
       <router-link class="homeNav" to="users">| Users </router-link>
+      <router-link class="homeNav" to="/posts">| Posts</router-link>
+      <router-link class="homeNav" to="/post">| Post</router-link>
       <router-link class="homeNav" to="/reviews">| Reviews</router-link>
-      <router-link class="homeNav" to="post">| Post </router-link>|
-      <router-link class="homeNav" to="posts">| Posts</router-link>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
