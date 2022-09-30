@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 p {
-    background-color: aqua;
+    background-color: bisque;
 }
 img {
   display: block;
