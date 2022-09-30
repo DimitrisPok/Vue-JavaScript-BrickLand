@@ -120,8 +120,9 @@ router.get('/posts/:id/reviews', async (req, res) => {
     }
 })
 
+
 // get the reviews of the post
-/*
+
 router.get('/posts/:posts_id/reviews',function(req, res){
     var id = req.params.posts_id;
     Post.findById(id).populate("reviews").exec(function(err,post){
@@ -133,7 +134,7 @@ router.get('/posts/:posts_id/reviews',function(req, res){
     })
 });
 
-/*
+
 //getting an post with a specific id
 
 
@@ -182,6 +183,7 @@ router.patch('/posts/:id', function(req, res, next) {
   });
 
   //delete an entire collection
+  /*
 router.delete('/posts', function(req, res, next) {
     Post.deleteMany(function(err, posts) {
         if (err) { return next(err); }
@@ -192,6 +194,7 @@ router.delete('/posts', function(req, res, next) {
         res.status(201).json({"post": posts});
     });
   });
+  */
 
 //filtering using caption
 
