@@ -2,7 +2,7 @@
     <div>
         <p> Caption : {{post.caption}}, Instructions : {{post.instructions}}, Img: {{post.img}}, Date : {{post.createdAt}}, {{post.review}}</p>
         <br/>
-        <br/>
+        <img src="1663410877397--iewek-gnos-cMpxNOph89s-unsplash" alt="Posts images"/>
         <b-button class ="b-button" variant="danger" v-on:click="$emit('del-post', post._id)">X</b-button>
     </div>
 </template>

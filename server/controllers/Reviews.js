@@ -99,7 +99,7 @@ router.delete('/api/reviews', function(req, res, next) {
 
   
 // post reviews(s) with post ID 
-router.post("/api/posts/:id/reviews", function (req, res, next) {
+router.post("/posts/:id/reviews", function (req, res, next) {
     Post.findById(req.params.id, function (err, post) {
       if (err) {
         return res.status(500);
