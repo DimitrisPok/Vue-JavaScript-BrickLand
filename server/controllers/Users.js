@@ -129,16 +129,18 @@ router.post("/users/:id/posts/image", upload.single('img'), function (req, res, 
     if (user == null) {
       return res.status(404).json({ message: "User not found" });
     }
-    var post = new Post(req.body);
-    if(req.file){
-      post.img = req.file.path
-  }
+    var post = new Post({
+      caption: req.body.caption,
+      instructions: req.body.instructions,  
+      img: req.body.img // req.file.filename saves the image in the images folder however it does not save in the actuall post is self
+  });
     post.save(function (err) {
       if (err) {
         return res.status(500);
       }
-      console.log("Post " + post.caption + " was created.");
     });
+    console.log("Post " + post.caption + " was created.");
+    console.log(post)
     user.posts.push(post);
     user.save();
     console.log("Post " + post.caption + " was added to ", user.name);
