@@ -100,25 +100,27 @@ router.delete('/reviews', function(req, res, next) {
   //Hello
 // post reviews(s) with post ID 
 router.post("/posts/:id/reviews", function (req, res, next) {
-    Post.findById(req.params.id, function (err, post) {
+    var id = req.params.id
+    Post.findById(id, function (err, post) {
       if (err) {
         return res.status(500);
       }
       if (post == null) {
         return res.status(404).json({ message: "Post does not exist" });
       }
-      var review = new Review(req.body);
-      review.save(function (err) {
+      var newReview = new Review(req.body);
+      newReview.save(function (err) {
         if (err) {
           return res.status(500);
         }
         console.log("Review was successfully created."); 
-        post.review.push(review);
+        console.log(newReview)
+        post.review.push(newReview);
         post.save();
         console.log("Review was added to ", post.caption);
         return res.status(201).json(post);
       });
-    
+    //hello
       
     });
 });

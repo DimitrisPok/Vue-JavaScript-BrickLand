@@ -9,14 +9,15 @@ var ReviewSchema = new Schema(
 
         comment : {
             type: String,
-            default: "No comment"
+            default: "no comment"
         },
 
+        
         like : {
             type: Boolean,
             default: "false"
         },
-
+        
         user: { 
             type: Schema.Types.ObjectId, 
             ref: "user" 
