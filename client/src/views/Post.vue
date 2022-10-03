@@ -1,10 +1,11 @@
 <template>
-    <div>
- <h1>Hello</h1>
- <br/>
- <br/>
-<Create-A-Post/>
-    </div>
+<div>
+  <h1>Hello</h1>
+  <br/>
+  <br/>
+  <Create-A-Post/>
+
+</div>
 
 </template>
 
