@@ -8,6 +8,8 @@ import Review from './views/Reviews.vue'
 import Post from './views/Post.vue'
 import Posts from './views/Posts.vue'
 import SignIn from '../src/views/SignIn.vue'
+import PostView from '../src/views/PostView.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -53,6 +55,12 @@ export default new Router({
       path: '/posts',
       name: 'posts',
       component: Posts
+    },
+    {
+      path: '/posts/:id',
+      name: 'posts-view',
+      component: PostView,
+      params: true
     }
   ]
 })

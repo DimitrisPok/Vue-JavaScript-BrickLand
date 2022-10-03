@@ -1,16 +1,21 @@
 <template>
     <div>
-      <h1>Brick Land</h1>
+      <h1 class="display-4" ma-4 d-flex justify-center>
+        All Posts
+      </h1>
         <p>Here Is The Feed:</p>
-        <div class="video-container">
+           <div class="video-container">
            <div v-for="post in posts" v-bind:key="post._id">
+            <v-card elevation="2">
+            <router-link :to="{ name: 'posts-view', params: {id: post._id }}">
             <div class="video-box">
-
                <img :src="posts.img"/>
             <div>
-          <post-item v-bind:post="post" v-on:del-post="deletePost" />
-        </div>
+              <post-item v-bind:post="post" v-on:del-post="deletePost" />
             </div>
+            </div>
+            </router-link>
+            </v-card>
         </div>
         </div>
   </div>
@@ -53,7 +58,7 @@ export default {
       Api.delete(`/posts/${id}`)
         .then(response => {
           const index = this.posts.findIndex(post => post._id === id)
-          this.posts.slice(index, 1)
+          this.posts.splice(index, 1)
           console.log(index)
         })
         .catch(error => {
