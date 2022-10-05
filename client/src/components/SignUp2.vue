@@ -32,9 +32,12 @@ export default {
       console.log(newUser)
       Api.post('/signup', newUser)
         .then(res => {
+          if (res.status === 200) {
+            localStorage.setItem('token', res.data.token)
+            this.$router.push('/Home')
+          }
           console.log(res)
           this.error = ''
-          // this.$router.push('/login')
         }, err => {
           console.log(err.response)
           this.error = err.response.data.error

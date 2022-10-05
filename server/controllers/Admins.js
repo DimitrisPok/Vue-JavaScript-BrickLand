@@ -72,7 +72,7 @@ router.post('/AdminLogin', (req,res, next) => {
         })
       }
       // if all is good, create a token and send to frontend
-      let token = jwt.sign({ adminId: Admin._id}, 'secretkey123456789');
+      let token = jwt.sign({ adminId: admin._id}, 'secretkey123456789');
       return res.status(200).json ({
         title: 'login succes',
         token: token
