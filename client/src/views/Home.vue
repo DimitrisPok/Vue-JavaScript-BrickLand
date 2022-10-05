@@ -1,16 +1,8 @@
 <template>
   <div>
-    <b-jumbotron header="DIT342 Frontend" lead="Welcome to your DIT342 Frontend Vue.js App">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
     <div>
      <h1>Hello {{ name }}</h1>
      <h2>Your email {{ email }}</h2>
-      <p>
-        hello
-      </p>
       <button @click="logout">logout</button>
     </div>
   </div>
@@ -31,7 +23,7 @@ export default {
   created() {
     // user is not authorized
     if (localStorage.getItem('token') === null) {
-      this.$router.push('/SignIn')
+      this.$router.push('/Choice')
     }
   },
   mounted() {
@@ -53,7 +45,7 @@ export default {
     },
     logout() {
       localStorage.clear()
-      this.$router.push('/SignIn')
+      this.$router.push('/Choice')
     }
   }
 }
