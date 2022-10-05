@@ -8,6 +8,7 @@
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/reviews">| Reviews</router-link>
+      <router-link class="homeNav" to="searchBar">| searchBar</router-link>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>

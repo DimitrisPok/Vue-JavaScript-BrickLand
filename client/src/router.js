@@ -9,6 +9,7 @@ import Post from './views/Post.vue'
 import Posts from './views/Posts.vue'
 import SignIn from '../src/views/SignIn.vue'
 import PostView from '../src/views/PostView.vue'
+import searchBarView from '../src/views/searchBarVue.vue'
 
 Vue.use(Router)
 
@@ -61,6 +62,11 @@ export default new Router({
       name: 'posts-view',
       component: PostView,
       params: true
+    },
+    {
+      path: '/searchBar',
+      name: 'searchBar',
+      component: searchBarView
     }
   ]
 })
