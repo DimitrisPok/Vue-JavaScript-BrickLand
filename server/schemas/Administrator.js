@@ -26,4 +26,7 @@ var AdministratorSchema = new Schema(
     }
 );
 
+const admin = mongoose.model('admins', AdministratorSchema);
+module.exports = admin;
+
 

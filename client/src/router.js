@@ -9,8 +9,12 @@ import Post from './views/Post.vue'
 import Posts from './views/Posts.vue'
 import SignIn from '../src/views/SignIn.vue'
 import PostView from '../src/views/PostView.vue'
-import Choice from '../src/views/UserChoice.vue'
+import UserChoice from '../src/views/UserChoice.vue'
 import Profile from '../src/views/ProfilePage.vue'
+import AdminChoice from '../src/views/AdminChoice.vue'
+import AdminLogin from '../src/components/AdminLogin.vue'
+import AdminSignUp from '../src/components/AdminSignUp.vue'
+import AdminHome from '../src/views/AdminHome.vue'
 
 Vue.use(Router)
 
@@ -67,12 +71,32 @@ export default new Router({
     {
       path: '/Choice',
       name: 'Choice',
-      component: Choice
+      component: UserChoice
     },
     {
       path: '/Profile',
       name: 'Profile',
       component: Profile
+    },
+    {
+      path: '/AdminChoice',
+      name: 'AdminChoice',
+      component: AdminChoice
+    },
+    {
+      path: '/adminLogin',
+      name: 'adminlogin',
+      component: AdminLogin
+    },
+    {
+      path: '/adminSignUp',
+      name: 'adminsignup',
+      component: AdminSignUp
+    },
+    {
+      path: '/adminHome',
+      name: 'adminhome',
+      component: AdminHome
     }
   ]
 })

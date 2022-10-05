@@ -20,6 +20,7 @@ var post = require('./controllers/Posts');
 
 var user = require('./controllers/Users');
 var review = require('./controllers/Reviews');
+var admin = require('./controllers/Admins');
 
 
 
@@ -55,6 +56,7 @@ app.use(user);
 //app.use(v1);
 app.use(post);
 app.use(review);
+app.use(admin);
 
 
 // HTTP request logger

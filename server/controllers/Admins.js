@@ -6,6 +6,101 @@ const router = express.Router();
 const Admin = require('../schemas/Administrator');
 const Post = require('./Posts');
 const User = require('./Users');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
+
+router.post('/admin1', function(req,res, next){
+    var admin = new Admin(req.body);
+    admin.save(function(err){
+        if (err){return res.status(500).send(err);}
+    res.status(201).json({"admin": admin});
+    });
+});
+
+router.post('/AdminSignup', async (req,res, next) => {
+  
+    const registeredAdmin = await Admin.findOne({email: req.body.email}, function(err, regAdmin){
+      if(err){res.status(500).send(err)}
+      if(regAdmin){
+        return res.status(409).json({
+          title : 'error',
+          error: 'email in use'
+        })
+      }
+      console.log(regAdmin)
+    })
+  
+    if(!registeredAdmin){
+    const newAdmin = new Admin({
+      adminName: req.body.adminName,
+      password: bcrypt.hashSync(req.body.password, 10),
+      email: req.body.email,
+    })
+    newAdmin.save(err => {
+      if (err) {
+        return res.status(500).send(err)
+      }
+      return res.status(200).json({
+        title: 'signup success'
+      })
+    })
+    return console.log(newAdmin);
+  }}
+);
+
+router.post('/AdminLogin', (req,res, next) => {
+    console.log(req.body)
+    Admin.findOne({
+      email: req.body.email
+    },
+    (err,admin) => {
+      if (err) return res.status(500).json({
+        title: 'server error',
+        error: err
+      })
+      if (!admin) {
+        return res.status(401).json({ 
+         title: 'admin not found',
+         error: 'invalid credentials' 
+        });
+      }
+      // incorrect password
+      if (!bcrypt.compareSync(req.body.password, admin.password)) {
+        return res.status(401).json({
+          title: 'login failed',
+          error: 'invalid credentials'
+        })
+      }
+      // if all is good, create a token and send to frontend
+      let token = jwt.sign({ adminId: Admin._id}, 'secretkey123456789');
+      return res.status(200).json ({
+        title: 'login succes',
+        token: token
+      })
+    })
+})
+
+// grabbing Admin info 
+router.get('/admin', (req, res, next) => {
+    let token = req.headers.token // token
+    jwt.verify(token, 'secretkey123456789', (err, decoded) => {
+      if (err) return res.status(401).json({
+        title: 'unauthorized'
+      })
+      // token is valid 
+      Admin.findOne({ _id: decoded.adminId }, (err, admin) => {
+        if (err) return console.log(err)
+        return res.status(200).json({
+          title: 'Admin grabbed',
+          admin: {
+            name: admin.name,
+            email: admin.email 
+          }
+        })
+      })
+    })
+  })
+  
 
 //Delete a specific post with id
 router.delete('/api/posts/:id', function(req, res, next) {
@@ -59,3 +154,5 @@ router.get("/api/users/:id", function (req, res, next) {
       });
       
   });
+
+  module.exports = router;
