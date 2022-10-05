@@ -9,6 +9,8 @@ import Post from './views/Post.vue'
 import Posts from './views/Posts.vue'
 import SignIn from '../src/views/SignIn.vue'
 import PostView from '../src/views/PostView.vue'
+import Choice from '../src/views/UserChoice.vue'
+import Profile from '../src/views/ProfilePage.vue'
 
 Vue.use(Router)
 
@@ -61,6 +63,16 @@ export default new Router({
       name: 'posts-view',
       component: PostView,
       params: true
+    },
+    {
+      path: '/Choice',
+      name: 'Choice',
+      component: Choice
+    },
+    {
+      path: '/Profile',
+      name: 'Profile',
+      component: Profile
     }
   ]
 })

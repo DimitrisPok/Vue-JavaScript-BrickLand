@@ -7,7 +7,9 @@
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
-      <router-link class="homeNav" to="/reviews">| Reviews</router-link>
+      <router-link class="homeNav" to="/reviews">| Reviews </router-link>
+      <router-link class="homeNav" to="/Choice">| Choice</router-link>
+      <router-link class="homeNav" to="/Profile">| Profile</router-link>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
