@@ -32,9 +32,12 @@ export default {
       console.log(newAdmin)
       Api.post('/adminSignup', newAdmin)
         .then(res => {
+          if (res.status === 200) {
+            localStorage.setItem('token', res.data.token)
+            this.$router.push('/adminHome')
+          }
           console.log(res)
           this.error = ''
-          this.$router.push('/adminHome')
         }, err => {
           console.log(err.response)
           this.error = err.response.data.error
