@@ -7,7 +7,6 @@ import Login from '../src/components/Login.vue'
 import Review from './views/Reviews.vue'
 import Post from './views/Post.vue'
 import Posts from './views/Posts.vue'
-import SignIn from '../src/views/SignIn.vue'
 import PostView from '../src/views/PostView.vue'
 import UserChoice from '../src/views/UserChoice.vue'
 import Profile from '../src/views/ProfilePage.vue'
@@ -22,11 +21,6 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/',
-      name: 'signin',
-      component: SignIn
-    },
     {
       path: '/home',
       name: 'home',

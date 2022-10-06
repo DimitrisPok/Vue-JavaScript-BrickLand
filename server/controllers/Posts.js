@@ -17,10 +17,10 @@ const { Router } = require('express');
 var storageMulti = multer.diskStorage({
     destination:  (req, file, cb) => {
         cb(null, "./images");
-    },
+  },
     filename: (req, file, cb) =>{
         cb(null, Date.now()+ '--' + file.originalname)
-    } 
+  } 
 }
 );
 var upload = multer({storage:storageMulti});
@@ -71,7 +71,7 @@ router.get('/posts/:id/assets', function(req,res,next) {
         // res.contentType(post.img.contentType);
         // res.send(user.img.data);
     });
-  });
+ });
 
 
 
