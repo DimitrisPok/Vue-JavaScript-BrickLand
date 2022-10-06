@@ -86,6 +86,7 @@ router.post('/login', (req,res, next) => {
 // grabbing user info 
 router.get('/user', (req, res, next) => {
   let token = req.headers.token // token
+  console.log(token)
   jwt.verify(token, 'secretkey123456789', (err, decoded) => {
     if (err) return res.status(401).json({
       title: 'unauthorized'
@@ -93,13 +94,7 @@ router.get('/user', (req, res, next) => {
     // token is valid 
     User.findOne({ _id: decoded.userId }, (err, user) => {
       if (err) return console.log(err)
-      return res.status(200).json({
-        title: 'user grabbed',
-        user: {
-          name: user.name,
-          email: user.email
-        }
-      })
+      return res.status(200).json(user)
     })
   })
 })
@@ -333,7 +328,7 @@ router.patch('/users/:id', function(req, res, next) {
           return res.status(404).json({"message": "user not found"});
       }
       user.name = req.body.name || user.name;
-      user.password = req.body.password || user.password;
+      user.password = bcrypt.hashSync(req.body.password, 10),
       user.email = req.body.email || user.email;
       user.save();
       res.json(user);
