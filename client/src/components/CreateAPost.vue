@@ -5,8 +5,8 @@
       <b-form-input class="center" v-model="caption" placeholder="Enter the caption"></b-form-input>
       <b-form-input class="center" v-model="instructions" placeholder="Enter the instructions"></b-form-input>
       <b-form-input class="center" v-model="img"  placeholder="Paste the image link here"></b-form-input>
-      <b-button class="postButton" @click="createPost"> Create New Post</b-button>
-    </div>
+            <b-button class="postButton" @click="createPost"> Create New Post</b-button>
+          </div>
      <br/>
 </body>
 </template>

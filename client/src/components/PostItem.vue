@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <p> {{post.review}}, {{post._id}}</p>
+  <div>
+        <p> ID:{{post._id}}</p>
         <br/>
         <img src="1663410877397--iewek-gnos-cMpxNOph89s-unsplash" alt="Posts images"/>
         <b-button class ="b-button" variant="danger" v-on:click="$emit('del-post', post._id)">X</b-button>
