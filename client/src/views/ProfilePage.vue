@@ -1,20 +1,27 @@
 <template>
-  <div>
+    <div>
+      <div>
     <input type="name" placeholder="name" v-model="name" /> <br />
     <input type="password" placeholder="password" v-model="password" /> <br />
     <input type="text" placeholder="email" v-model="email" /> <br />
     <button @click="updateUser">update</button> <br/>
     <button @click="deleteUser">delete account</button> <br/>
   </div>
+  <div>
+        <users-posts/>
+        </div>
+        </div>
 </template>
 
 <script>
 import { Api } from '@/Api'
-
+import UsersPosts from '../components/getUsersPost.vue'
 export default {
-  name: 'profilePage',
+  components: { UsersPosts },
+  name: 'profile',
   data() {
     return {
+      reviews: [],
       name: '',
       password: '',
       email: '',
@@ -74,7 +81,6 @@ export default {
         })
     }
   }
-
 }
 
 </script>
