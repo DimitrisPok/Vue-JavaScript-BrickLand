@@ -1,23 +1,24 @@
 <template>
-    <div>
-      <h1 class="display-4" ma-4 d-flex justify-center>
-        All Posts
-      </h1>
+  <div>
+    <h1 class="display-4" ma-4 d-flex justify-center>
+      All Posts
+    </h1>
         <p>Here Is The Feed:</p>
-           <div class="video-container">
-           <div v-for="post in posts" v-bind:key="post._id">
-            <v-card elevation="2">
-            <router-link :to="{ name: 'posts-view', params: {id: post._id }}">
-            <div class="video-box">
-               <img :src="posts.img"/>
-            <div>
+           <div class="d-flex flex-wrap">
+            <div v-for="post in posts" v-bind:key="post._id">
+              <b-card width="340px" hover>
+                <div class="video-box">
+                  <div>
+                  <router-link :to="{ name: 'posts-view', params: {id: post._id }}">
+                  <h3 v-html="post.caption"></h3>
+                  </router-link>
               <post-item v-bind:post="post" v-on:del-post="deletePost" />
-            </div>
-            </div>
-            </router-link>
-            </v-card>
-        </div>
-        </div>
+              </div>
+              </div>
+              <v-spacer></v-spacer>
+              </b-card>
+          </div>
+      </div>
   </div>
 </template>
 
@@ -27,6 +28,7 @@ import PostItem from '../components/PostItem.vue'
 
 export default {
   name: 'posts',
+  props: ['post'],
   components: { PostItem },
   mounted() {
     console.log('Page is ready')
@@ -42,6 +44,11 @@ export default {
   data() {
     return {
       posts: []
+    }
+  },
+  computed: {
+    imagePath() {
+      return Api.get('/posts' + 'uploads/{this.posts.img}')
     }
   },
   methods: {
@@ -80,6 +87,7 @@ p {
 
 <style scoped lang="scss">
   .video-container{
+    width: 340px;
     .video-box{
       border: 1px solid rgb(108, 45, 233);
       border-radius: 10px;
@@ -91,5 +99,18 @@ p {
       display: flex;
       justify-content: flex-start;
     }
+  }
+
+  .card {
+    width: 340px;
+    height: 340px;
+   display: flex;
+   border: 1px solid rgb(108, 45, 233);
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+
+      text-align: left;
+
   }
 </style>

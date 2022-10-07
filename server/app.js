@@ -47,6 +47,7 @@ var app = express();
 // Parse requests of content-type 'application/json'
 app.use(morgan('combined'))
 app.use(bodyParser.json());
+app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

@@ -83,6 +83,7 @@ router.post('/login', (req,res, next) => {
 // grabbing user info 
 router.get('/user', (req, res, next) => {
   let token = req.headers.token // token
+  console.log(token)
   jwt.verify(token, 'secretkey123456789', (err, decoded) => {
     if (err) return res.status(401).json({
       title: 'unauthorized'
@@ -323,7 +324,7 @@ router.patch('/users/:id', function(req, res, next) {
           return res.status(404).json({"message": "user not found"});
       }
       user.name = req.body.name || user.name;
-      user.password = req.body.password || user.password;
+      user.password = bcrypt.hashSync(req.body.password, 10),
       user.email = req.body.email || user.email;
       user.save();
       res.json(user);
