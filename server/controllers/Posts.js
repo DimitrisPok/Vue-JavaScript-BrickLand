@@ -71,7 +71,7 @@ router.get('/posts/:id/assets', function(req,res,next) {
         // res.contentType(post.img.contentType);
         // res.send(user.img.data);
     });
- });
+});
 
 
 
