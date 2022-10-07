@@ -282,7 +282,6 @@ router.get("/users/:id", function (req, res, next) {
       return res.status(200).send(user);
       
     });
-    
 });
 
 
