@@ -1,13 +1,13 @@
 <template>
     <div>
       <div>
-    <input type="name" placeholder="name" v-model="name" /> <br />
-    <input type="password" placeholder="password" v-model="password" /> <br />
-    <input type="text" placeholder="email" v-model="email" /> <br />
-    <button @click="updateUser">update</button> <br/>
-    <button @click="deleteUser">delete account</button> <br/>
-  </div>
-  <div>
+      <input type="name" placeholder="name" v-model="name" /> <br />
+      <input type="password" placeholder="password" v-model="password" /> <br />
+      <input type="text" placeholder="email" v-model="email" /> <br />
+      <button @click="updateUser">update</button> <br/>
+      <button @click="deleteUser">delete account</button> <br/>
+        </div>
+        <div>
         <users-posts/>
         </div>
         </div>

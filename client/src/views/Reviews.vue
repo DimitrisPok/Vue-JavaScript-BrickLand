@@ -17,7 +17,7 @@ import { Api } from '@/Api'
 /* import getReviews from '../components/getReviews.vue' */
 export default {
   /* components: { getReviews }, */
-  name: 'reviews',
+  name: 'Reviews',
   data() {
     return {
       reviews: []
