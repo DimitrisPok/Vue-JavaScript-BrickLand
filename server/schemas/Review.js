@@ -11,12 +11,6 @@ var ReviewSchema = new Schema(
             type: String,
             default: "no comment"
         },
-
-        
-        like : {
-            type: Boolean,
-            default: "false"
-        },
         
         user: { 
             type: Schema.Types.ObjectId, 

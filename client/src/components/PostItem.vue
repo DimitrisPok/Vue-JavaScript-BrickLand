@@ -2,7 +2,7 @@
   <div>
         <p> ID:{{post._id}}</p>
         <br/>
-        <img src="1663410877397--iewek-gnos-cMpxNOph89s-unsplash" alt="Posts images"/>
+        <img src="https://img.icons8.com/dusk/64/000000/lego-head.png"/>
         <b-button class ="b-button" variant="danger" v-on:click="$emit('del-post', post._id)">X</b-button>
     </div>
 </template>
@@ -25,8 +25,8 @@ img {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
-  max-width: 10%;
-  max-height: 10%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .b-button{

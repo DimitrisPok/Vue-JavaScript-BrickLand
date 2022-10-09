@@ -104,8 +104,8 @@ p {
   .card {
     width: 340px;
     height: 340px;
-   display: flex;
-   border: 1px solid rgb(108, 45, 233);
+    display: flex;
+    border: 1px solid rgb(108, 45, 233);
       border-radius: 10px;
       margin: 10px;
       padding: 10px;
