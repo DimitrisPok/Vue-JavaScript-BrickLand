@@ -166,7 +166,7 @@ router.delete('/posts/:id', function(req, res, next) {
     });
 });
 
-//to update certain attributes of a user 
+//to update certain attributes of a post
 router.patch('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(id, function(err, post) {

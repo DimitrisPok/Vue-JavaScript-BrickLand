@@ -15,7 +15,6 @@
               <post-item v-bind:post="post" v-on:del-post="deletePost" />
               </div>
               </div>
-              <v-spacer></v-spacer>
               </b-card>
           </div>
       </div>
