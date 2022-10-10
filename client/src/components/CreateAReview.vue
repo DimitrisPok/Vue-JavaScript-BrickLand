@@ -3,7 +3,7 @@
   <h1 class="center">Please Fill in The Following Fields</h1>
     <div>
       <b-form-input class="center" v-model="comment" placeholder="Enter the comment"></b-form-input>
-            <b-button class="postButton" @click="createReview"> Create New Review</b-button>
+            <b-button class="postButton" @click="createReview">Post a review</b-button>
           </div>
      <br/>
 </body>
@@ -28,7 +28,7 @@ export default {
   name: 'create-a-review',
   data() {
     return {
-      comment: ''
+      reviews: []
     }
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
       const newReview = {
         comment: this.comment
       }
-      Api.post('/reviews', newReview)
+      Api.post('/posts/' + this.$route.params.id + '/reviews', newReview)
         .then(response => {
           this.newReview = response.data
           console.log(response.data)
