@@ -4,8 +4,17 @@
     <div class="d-flex flex-wrap">
               <b-card width="340px" hover>
                 <div class="video-box">
+                  <h3>Posted by {{ id }}</h3>
+                  <p>Posted at: {{ post.createdAt }}</p>
+                  <p>Last updated at: {{ post.updatedAt }}</p>
+                  <br/>
                   <img src="https://img.icons8.com/dusk/64/000000/lego-head.png"/>
-                  <h3>Here is how you can recreate this post: {{ post.instructions }}</h3>
+                  <br/>
+                    <div>
+                       <h3>You can recreate the model by following the instructions: </h3>
+                       <br/>
+                       <p>{{ post.instructions }}</p>
+                    </div>
               </div>
               <v-spacer></v-spacer>
               </b-card>
@@ -102,6 +111,15 @@ export default {
       margin: 10px;
       padding: 10px;
       text-align: left;
+      img {
+       border: 1px solid rgb(107, 104, 109);
+       border-radius: 4px;
+       padding: 5px;
+       width: 400px;
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+       }
       display: flex;
       justify-content: flex-start;
   }
