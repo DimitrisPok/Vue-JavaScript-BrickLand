@@ -14,6 +14,7 @@ import AdminChoice from '../src/views/AdminChoice.vue'
 import AdminLogin from '../src/components/AdminLogin.vue'
 import AdminSignUp from '../src/components/AdminSignUp.vue'
 import AdminHome from '../src/views/AdminHome.vue'
+import AdminProfile from '../src/views/AdminProfile'
 
 Vue.use(Router)
 
@@ -91,6 +92,11 @@ export default new Router({
       path: '/adminHome',
       name: 'adminhome',
       component: AdminHome
+    },
+    {
+      path: '/adminProfile',
+      name: 'adminProlie',
+      component: AdminProfile
     }
   ]
 })

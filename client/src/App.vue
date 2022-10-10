@@ -12,6 +12,7 @@
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
       <router-link class="homeNav" to="/adminChoice">| Admin </router-link>
       <router-link class="homeNav" to="/adminHome">| Admin Home </router-link>
+      <router-link class="homeNav" to="/adminProfile">| Admin profile </router-link>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>

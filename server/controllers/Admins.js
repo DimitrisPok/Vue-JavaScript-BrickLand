@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 const router = express.Router();
 const Admin = require('../schemas/Administrator');
-const Post = require('./Posts');
+const Post = require('../schemas/Post');
 const User = require('./Users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
@@ -90,20 +90,89 @@ router.get('/admin', (req, res, next) => {
       // token is valid 
       Admin.findOne({ _id: decoded.adminId }, (err, admin) => {
         if (err) return console.log(err)
-        return res.status(200).json({
-          title: 'Admin grabbed',
-          admin: {
-            name: admin.name,
-            email: admin.email 
-          }
-        })
+        return res.status(200).json(admin)
       })
     })
   })
+
+
+  // put a specific admin
+  
+  router.put('/admins/:id', function(req, res, next) {
+    var id = req.params.id;
+    Admin.findById(id, function(err, admin) {
+        if (err) { return next(err); }
+        if (admin == null) {
+            return res.status(404).json({"message": "admin not found"});
+        }
+        admin.adminName = req.body.adminName;
+        admin.password = bcrypt.hashSync(req.body.password, 10),
+        admin.email = req.body.email;
+        admin.save();
+        res.json(admin);
+    });
+  });
+  
+    // put a specific admin, trying out here another put method
+    /*
+    router.put('/admins/:id', function(req, res, next) {
+      var id = req.params.id;
+      Admin.findById(id, function(err, admin) {
+          if (err) { return next(err); }
+          if (admin == null) {
+              return res.status(404).json({"message": "admin not found"});
+          }
+          const newadmin = {
+          adminName: req.body.adminName,
+          password: bcrypt.hashSync(req.body.password, 10),
+          email: req.body.email,
+          }       
+        Admin.findOneAndReplace({_id: id}, newadmin, {option: true}, function(err, admin) {
+          if(err) {return res.status(500).send(err);}
+          if(admin = null) {
+            return res.status(404).json({"message" : "Admin not found"});
+          }
+          res.status(200).json(admin);
+        });
+      });
+    });
+    */
   
 
+router.get('/admins',function(req, res){
+  Admin.find(function(err, admins) {
+       if (err){return res.status(500).send(err);}
+  res.status(201).json({"admins": admins});
+  });
+});
+
+// delete all posts
+router.delete('/posts', function(req, res, next) {
+  Post.deleteMany(function(err, posts) {
+      if (err) { return next(err); }
+      if (posts == null) {
+          return res.status(404).json(
+                  {"message": "There are no posts!"});
+      }
+      res.status(201).json({"post": posts});
+  });
+});
+router.delete('/admins/:id', function(req, res, next) {
+  var id = req.params.id;
+  Admin.findOneAndDelete({_id: id}, function(err, admin) {
+      if (err) { return next(err); }
+      if (admin == null) {
+          return res.status(404).json(
+                  {"message": "Admin not found"});
+      }
+      res.json(admin);
+  });
+});
+
+
+/*
 //Delete a specific post with id
-router.delete('/api/posts/:id', function(req, res, next) {
+router.delete('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findOneAndDelete({_id: id}, function(err, post) {
         if (err) { return next(err); }
@@ -116,7 +185,7 @@ router.delete('/api/posts/:id', function(req, res, next) {
 });
 
 //Get a specific post with an id
-router.get('/api/posts/:id', function(req, res, next) {
+router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id;
     Post.findById(req.params.id, function(err, post) {
         if (err) { return next(err); }
@@ -128,21 +197,10 @@ router.get('/api/posts/:id', function(req, res, next) {
         console.log(post);
     });
 });
-//Deleta a specific user
-router.delete('/api/users/:id', function(req, res, next) {
-    var id = req.params.id;
-    User.findOneAndDelete({_id: id}, function(err, user) {
-        if (err) { return next(err); }
-        if (user == null) {
-            return res.status(404).json(
-                    {"message": "User not found"});
-        }
-        res.json(user);
-    });
-  });
-
   //Delete a specfic user
-router.get("/api/users/:id", function (req, res, next) {
+
+  we do not need this
+router.get("/users/:id", function (req, res, next) {
     User.findOne({ _id: req.params.id })
       .populate("posts")
       .populate("reviews")
@@ -154,5 +212,6 @@ router.get("/api/users/:id", function (req, res, next) {
       });
       
   });
+*/
 
   module.exports = router;
