@@ -4,7 +4,6 @@
 <h2 class="title"> Comments: </h2>
     <div v-for= "reviews in reviews" v-bind:key="reviews._id" class="comments">
         <p>Comment: {{reviews.comment}}</p>
-        <p>Like: {{reviews.like}}</p>
         <p>Created at: {{reviews.createdAt}}</p>
     </div>
 </div>
@@ -22,7 +21,7 @@ export default {
     }
   },
   mounted() {
-    Api.get('/reviews')
+    Api.get('/posts/' + this.$route.params.id + '/reviews')
       .then(response => {
         this.reviews = response.data.review
       })
@@ -32,7 +31,7 @@ export default {
   },
   methods: {
     getMessage() {
-      Api.get('/reviews')
+      Api.get('/reviews/' + this.reviews._id)
         .then(response => {
           this.reviews = response.data.reviews
         })
