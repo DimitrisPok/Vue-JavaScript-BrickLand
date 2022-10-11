@@ -98,7 +98,7 @@ router.get('/admin', (req, res, next) => {
 
 
   // put a specific admin
-  
+  /*
   router.put('/admins/:id', function(req, res, next) {
     var id = req.params.id;
     Admin.findById(id, function(err, admin) {
@@ -113,9 +113,9 @@ router.get('/admin', (req, res, next) => {
         res.json(admin);
     });
   });
-  
+  */
     // put a specific admin, trying out here another put method
-    /*
+    
     router.put('/admins/:id', function(req, res, next) {
       var id = req.params.id;
       Admin.findById(id, function(err, admin) {
@@ -137,7 +137,7 @@ router.get('/admin', (req, res, next) => {
         });
       });
     });
-    */
+  
   
 
 router.get('/admins',function(req, res){

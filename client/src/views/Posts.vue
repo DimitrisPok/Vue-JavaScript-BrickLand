@@ -5,7 +5,7 @@
     </h1>
         <p>Here Is The Feed:</p>
            <div class="d-flex flex-wrap">
-            <div v-for="post in posts" v-bind:key="post._id">
+            <div class="text" v-for="post in posts" v-bind:key="post._id">
               <b-card width="340px" hover>
                 <div class="video-box">
                   <div>
@@ -93,9 +93,7 @@ p {
       border-radius: 10px;
       margin: 10px;
       padding: 10px;
-
       text-align: left;
-
       display: flex;
       justify-content: flex-start;
     }
@@ -112,5 +110,35 @@ p {
 
       text-align: left;
 
+  }
+  h3 {
+    font-size: auto;
+  }
+  .text{
+    font-size: auto;
+  }
+
+  @media (max-width: 786px) {
+
+    .card{
+      width: 371px;
+      height: 220px;
+    }
+
+    .post-item{
+      width: auto;
+      height: auto;
+    }
+
+    h3 {
+      align-self: flex-start;
+      font-size: medium;
+      top:50px;
+    }
+
+    .text{
+      font-size: small;
+      image-orientation: auto;
+    }
   }
 </style>
