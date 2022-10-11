@@ -8,9 +8,6 @@
     <input type="text" placeholder="email" v-model="email" required/> <br />
     <button @click="updateAdmin">update</button> <br />
     <button @click="deleteAdmin">delete account</button> <br />
-    <br/>
-    <br/>
-    <button @click="deleteAllPosts">delete all the posts</button> <br />
   </div>
 </template>
 
@@ -81,13 +78,6 @@ export default {
         .catch((error) => {
           console.log(error)
         })
-    },
-    deleteAllPosts() {
-      Api.delete('/posts').then((res) => {
-        console.log(res)
-      }).catch((error) => {
-        console.log(error)
-      })
     }
   }
 }
