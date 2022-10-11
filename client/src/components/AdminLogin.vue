@@ -35,7 +35,7 @@ export default {
         // if successful
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token)
-            this.$router.push('/adminHome')
+            this.$router.push('/AdminPosts')
           }
           console.log(res)
         }, err => {

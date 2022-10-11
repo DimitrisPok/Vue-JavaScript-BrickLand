@@ -35,6 +35,28 @@ export default {
       img: ''
     }
   },
+  mounted() {
+    const jwttoken = {
+      token: localStorage.getItem('token')
+    }
+    fetch('http://localhost:3000/user', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Host: '',
+        token: jwttoken.token
+      }
+    }).then((response) => {
+      return response.json()
+    }).then((responseData) => {
+      this.user = responseData
+      console.log(this.user)
+      console.log(jwttoken)
+    }).catch(error => {
+      console.error(error)
+    })
+  },
   methods: {
     createPost() {
       const newPost = {
@@ -42,9 +64,11 @@ export default {
         instructions: this.instructions,
         img: this.img
       }
-      Api.post('/posts', newPost)
+      Api.post(`/users/${this.user._id}/posts/image`, newPost)
         .then(response => {
           this.newPost = response.data
+          this.stores = []
+          this.stores.push(newPost)
           console.log(response.data)
         })
       console.log(newPost)

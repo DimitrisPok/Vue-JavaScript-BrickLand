@@ -1,6 +1,18 @@
 <template>
     <div>
-        <h1>Here are my users:</h1>
+      <br>
+    <br>
+    <br>
+    <div id="nav" class="navigation">
+      <img src="@/htmlPics/lego-head.png">
+      <router-link class="homeNav" to="users">| Users </router-link>
+      <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
+      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
+    </div>
+    <!-- Render the content of the current page view -->
+    <router-view/>
+        <h1>Here are the users:</h1>
         <div class="video-container">
            <div v-for="user in users" v-bind:key="user._id">
             <div class="video-box">
@@ -20,7 +32,7 @@ import UserItem from '../components/UserItem.vue'
 
 export default {
   components: { UserItem },
-  name: 'users',
+  props: ['user', 'post'],
   mounted() {
     console.log('Page is loaded')
     // load the real users from the server
@@ -71,10 +83,49 @@ export default {
       justify-content: flex-start;
     }
   }
+  .card {
+    width: 500px;
+    height: 340px;
+    display: flex;
+    border: 1px solid rgb(108, 45, 233);
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+
+      text-align: left;
+
+  }
+
+  #app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
+}
+.homeNav{
+  color: bisque;
+}
 </style>
 
 <style scoped>
-p {
-    background-color: rgb(89, 89, 231);
+
+  #app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
+}
+.homeNav{
+  color: bisque;
 }
 </style>

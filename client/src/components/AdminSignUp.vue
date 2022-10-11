@@ -1,9 +1,13 @@
 <template>
-    <div>
+    <div class="page">
+    <div class="header">
+      <h1>Welcome to Brick Land</h1>
+    </div>
+          <h2>Sign Up</h2>
         <input type="name" placeholder="name" v-model="name" required pattern="\S(.*\S)?" title="This field is required"/> <br/>
         <input type="password" placeholder="password" v-model="password" required pattern="\S(.*\S)?" title="This field is required"/> <br/>
         <input type="text" placeholder="email" v-model="email" required pattern="\S(.*\S)?" title="This field is required"/> <br/>
-        <button @click="signup">admin signup</button>
+        <b-button @click="signup">Admin Sign Up</b-button>
         {{ error }}
     </div>
 </template>
@@ -34,7 +38,7 @@ export default {
         .then(res => {
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token)
-            this.$router.push('/adminHome')
+            this.$router.push('/AdminPosts')
           }
           console.log(res)
           this.error = ''

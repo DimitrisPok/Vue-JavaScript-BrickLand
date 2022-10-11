@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+// import Home from './views/Home.vue'
 import Users from './views/Users.vue'
 import SignUp from '../src/components/SignUp2.vue'
 import Login from '../src/components/Login.vue'
@@ -14,8 +14,10 @@ import AdminChoice from '../src/views/AdminChoice.vue'
 import AdminLogin from '../src/components/AdminLogin.vue'
 import AdminSignUp from '../src/components/AdminSignUp.vue'
 import AdminHome from '../src/views/AdminHome.vue'
+import AdminPosts from '../src/views/AdminPosts.vue'
+import Welcome from '../src/views/Welcome.vue'
+import AdminPost from '../src/views/AdminPost.vue'
 import AdminProfile from '../src/views/AdminProfile'
-
 Vue.use(Router)
 
 export default new Router({
@@ -23,9 +25,9 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: Home
+      path: '/',
+      name: 'welcome',
+      component: Welcome
     },
     {
       path: '/users',
@@ -56,6 +58,16 @@ export default new Router({
       path: '/posts',
       name: 'posts',
       component: Posts
+    },
+    {
+      path: '/AdminPost',
+      name: 'adminpost',
+      component: AdminPost
+    },
+    {
+      path: '/AdminPosts',
+      name: 'adminposts',
+      component: AdminPosts
     },
     {
       path: '/posts/:id',
