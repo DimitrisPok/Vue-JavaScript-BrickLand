@@ -1,14 +1,16 @@
 <template>
-<body class="center">
-  <h1 class="center">Please Fill in The Following Fields</h1>
+  <body class="center">
+    <h1 class="center">Please Fill in The Following Fields</h1>
     <div>
       <b-form-input class="center" v-model="caption" placeholder="Enter the caption"></b-form-input>
       <b-form-input class="center" v-model="instructions" placeholder="Enter the instructions"></b-form-input>
-      <b-form-input class="center" v-model="img"  placeholder="Paste the image link here"></b-form-input>
-            <b-button class="postButton" @click="createPost"> Create New Post</b-button>
-          </div>
-     <br/>
-</body>
+      <input type="file" id="itemFile" v-on:change="readImage()" />
+      <b-button class="postButton" @click="createPost">
+        Create New Post</b-button
+      >
+    </div>
+    <br />
+  </body>
 </template>
 
 <script>
@@ -47,15 +49,18 @@ export default {
         Host: '',
         token: jwttoken.token
       }
-    }).then((response) => {
-      return response.json()
-    }).then((responseData) => {
-      this.user = responseData
-      console.log(this.user)
-      console.log(jwttoken)
-    }).catch(error => {
-      console.error(error)
     })
+      .then((response) => {
+        return response.json()
+      })
+      .then((responseData) => {
+        this.user = responseData
+        console.log(this.user)
+        console.log(jwttoken)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   },
   methods: {
     createPost() {
@@ -64,14 +69,20 @@ export default {
         instructions: this.instructions,
         img: this.img
       }
-      Api.post(`/users/${this.user._id}/posts/image`, newPost)
-        .then(response => {
+      Api.post(`/users/${this.user._id}/posts/image`, newPost).then(
+        (response) => {
           this.newPost = response.data
           this.stores = []
           this.stores.push(newPost)
           console.log(response.data)
-        })
+        }
+      )
       console.log(newPost)
+    },
+    readImage() {
+      const file = document.getElementById('itemFile')
+      console.log(file.value)
+      this.img = file.value.split(/(\\|\/)/g).pop()
     }
   }
 }
@@ -81,5 +92,4 @@ export default {
 .center {
   text-align: center;
 }
-
 </style>
