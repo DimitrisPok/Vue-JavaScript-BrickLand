@@ -4,7 +4,7 @@
     <div class="d-flex flex-wrap">
               <b-card width="340px" hover>
                 <div class="video-box">
-                  <h3>Posted by {{ id }}</h3>
+                  <h3>Posted by: {{ id }}</h3>
                   <p>Posted at: {{ post.createdAt }}</p>
                   <p>Last updated at: {{ post.updatedAt }}</p>
                   <br/>
@@ -123,6 +123,39 @@ export default {
       display: flex;
       justify-content: flex-start;
   }
+  h3{
+    font-size: auto;
+  }
+
+  @media (max-width: 786px) {
+
+    .card {
+      width: 400px;
+      display: flex;
+      position: relative;
+      border: 1px solid rgb(108, 45, 233);
+      border-radius: 10px;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.50);
+      margin: 10px;
+      padding: 10px;
+       }
+      img {
+       border: 1px solid rgb(107, 104, 109);
+       border-radius: 4px;
+       padding: 5px;
+       max-width: fit-content;
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+       }
+
+         h3 {
+
+  font-family: cursive;
+  font-size: medium;
+  }
+  }
+
 </style>
 
 <style scoped>

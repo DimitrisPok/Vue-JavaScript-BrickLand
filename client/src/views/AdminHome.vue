@@ -29,8 +29,7 @@ export default {
   mounted() {
     Api.get('/admin', { headers: { token: localStorage.getItem('token') } })
       .then(res => {
-        this.name = res.data.admin.adminName
-        this.email = res.data.admin.email
+        this.admin = res
       })
   },
   methods: {
