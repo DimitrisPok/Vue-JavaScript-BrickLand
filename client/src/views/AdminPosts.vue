@@ -17,6 +17,7 @@
       All Posts
     </h1>
         <p>Here Is The Feed:</p>
+        <button @click="deleteAllPosts">delete all the posts</button> <br/>
            <div class="d-flex flex-wrap">
             <div v-for="post in posts" v-bind:key="post._id">
               <b-card width="340px" hover>
@@ -88,6 +89,13 @@ export default {
     logout() {
       localStorage.clear()
       this.$router.push('/')
+    },
+    deleteAllPosts() {
+      Api.delete('/posts').then((res) => {
+        console.log(res)
+      }).catch((error) => {
+        console.log(error)
+      })
     }
   }
 }
