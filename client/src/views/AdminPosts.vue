@@ -1,13 +1,14 @@
 <template>
   <div>
+    <br>
+    <br>
+    <br>
     <div id="nav" class="navigation">
-      <br>
-      <br>
-      <br>
       <img src="@/htmlPics/lego-head.png">
-      <router-link class="homeNav" to="/posts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
-      <router-link class="homeNav" to="/Profile">| Profile </router-link>
+      <router-link class="homeNav" to="users">| Users </router-link>
+      <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
+      <router-link class="homeNav" to="/AdminPost">| Post </router-link>
+      <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
       <button @click="logout">Log out</button>
     </div>
     <!-- Render the content of the current page view -->
@@ -24,7 +25,7 @@
                   <router-link :to="{ name: 'posts-view', params: {id: post._id }}">
                   <h3 v-html="post.caption"></h3>
                   </router-link>
-              <post-item-user v-bind:post="post"/>
+              <post-item v-bind:post="post" v-on:del-post="deletePost" />
               </div>
               </div>
               <v-spacer></v-spacer>
@@ -36,12 +37,12 @@
 
 <script>
 import { Api } from '@/Api'
-import PostItemUser from '../components/PostItemUser.vue'
+import PostItem from '../components/PostItem.vue'
 
 export default {
   name: 'posts',
   props: ['post'],
-  components: { PostItemUser },
+  components: { PostItem },
   mounted() {
     console.log('Page is ready')
     Api.get('/posts').then(response => {
@@ -52,36 +53,10 @@ export default {
       .catch(error => {
         console.error(error)
       })
-    const jwttoken = {
-      token: localStorage.getItem('token')
-    }
-    fetch('http://localhost:3000/user', {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        Host: '',
-        token: jwttoken.token
-      }
-    }).then((response) => {
-      return response.json()
-    }).then((responseData) => {
-      this.user = responseData
-      console.log(this.user)
-      console.log(jwttoken)
-    }).catch(error => {
-      console.error(error)
-    })
   },
   data() {
     return {
       posts: []
-    }
-  },
-  created() {
-    // user is not authorized
-    if (localStorage.getItem('token') === null) {
-      this.$router.push('/')
     }
   },
   computed: {

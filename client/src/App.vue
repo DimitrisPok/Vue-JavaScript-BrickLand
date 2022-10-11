@@ -1,21 +1,30 @@
 <template>
-  <div id="app">
+ <div id="app">
     <div id="nav" class="navigation">
-      <img src="@/htmlPics/lego-head.png"><router-link class="homeNav" to="/Home">Home </router-link>
-      <router-link class="homeNav" to="/SignUp">| Sign Up </router-link>
-      <router-link class="homeNav" to="/login">| Log In </router-link>
-      <router-link class="homeNav" to="users">| Users </router-link>
-      <router-link class="homeNav" to="/posts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
-      <router-link class="homeNav" to="/reviews">| Reviews </router-link>
-      <router-link class="homeNav" to="/Choice">| Choice </router-link>
-      <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <router-link class="homeNav" to="/adminChoice">| Admin </router-link>
-      <router-link class="homeNav" to="/adminHome">| Admin Home </router-link>
+      <div>
+    </div>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
-  </div>
+    <nav class="navbar shadow bg-white rounded justify-content-between flex-nowrap flex-row fixed-top">
+      <div class="container">
+        <a class="navbar-brand float-left" href="/posts" target="_blank">
+           BrickLand
+        </a>
+        <ul class="nav navbar-nav flex-row float-right">
+          <li class="nav-item">
+            <router-link class="nav-link pr-3" to="/login">Log In</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="btn btn-outline-primary" to="/signup">Sign up</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="btn btn-outline-danger" to="/AdminChoice">Admin</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    </div>
 </template>
 
 <script>
@@ -35,9 +44,10 @@ export default {
 }
 .navigation{
   text-align: left;
-  background-color: rgb(25, 39, 34);
+  background-color: rgb(233, 220, 181);
 }
 .homeNav{
   color: bisque;
 }
 </style>
+{{this.$router.push(route, () => {'/welcome'})}}

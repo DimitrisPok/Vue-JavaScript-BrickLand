@@ -1,8 +1,11 @@
 var express =require('express');
+var app = express();
+const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 const router = express.Router();
 const User = require("../schemas/User");
-const Post = require("../schemas/Post.js");
+const Post = require("../schemas/Post");
+const Posts = require('./Posts');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
@@ -157,7 +160,7 @@ router.post("/users/:id/posts/image", upload.single('img'), function (req, res, 
 
 
 // get the user's posts.
-router.get("/users/:id/posts", function (req, res) {
+router.get("/users/:id/posts/test", function (req, res) {
   User.findOne({ _id: req.params.id })
     .populate({
       path: "posts",
@@ -173,8 +176,9 @@ router.get("/users/:id/posts", function (req, res) {
       } 
       if (user == null){
         return res.status(404).json(
-          {"message": "User not found!"});
+          {"message": "There are no posts to this user!"});
       }
+      //console.log(user.posts);
       return res.status(200).send(user.posts);
     });
 });
@@ -278,6 +282,7 @@ router.get("/users/:id", function (req, res, next) {
       return res.status(200).send(user);
       
     });
+    
 });
 
 
@@ -395,5 +400,27 @@ router.put('/users/:id',function(req, res){
    res.json({type:'GET'});
 });*/
 
+
+
+
+
+//Trying to get the reviews to show up when getting all the users posts for a certain id
+router.get("/users/:id/posts", function (req, res) {
+  User.findOne({ _id: req.params.id })
+    .populate("posts")
+    .populate('reviews')
+    .exec(function (err, user) {
+      if (err) {
+        return res.status(500).send(err);
+      } 
+      if (user == null){
+        return res.status(404).json(
+          {"message": "There are no posts to this user!"});
+      }
+      //console.log(user.posts);
+  
+      return res.status(200).send(user.posts);
+    });
+});
 
 module.exports = router;
