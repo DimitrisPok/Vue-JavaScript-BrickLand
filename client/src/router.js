@@ -104,6 +104,11 @@ export default new Router({
       path: '/adminHome',
       name: 'adminhome',
       component: AdminHome
+    },
+    {
+      path: '/adminProfile',
+      name: 'adminProlie',
+      component: AdminProfile
     }
   ]
 })

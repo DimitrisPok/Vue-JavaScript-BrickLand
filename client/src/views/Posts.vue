@@ -27,7 +27,6 @@
               <post-item-user v-bind:post="post"/>
               </div>
               </div>
-              <v-spacer></v-spacer>
               </b-card>
           </div>
       </div>
