@@ -5,14 +5,15 @@
       <br>
       <br>
       <img src="@/htmlPics/lego-head.png">
-      <router-link class="homeNav" to="/posts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
-      <router-link class="homeNav" to="/Profile">| Profile </router-link>
+      <router-link class="homeNav" to="users">| Users </router-link>
+      <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
+      <router-link class="homeNav" to="/AdminPost">| Post </router-link>
+      <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
       <button @click="logout">Log out</button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
-  <h1>Hello! Ready to share your fabulous lego model?</h1>
+  <h1>Hello Admin! Want to add your own creation?</h1>
   <br/>
   <br/>
   <Create-A-Post/>
@@ -25,17 +26,17 @@
 import CreateAPost from '../components/CreateAPost.vue'
 
 export default {
-  name: 'post',
+  name: 'adminpost',
   components: {
     CreateAPost
   },
   created() {
-    // user is not authorized
-    if (localStorage.getItem('token') === null) {
-      this.$router.push('/')
-    }
   },
   methods: {
+    logout() {
+      localStorage.clear()
+      this.$router.push('/')
+    }
   }
 }
 </script>

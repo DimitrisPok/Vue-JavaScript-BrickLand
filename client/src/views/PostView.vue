@@ -21,6 +21,8 @@
               <Create-A-Review/>
               <get-reviews/>
           </div>
+    <!-- Render the content of the current page view -->
+    <router-view/>
       </div>
 </template>
 
@@ -41,10 +43,12 @@ export default {
   created() {
     // user is not authorized
     if (localStorage.getItem('token') === null) {
-      this.$router.push('/login')
+      this.$router.push('/')
     }
   },
   mounted() {
+    this.getPost()
+
     const jwttoken = {
       token: localStorage.getItem('token')
     }
@@ -65,8 +69,6 @@ export default {
     }).catch(error => {
       console.error(error)
     })
-
-    this.getPost()
   },
   methods: {
     getPost() {
@@ -78,6 +80,10 @@ export default {
         .catch(error => {
           console.error(error)
         })
+    },
+    logout() {
+      localStorage.clear()
+      this.$router.push('/')
     }
   }
   /* computed: {
@@ -123,7 +129,18 @@ export default {
       display: flex;
       justify-content: flex-start;
   }
-</style>
-
-<style scoped>
+   #app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
+}
+.homeNav{
+  color: bisque;
+}
 </style>

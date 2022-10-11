@@ -1,6 +1,19 @@
 <template>
     <div>
+      <div id="nav" class="navigation">
+      <br>
+      <br>
+      <br>
+      <img src="@/htmlPics/lego-head.png">
+      <router-link class="homeNav" to="/posts">| Posts </router-link>
+      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/Profile">| Profile </router-link>
+      <button @click="logout">Log out</button>
+    </div>
       <div>
+        <br>
+      <br>
+      <br>
       <input type="name" placeholder="name" v-model="name" /> <br />
       <input type="password" placeholder="password" v-model="password" /> <br />
       <input type="text" placeholder="email" v-model="email" /> <br />
@@ -31,7 +44,7 @@ export default {
   created() {
     // user is not authorized
     if (localStorage.getItem('token') === null) {
-      this.$router.push('/login')
+      this.$router.push('/')
     }
   },
   mounted() {
@@ -79,10 +92,29 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    logout() {
+      localStorage.clear()
+      this.$router.push('/')
     }
   }
 }
 
 </script>
 
-<style scoped></style>
+<style scoped>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
+}
+.homeNav{
+  color: bisque;
+}
+</style>
