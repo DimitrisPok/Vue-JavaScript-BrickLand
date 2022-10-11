@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style scoped>
+  <style scoped>
 .center {
   text-align: center;
 }
@@ -59,7 +59,9 @@ text-align: center;
 
 @media (max-width: 786px) {
   .center {
-    width:400px;;
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
   }
 .postButton{
 width: 400px;

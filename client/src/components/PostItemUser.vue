@@ -2,7 +2,7 @@
   <div>
         <p> ID:{{ post._id }}</p>
         <br/>
-        <img src="https://img.icons8.com/dusk/64/000000/lego-head.png"/>
+        <img v-bind:src="require(`@/assets/${post.img}`)" alt="...">
     </div>
 </template>
 
@@ -24,7 +24,7 @@ img {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
-  max-width: 50%;
+  max-width: 30%;
   max-height: 100%;
 }
 

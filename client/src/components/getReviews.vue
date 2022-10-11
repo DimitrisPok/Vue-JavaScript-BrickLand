@@ -108,14 +108,23 @@ body {
 @media (max-width: 786px) {
   .comments{
   background-color: bisque;
-  align-self: center;
-  width: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
 }
 .title{
   color: bisque;
   background-color: rgb(25, 39, 34);
-  align-self: center;
-  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+}
+
+p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 }
 </style>
