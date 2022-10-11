@@ -1,5 +1,8 @@
 <template>
   <div>
+    <br>
+    <br>
+    <br>
     <input type="adminName" placeholder="adminName" v-model="adminName" required/> <br />
     <input type="password" placeholder="password" v-model="password" required/> <br />
     <input type="text" placeholder="email" v-model="email" required/> <br />
