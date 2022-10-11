@@ -17,7 +17,7 @@ import AdminHome from '../src/views/AdminHome.vue'
 import AdminPosts from '../src/views/AdminPosts.vue'
 import Welcome from '../src/views/Welcome.vue'
 import AdminPost from '../src/views/AdminPost.vue'
-
+import AdminProfile from '../src/views/AdminProfile'
 Vue.use(Router)
 
 export default new Router({
