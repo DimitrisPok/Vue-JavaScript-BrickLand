@@ -4,7 +4,7 @@
     <div class="d-flex flex-wrap">
               <b-card width="340px" hover>
                 <div class="video-box">
-                  <h3>Posted by {{ id }}</h3>
+                  <h3>Posted by: {{ id }}</h3>
                   <p>Posted at: {{ post.createdAt }}</p>
                   <p>Last updated at: {{ post.updatedAt }}</p>
                   <br/>

@@ -49,5 +49,14 @@ export default {
 .homeNav{
   color: bisque;
 }
+
+@media (max-width: 786px) {
+
+  .homeNav{
+    width: 100%;
+    position: sticky-bottom;
+    padding: 0;
+  }
+}
 </style>
 {{this.$router.push(route, () => {'/welcome'})}}

@@ -17,7 +17,7 @@
     </h1>
         <p>Here Is The Feed:</p>
            <div class="d-flex flex-wrap">
-            <div v-for="post in posts" v-bind:key="post._id">
+            <div class="text" v-for="post in posts" v-bind:key="post._id">
               <b-card width="340px" hover>
                 <div class="video-box">
                   <div>
@@ -134,9 +134,7 @@ p {
       border-radius: 10px;
       margin: 10px;
       padding: 10px;
-
       text-align: left;
-
       display: flex;
       justify-content: flex-start;
     }

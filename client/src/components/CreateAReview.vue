@@ -3,6 +3,7 @@
   <h1 class="center">Please Fill in The Following Fields</h1>
     <div>
       <b-form-input class="center" v-model="comment" placeholder="Enter the comment"></b-form-input>
+      <br/>
             <b-button class="postButton" @click="createReview">Post a review</b-button>
           </div>
      <br/>
@@ -52,4 +53,16 @@ export default {
   text-align: center;
 }
 
+.postButton {
+text-align: center;
+}
+
+@media (max-width: 786px) {
+  .center {
+    width:400px;;
+  }
+.postButton{
+width: 400px;
+}
+}
 </style>
