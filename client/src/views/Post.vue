@@ -2,8 +2,8 @@
 <div>
    <div id="nav" class="navigation">
     <br>
-      <br>
-      <br>
+    <br>
+    <br>
       <img src="@/htmlPics/lego-head.png">
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
@@ -58,11 +58,12 @@ img {
   text-align: center;
   color: #2c3e50;
 }
-.navigation{
-  text-align: left;
-  background-color: rgb(25, 39, 34);
+.navigation {
+
 }
 .homeNav{
   color: bisque;
+  text-align: left;
+  background-color: rgb(25, 39, 34);
 }
 </style>

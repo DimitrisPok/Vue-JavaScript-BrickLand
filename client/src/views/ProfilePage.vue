@@ -10,16 +10,20 @@
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
       <button @click="logout">Log out</button>
     </div>
-      <div>
+      <div class="editFields">
         <br>
       <br>
-      <br>
+      <p>Enter The Details That You Want To Change Below:</p>
       <input type="name" placeholder="name" v-model="name" /> <br />
       <input type="password" placeholder="password" v-model="password" /> <br />
       <input type="text" placeholder="email" v-model="email" /> <br />
-      <button @click="updateUser">update</button> <br/>
-      <button @click="deleteUser">delete account</button> <br/>
-        </div>
+      <p>             ㅤ        </p>
+      </div>
+      <br>
+      <b-button @click="updateUser">update</b-button> <br/><br>
+      <b-button class = "deleteUser" @click="deleteUser">delete account</b-button> <br/>
+        <br>
+        <p class="urPost">Your Posts:</p>
         <div>
         <users-posts/>
         </div>
@@ -117,4 +121,15 @@ export default {
 .homeNav{
   color: bisque;
 }
+.deleteUser{
+  background-color: rgb(152, 47, 47);
+}
+.editFields{
+  background-color: bisque;
+}
+.urPost {
+  background-color: rgb(18, 43, 18);
+  color: bisque;
+}
+
 </style>
