@@ -17,7 +17,7 @@
         <div class="video-container">
            <div v-for="user in users" v-bind:key="user._id">
             <div class="video-box">
-              <img src="https://img.icons8.com/material/24/000000/youtube-play--v1.png"/>
+              <img src="@/htmlPics/user.png"/>
               <div>
                 <user-item v-bind:user="user" v-on:del-user="deleteUser"/>
               </div>
@@ -132,5 +132,9 @@ export default {
 }
 .homeNav{
   color: bisque;
+}
+img {
+  max-width: 10%;
+  max-height: 5%;
 }
 </style>
