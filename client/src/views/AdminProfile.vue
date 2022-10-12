@@ -82,6 +82,10 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    logout() {
+      localStorage.clear()
+      this.$router.push('/')
     }
   }
 }
