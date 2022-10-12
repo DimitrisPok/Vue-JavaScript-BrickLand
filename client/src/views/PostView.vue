@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <br/>
-    <br/>
-    <br/>
+<div>
+  <br>
+  <br>
+  <div id="nav" class="navigation">
+  <img src="@/htmlPics/lego-head.png">
+      <router-link class="homeNav" to="/posts">| Posts </router-link>
+      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/Profile">| Profile </router-link>
+      <button @click="logout">Log out</button>
+      </div>
     <h1>{{ post.caption }}</h1>
     <div class="center">
       <div class="d-flex flex-wrap">

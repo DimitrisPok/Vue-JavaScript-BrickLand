@@ -7,7 +7,6 @@
 </template>
 <script>
 import { Api } from '@/Api'
-
 export default {
   name: 'Users-posts',
   data() {

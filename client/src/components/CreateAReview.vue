@@ -1,6 +1,6 @@
 <template>
 <body class="center">
-  <h1 class="center">Please Fill in The Following Fields</h1>
+  <h1 class="center">Have something to say? Add a review!</h1>
     <div>
       <b-form-input class="center" v-model="comment" placeholder="Enter the comment"></b-form-input>
       <br/>

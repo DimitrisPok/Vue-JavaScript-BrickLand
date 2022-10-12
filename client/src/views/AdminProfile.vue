@@ -6,8 +6,12 @@
     <input type="adminName" placeholder="adminName" v-model="adminName" required/> <br />
     <input type="password" placeholder="password" v-model="password" required/> <br />
     <input type="text" placeholder="email" v-model="email" required/> <br />
-    <button @click="updateAdmin">update</button> <br />
-    <button @click="deleteAdmin">delete account</button> <br />
+    <br>
+    <b-button @click="updateAdmin">update</b-button> <br />
+    <br>
+    <b-button class="deleteAcc" @click="deleteAdmin">delete account</b-button> <br />
+    <br/>
+    <b-button class = "deletePosts" @click="deleteAllPosts">delete all the posts</b-button> <br />
   </div>
 </template>
 
@@ -83,4 +87,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.deleteAcc {
+  background-color: rgb(152, 47, 47);
+}
+.deletePosts {
+  background-color: rgb(152, 47, 47);
+}
+</style>
