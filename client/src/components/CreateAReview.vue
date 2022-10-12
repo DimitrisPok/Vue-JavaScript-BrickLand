@@ -3,7 +3,8 @@
   <h1 class="center">Have something to say? Add a review!</h1>
     <div>
       <b-form-input class="center" v-model="comment" placeholder="Enter the comment"></b-form-input>
-            <b-button class="postButton" @click="createReview">Post Review</b-button>
+      <br/>
+            <b-button class="postButton" @click="createReview">Post a review</b-button>
           </div>
      <br/>
 </body>
@@ -47,9 +48,23 @@ export default {
 }
 </script>
 
-<style scoped>
+  <style scoped>
 .center {
   text-align: center;
 }
 
+.postButton {
+text-align: center;
+}
+
+@media (max-width: 786px) {
+  .center {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+  }
+.postButton{
+width: 400px;
+}
+}
 </style>

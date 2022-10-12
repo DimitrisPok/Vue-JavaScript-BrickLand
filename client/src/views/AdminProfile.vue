@@ -82,13 +82,6 @@ export default {
         .catch((error) => {
           console.log(error)
         })
-    },
-    deleteAllPosts() {
-      Api.delete('/posts').then((res) => {
-        console.log(res)
-      }).catch((error) => {
-        console.log(error)
-      })
     }
   }
 }

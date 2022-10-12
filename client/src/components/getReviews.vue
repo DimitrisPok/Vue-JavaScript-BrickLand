@@ -104,4 +104,27 @@ body {
     grid-auto-flow: column;
   }
 }
+
+@media (max-width: 786px) {
+  .comments{
+  background-color: bisque;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+.title{
+  color: bisque;
+  background-color: rgb(25, 39, 34);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+}
+
+p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+}
 </style>
