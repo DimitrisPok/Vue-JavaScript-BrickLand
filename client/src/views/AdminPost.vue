@@ -9,7 +9,7 @@
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
       <router-link class="homeNav" to="/AdminPost">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
-      <button @click="logout">Log out</button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -52,7 +52,7 @@ img {
   max-height: 10%;
 }
 
-#app {
+  #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -9,6 +9,7 @@
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -16,7 +17,7 @@
         <div class="video-container">
            <div v-for="user in users" v-bind:key="user._id">
             <div class="video-box">
-              <img src="https://img.icons8.com/material/24/000000/youtube-play--v1.png"/>
+              <img src="@/htmlPics/user.png"/>
               <div>
                 <user-item v-bind:user="user" v-on:del-user="deleteUser"/>
               </div>
@@ -63,6 +64,10 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    logout() {
+      localStorage.clear()
+      this.$router.push('/')
     }
   }
 }
@@ -127,5 +132,9 @@ export default {
 }
 .homeNav{
   color: bisque;
+}
+img {
+  max-width: 10%;
+  max-height: 5%;
 }
 </style>

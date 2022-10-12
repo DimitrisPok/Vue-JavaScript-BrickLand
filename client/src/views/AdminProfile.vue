@@ -3,6 +3,15 @@
     <br>
     <br>
     <br>
+    <div id="nav" class="navigation">
+      <img src="@/htmlPics/lego-head.png">
+      <router-link class="homeNav" to="users">| Users </router-link>
+      <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
+      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
+      <b-button variant="primary" @click="logout">Log out</b-button>
+    </div>
+    <br>
     <input type="adminName" placeholder="adminName" v-model="adminName" required/> <br />
     <input type="password" placeholder="password" v-model="password" required/> <br />
     <input type="text" placeholder="email" v-model="email" required/> <br />
@@ -97,5 +106,20 @@ export default {
 }
 .deletePosts {
   background-color: rgb(152, 47, 47);
+}
+
+  #app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
+}
+.homeNav{
+  color: bisque;
 }
 </style>
