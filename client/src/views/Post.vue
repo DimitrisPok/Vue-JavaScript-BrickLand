@@ -8,7 +8,7 @@
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <button @click="logout">Log out</button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -55,19 +55,18 @@ img {
   max-height: 10%;
 }
 
-#app {
+  #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-.navigation {
-
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
 }
 .homeNav{
   color: bisque;
-  text-align: left;
-  background-color: rgb(25, 39, 34);
 }
 </style>

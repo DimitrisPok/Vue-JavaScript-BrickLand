@@ -8,12 +8,19 @@
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <button @click="logout">Log out</button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
-      <div class="editFields">
-        <br>
-      <br>
-      <p>Enter The Details That You Want To Change Below:</p>
+    <div>
+      <h1>Hello {{ user.name }}!</h1>
+      <p class="urPost">Your details:</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Created account on: {{ user.createdAt }}</p>
+    </div>
+        <p class="urPost">Your Posts:</p>
+        <div>
+        <users-posts/>
+        </div><div class="editFields">
+      <p class="urPost">Enter The Details That You Want To Change Below:</p>
       <input type="name" placeholder="name" v-model="name" /> <br />
       <input type="password" placeholder="password" v-model="password" /> <br />
       <input type="text" placeholder="email" v-model="email" /> <br />
@@ -23,10 +30,6 @@
       <b-button @click="updateUser">update</b-button> <br/><br>
       <b-button class = "deleteUser" @click="deleteUser">delete account</b-button> <br/>
         <br>
-        <p class="urPost">Your Posts:</p>
-        <div>
-        <users-posts/>
-        </div>
         </div>
 </template>
 
