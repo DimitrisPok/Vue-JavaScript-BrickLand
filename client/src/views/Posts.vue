@@ -149,7 +149,7 @@ p {
       margin: 10px;
       padding: 10px;
 
-      text-align: left;
+      text-align: center;
 
   }
 
@@ -171,5 +171,18 @@ p {
   background-color: gray;
 
 }
+@media (min-width: 360px) and (max-width: 768px) {
+  .card {
+    width: 50%;
+    height: 340px;
+    display: flex;
+    border: 1px solid rgb(108, 45, 233);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
 
+  }
+}
 </style>

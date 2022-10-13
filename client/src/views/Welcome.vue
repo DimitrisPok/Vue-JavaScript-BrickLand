@@ -4,7 +4,7 @@
         <br>
         <br>
         <h1>Welcome to Brickland! Check out some lego model ideas or share your own</h1>
-         <img src="@/views/htmlPics/BrickLand.png" />
+         <img src="@/views/htmlPics/BrickLand.png" class="rounded"/>
     </div>
 </template>
 
