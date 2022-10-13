@@ -29,9 +29,9 @@
       <input type="text" placeholder="email" v-model="email" /> <br />
       <p>             ㅤ        </p>
       </div>
-      <br>
-      <b-button @click="updateUser">update</b-button> <br/><br>
-      <b-button class = "deleteUser" @click="deleteUser">delete account</b-button> <br/>
+
+      <b-button id = "updateUser" @click="updateUser">update</b-button> <br/><br>
+      <b-button id = "deleteUser" @click="deleteUser">delete account</b-button> <br/>
         <br>
         </div>
 </template>
@@ -127,8 +127,12 @@ export default {
 .homeNav{
   color: bisque;
 }
-.deleteUser{
+#deleteUser{
   background-color: rgb(152, 47, 47);
+}
+#updateUser{
+  color: bisque;
+  background-color: rgb(18, 43, 18);
 }
 .editFields{
   background-color: bisque;
