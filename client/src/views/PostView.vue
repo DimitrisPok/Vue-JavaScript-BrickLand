@@ -1,11 +1,4 @@
 <template>
-<<<<<<< client/src/views/PostView.vue
-  <div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-=======
 <div>
   <br>
   <br>
@@ -16,7 +9,6 @@
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
       <b-button variant="primary" @click="logout">Log out</b-button>
       </div>
->>>>>>> client/src/views/PostView.vue
     <h1>{{ post.caption }}</h1>
     <div>
       <div class="d-flex flex-wrap">
