@@ -1,7 +1,8 @@
 <template>
     <div>
         <h2>{{user.name}}</h2>
-        <h3>{{user.email}}</h3>
+        <h3>Email: {{user.email}}</h3>
+        <h3>Created on: {{user.entryDate}}</h3>
         <b-button variant="danger" v-on:click="$emit('del-user', user._id)">DELETE</b-button>
     </div>
 </template>

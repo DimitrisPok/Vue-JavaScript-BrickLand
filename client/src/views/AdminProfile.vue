@@ -3,11 +3,24 @@
     <br>
     <br>
     <br>
+    <div id="nav" class="navigation">
+      <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/lego-head.png">
+      <router-link class="homeNav" to="users">| Users </router-link>
+      <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
+      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
+      <b-button variant="primary" @click="logout">Log out</b-button>
+    </div>
+    <br>
     <input type="adminName" placeholder="adminName" v-model="adminName" required/> <br />
     <input type="password" placeholder="password" v-model="password" required/> <br />
     <input type="text" placeholder="email" v-model="email" required/> <br />
-    <button @click="updateAdmin">update</button> <br />
-    <button @click="deleteAdmin">delete account</button> <br />
+    <br>
+    <b-button @click="updateAdmin">update</b-button> <br />
+    <br>
+    <b-button class="deleteAcc" @click="deleteAdmin">delete account</b-button> <br />
+    <br/>
+    <b-button class = "deletePosts" @click="deleteAllPosts">delete all the posts</b-button> <br />
   </div>
 </template>
 
@@ -78,9 +91,35 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    logout() {
+      localStorage.clear()
+      this.$router.push('/')
     }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.deleteAcc {
+  background-color: rgb(152, 47, 47);
+}
+.deletePosts {
+  background-color: rgb(152, 47, 47);
+}
+
+  #app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.navigation{
+  text-align: left;
+  background-color: rgb(25, 39, 34);
+}
+.homeNav{
+  color: bisque;
+}
+</style>

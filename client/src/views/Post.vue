@@ -2,13 +2,13 @@
 <div>
    <div id="nav" class="navigation">
     <br>
-      <br>
-      <br>
-      <img src="@/htmlPics/lego-head.png">
+    <br>
+    <br>
+      <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <button @click="logout">Log out</button>
+      <b-button class="logOutB" variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -36,6 +36,10 @@ export default {
     }
   },
   methods: {
+    logout() {
+      localStorage.clear()
+      this.$router.push('/')
+    }
   }
 }
 </script>
@@ -51,7 +55,7 @@ img {
   max-height: 10%;
 }
 
-#app {
+  #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,5 +68,8 @@ img {
 }
 .homeNav{
   color: bisque;
+}
+.logOutB {
+  background-color: grey;
 }
 </style>

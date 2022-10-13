@@ -1,9 +1,22 @@
 <template>
+<<<<<<< client/src/views/PostView.vue
   <div>
     <br/>
     <br/>
     <br/>
     <br/>
+=======
+<div>
+  <br>
+  <br>
+  <div id="nav" class="navigation">
+  <img src="@/views/htmlPics/lego-head.png">
+      <router-link class="homeNav" to="/posts">| Posts </router-link>
+      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/Profile">| Profile </router-link>
+      <b-button variant="primary" @click="logout">Log out</b-button>
+      </div>
+>>>>>>> client/src/views/PostView.vue
     <h1>{{ post.caption }}</h1>
     <div>
       <div class="d-flex flex-wrap">

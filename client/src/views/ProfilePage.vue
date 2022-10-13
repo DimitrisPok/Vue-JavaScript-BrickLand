@@ -4,25 +4,35 @@
       <br>
       <br>
       <br>
-      <img src="@/htmlPics/lego-head.png">
+      <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <button @click="logout">Log out</button>
+      <b-button class="logOutB"  variant="primary" @click="logout">Log out</b-button>
     </div>
-      <div>
-        <br>
-      <br>
-      <br>
-      <input type="name" placeholder="name" v-model="name" /> <br />
-      <input type="password" placeholder="password" v-model="password" /> <br />
-      <input type="text" placeholder="email" v-model="email" /> <br />
-      <button @click="updateUser">update</button> <br/>
-      <button @click="deleteUser">delete account</button> <br/>
-        </div>
+    <div class="details">
+      <h1>Hello {{ user.name }}!</h1>
+      <p class="urPost">Your details:</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Created account on: {{ user.createdAt }}</p>
+    </div>
+    <div class="details">
+        <p class="urPost">Your Posts:</p>
         <div>
         <users-posts/>
         </div>
+        </div>
+        <div class="editFields">
+      <p class="urPost">Enter The Details That You Want To Change Below:</p>
+      <input type="name" placeholder="name" v-model="name" /> <br />
+      <input type="password" placeholder="password" v-model="password" /> <br />
+      <input type="text" placeholder="email" v-model="email" /> <br />
+      <p>             ㅤ        </p>
+      </div>
+      <br>
+      <b-button @click="updateUser">update</b-button> <br/><br>
+      <b-button class = "deleteUser" @click="deleteUser">delete account</b-button> <br/>
+        <br>
         </div>
 </template>
 
@@ -116,5 +126,21 @@ export default {
 }
 .homeNav{
   color: bisque;
+}
+.deleteUser{
+  background-color: rgb(152, 47, 47);
+}
+.editFields{
+  background-color: bisque;
+}
+.urPost {
+  background-color: rgb(18, 43, 18);
+  color: bisque;
+}
+.details {
+  background: bisque;
+}
+.logOutB {
+  background-color: grey;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <body class="center">
-    <h1 class="center">Please Fill in The Following Fields</h1>
+<body class="center">
+  <h1 class="centerTitle">Add your Post's details:</h1>
     <div>
       <b-form-input class="center" v-model="caption" placeholder="Enter the caption"></b-form-input>
       <b-form-input class="center" v-model="instructions" placeholder="Enter the instructions"></b-form-input>
@@ -91,5 +91,9 @@ export default {
 <style scoped>
 .center {
   text-align: center;
+}
+.centerTitle {
+  text-align: center;
+  background-color: bisque;
 }
 </style>

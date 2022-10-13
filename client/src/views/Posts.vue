@@ -4,11 +4,11 @@
       <br>
       <br>
       <br>
-      <img src="@/htmlPics/lego-head.png">
+      <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <button @click="logout">Log out</button>
+      <b-button variant="primary" class="logOutB" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -166,6 +166,10 @@ p {
 }
 .homeNav{
   color: bisque;
+}
+.logOutB {
+  background-color: gray;
+
 }
 
 </style>

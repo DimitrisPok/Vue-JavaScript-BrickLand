@@ -4,12 +4,12 @@
     <br>
     <br>
     <div id="nav" class="navigation">
-      <img src="@/htmlPics/lego-head.png">
+      <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
       <router-link class="homeNav" to="/AdminPost">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
-      <button @click="logout">Log out</button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -17,7 +17,7 @@
       All Posts
     </h1>
         <p>Here Is The Feed:</p>
-        <button @click="deleteAllPosts">delete all the posts</button> <br/>
+        <b-button variant="danger" @click="deleteAllPosts">Delete all posts</b-button> <br/>
            <div class="d-flex flex-wrap">
             <div v-for="post in posts" v-bind:key="post._id">
               <b-card width="340px" hover>
@@ -138,6 +138,9 @@ p {
       text-align: left;
 
   }
+  .deletePosts{
+  background-color: rgb(152, 47, 47);
+}
 
   #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
