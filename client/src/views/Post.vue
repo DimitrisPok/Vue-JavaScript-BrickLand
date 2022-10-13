@@ -4,11 +4,11 @@
     <br>
     <br>
     <br>
-      <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/lego-head.png">
+      <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <b-button variant="primary" @click="logout">Log out</b-button>
+      <b-button class="logOutB" variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -68,5 +68,8 @@ img {
 }
 .homeNav{
   color: bisque;
+}
+.logOutB {
+  background-color: grey;
 }
 </style>
