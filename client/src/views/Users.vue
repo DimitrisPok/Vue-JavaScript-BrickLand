@@ -4,7 +4,7 @@
     <br>
     <br>
     <div id="nav" class="navigation">
-      <img src="@/htmlPics/lego-head.png">
+      <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
@@ -17,7 +17,7 @@
         <div class="video-container">
            <div v-for="user in users" v-bind:key="user._id">
             <div class="video-box">
-              <img src="@/htmlPics/user.png"/>
+              <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/user.png"/>
               <div>
                 <user-item v-bind:user="user" v-on:del-user="deleteUser"/>
               </div>
