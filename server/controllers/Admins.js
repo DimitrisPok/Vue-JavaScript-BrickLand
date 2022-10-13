@@ -170,6 +170,8 @@ router.delete('/admins/:id', function(req, res, next) {
   });
 });
 
+//posts a post with and admin id
+
 
 /*
 //Delete a specific post with id

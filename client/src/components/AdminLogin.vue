@@ -1,6 +1,9 @@
 <template>
     <div class="page">
     <div class="header">
+      <br/>
+      <br/>
+      <br/>
       <h1>Welcome to Brick Land</h1>
     </div>
           <h2>Admin Login</h2>

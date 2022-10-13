@@ -1,5 +1,8 @@
 <template>
     <div>
+      <br/>
+      <br/>
+      <br/>
         <h1>Welcome to Brick Land</h1>
         <router-link class="homeNav" to="/adminLogin">
 <b-button>Admin Log In</b-button>
