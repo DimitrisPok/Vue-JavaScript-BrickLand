@@ -8,6 +8,7 @@
     <router-view/>
     </div>
   </div>
+ </div>
 </template>
 
 <script>

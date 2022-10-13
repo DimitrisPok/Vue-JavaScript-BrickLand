@@ -4,7 +4,7 @@
     <br>
     <br>
     <div id="nav" class="navigation">
-      <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/lego-head.png">
+      <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
