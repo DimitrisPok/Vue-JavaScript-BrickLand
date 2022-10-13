@@ -3,7 +3,7 @@
   <br>
   <br>
   <div id="nav" class="navigation">
-  <img src="@/htmlPics/lego-head.png">
+  <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
