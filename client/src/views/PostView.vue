@@ -1,16 +1,24 @@
 <template>
+<<<<<<< client/src/views/PostView.vue
+  <div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+=======
 <div>
   <br>
   <br>
   <div id="nav" class="navigation">
-  <img src="/Users/sadhanaanandan/group-21-web/group-21-web/client/src/views/htmlPics/lego-head.png">
+  <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
       <b-button variant="primary" @click="logout">Log out</b-button>
       </div>
+>>>>>>> client/src/views/PostView.vue
     <h1>{{ post.caption }}</h1>
-    <div class="center">
+    <div>
       <div class="d-flex flex-wrap">
       <b-card width="340px" hover>
         <div class="video-box">
@@ -29,7 +37,7 @@
         <v-spacer></v-spacer>
       </b-card>
       <Create-A-Review/>
-      <get-reviews />
+      <get-reviews class="center"/>
     </div>
     </div>
     <!-- Render the content of the current page view -->
@@ -168,8 +176,16 @@ export default {
 
 .review {
   font-family: 'Courier New', Courier, monospace;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center !important;
 }
-@media (min-width: 360px) and (max-height: 1000px) {
+
+.center {
+  width: 100%;
+}
+@media (min-width: 360px) and (max-width: 768px) {
+
   .card {
 
     img {
@@ -187,20 +203,17 @@ export default {
   .video-box {
     width: 100%;
     height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center !important;
   }
 
   .b-card{
     width: 100%;
     height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    align-content: center;
   }
 
 .center {
     width: 100% !important;
-    height: 100%;
     margin-left: auto !important;
     margin-right: auto !important;
     text-align: center !important;

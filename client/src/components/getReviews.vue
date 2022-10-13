@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="center">
 <h1 class="review_h"> All Reviews </h1>
 <h2 class="title"> Comments: </h2>
     <div v-for= "reviews in reviews" v-bind:key="reviews._id" class="comments">
@@ -58,6 +58,8 @@ export default {
 .title{
   color: bisque;
   background-color: rgb(25, 39, 34);
+  margin-left: auto;
+  margin-right: auto;
 }
 h1::before {
   transform: scaleX(0);
@@ -105,7 +107,7 @@ body {
   }
 }
 
-@media (max-width: 786px) {
+@media (min-width: 360px) and (max-width: 768px) {
   .comments{
   background-color: bisque;
   margin-left: auto !important;
@@ -124,6 +126,10 @@ body {
 p {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+}
+
+.center {
   text-align: center;
 }
 }

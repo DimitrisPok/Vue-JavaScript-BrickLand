@@ -60,8 +60,7 @@ text-align: center;
 @media (max-width: 786px) {
   .center {
   text-align: center !important;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   }
 .postButton{
 width: 400px;

@@ -50,8 +50,11 @@ export default {
   color: bisque;
 }
 
-@media (max-width: 786px) {
+@media (min-width: 360px) and (max-width: 768px) {
 
+  .container {
+    font-size: small;
+  }
   .homeNav{
     width: 100%;
     position: sticky-bottom;
