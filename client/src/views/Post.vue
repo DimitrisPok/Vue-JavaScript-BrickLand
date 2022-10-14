@@ -34,6 +34,29 @@ export default {
     if (localStorage.getItem('token') === null) {
       this.$router.push('/')
     }
+    const jwttoken = {
+      token: localStorage.getItem('token')
+    }
+    fetch('http://localhost:3000/user', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Host: '',
+        token: jwttoken.token
+      }
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((responseData) => {
+        this.user = responseData
+        console.log(this.user)
+        console.log(jwttoken)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   },
   methods: {
     logout() {
