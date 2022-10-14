@@ -176,7 +176,7 @@ export default {
 .center {
   width: 100%;
 }
-@media (min-width: 360px) and (max-width: 768px) {
+@media (min-width: 420px) and (max-width: 768px) {
 
   .card {
 
