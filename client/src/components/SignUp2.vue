@@ -41,7 +41,7 @@ export default {
         .then(res => {
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token)
-            this.$router.push('/posts')
+            this.$router.push('/login')
           }
           console.log(res)
           this.error = ''

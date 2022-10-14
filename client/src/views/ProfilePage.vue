@@ -14,7 +14,7 @@
       <h1>Hello {{ user.name }}!</h1>
       <p class="urPost">Your details:</p>
       <p>Email: {{ user.email }}</p>
-      <p>Created account on: {{ user.createdAt }}</p>
+      <p>Created account on: {{user.entryDate}}</p>
     </div>
     <div class="details">
         <p class="urPost">Your Posts:</p>
