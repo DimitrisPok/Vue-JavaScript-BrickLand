@@ -196,6 +196,10 @@ router.get("/users/:id", function (req, res, next) {
       if (err) {
         return res.status(500).send(err);
       }
+
+      if (user = null) {
+        return res.status(404).json({"message" : "User not found"});
+      }
       console.log(user);
       return res.status(200).json(user, id);
       
