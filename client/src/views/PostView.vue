@@ -7,7 +7,7 @@
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <b-button variant="primary" @click="logout">Log out</b-button>
+      <b-button  variant="primary" class="logOutB" @click="logout">Log out</b-button>
       </div>
     <h1>{{ post.caption }}</h1>
     <div>
@@ -125,7 +125,7 @@ export default {
 .card {
   width: 1500px;
   display: flex;
-  border: 1px solid rgb(108, 45, 233);
+  border: 1px solid rgb(25, 39, 34);
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin: 10px;
@@ -210,6 +210,9 @@ export default {
     margin-right: auto !important;
     text-align: center !important;
 }
-
   }
+  .logOutB {
+  background-color: gray;
+  border-color: gray;
+}
 </style>

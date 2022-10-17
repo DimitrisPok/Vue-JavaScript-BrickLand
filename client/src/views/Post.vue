@@ -94,5 +94,6 @@ img {
 }
 .logOutB {
   background-color: grey;
+  border-color: gray;
 }
 </style>

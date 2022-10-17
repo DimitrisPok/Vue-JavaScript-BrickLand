@@ -61,5 +61,6 @@ export default {
     padding: 0;
   }
 }
+
 </style>
 {{this.$router.push(route, () => {'/welcome'})}}
