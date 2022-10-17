@@ -197,7 +197,7 @@ router.get("/users/:id", function (req, res, next) {
         return res.status(500).send(err);
       }
       console.log(user);
-      return res.status(200).json(user, id);
+      return res.status(200).send(user);
       
     });
     
