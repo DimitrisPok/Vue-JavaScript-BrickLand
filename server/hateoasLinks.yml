@@ -1,0 +1,86 @@
+/posts:
+  POST:
+    - rel: "self"
+      method: "GET"
+      href: "/posts"
+    - rel: "self"
+      method: "DELETE"
+      href: "/posts/:1"
+    - rel: "reviews"
+      method: "POST"
+      href: "/posts/:1/reviews"
+  GET:
+    - rel: "self"
+      method: "GET"
+      href: "/reviews"
+    - rel: "self"
+      method: "DELETE"
+      href: "/posts"
+    - rel: "self"
+      method: "POST"
+      href: "/posts"
+
+/posts/:oid:
+  GET: 
+    - rel: "self"
+      method: "PUT"
+      href: "/posts/:1"
+    - rel: "self"
+      method: "PATCH"
+      href: "/posts/:1"
+    - rel: "self"
+      method: "DELETE"
+      href: "/posts/:1"
+    - rel: "reviews"
+      method: "POST"
+      href: "/posts/:1/reviews"
+    - rel: "reviews"
+      method: "GET"
+      href: "/posts/:1/reviews"
+
+/users:
+  POST:
+    - rel: "self"
+      method: "GET"
+      href: "/users"
+    - rel: "self"
+      method: "DELETE"
+      href: "/users/:1"
+    - rel: "posts"
+      method: "POST"
+      href: "/users/:1/posts"
+  GET:
+    - rel: "self"
+      method: "GET"
+      href: "/posts"
+    - rel: "self"
+      method: "DELETE"
+      href: "/users"
+    - rel: "self"
+      method: "POST"
+      href: "/users"
+
+/users/:oid:
+  GET: 
+    - rel: "self"
+      method: "PUT"
+      href: "/users/:1"
+    - rel: "self"
+      method: "PATCH"
+      href: "/users/:1"
+    - rel: "self"
+      method: "DELETE"
+      href: "/users/:1"
+    - rel: "posts"
+      method: "POST"
+      href: "/users/:1/posts"
+    - rel: "posts"
+      method: "GET"
+      href: "/users/:1/posts"
+
+   
+
+
+
+
+
