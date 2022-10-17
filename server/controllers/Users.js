@@ -170,7 +170,7 @@ router.get("/users/:id/posts", function (req, res) {
 
 // Added this methods to try out to see if it works
 //Checked this out, it works I guess? 
-/*
+
 router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   User.findOne({ _id: req.params.user_id })
     .populate({ path: "posts", model: "post", 
@@ -180,13 +180,13 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       if (err) {
         return res.status(500).send(err);
       }
-      if (posts=null){
-        return res.status(404).json({"message":"Post not found"});
-      }
-      return res.status(200).json(user.posts);
+      if (user == null) {
+        return res.status(404).json({"message": "User not found"});
+    }
+      return res.status(200).send(user.posts);
     });
 }); 
-*/
+
 router.get("/users/:id", function (req, res, next) {
   User.findOne({ _id: req.params.id })
     .populate("posts")
