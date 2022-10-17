@@ -95,25 +95,6 @@ router.get('/admin', (req, res, next) => {
       })
     })
   })
-
-
-  // put a specific admin
-  /*
-  router.put('/admins/:id', function(req, res, next) {
-    var id = req.params.id;
-    Admin.findById(id, function(err, admin) {
-        if (err) { return next(err); }
-        if (admin == null) {
-            return res.status(404).json({"message": "admin not found"});
-        }
-        admin.adminName = req.body.adminName;
-        admin.password = bcrypt.hashSync(req.body.password, 10),
-        admin.email = req.body.email;
-        admin.save();
-        res.json(admin);
-    });
-  });
-  */
     // put a specific admin, trying out here another put method
     
     router.put('/admins/:id', function(req, res, next) {
@@ -124,7 +105,7 @@ router.get('/admin', (req, res, next) => {
               return res.status(404).json({"message": "admin not found"});
           }
           const newadmin = {
-          adminName: req.body.adminName,
+          adminName: req.body.adminName,  
           password: bcrypt.hashSync(req.body.password, 10),
           email: req.body.email,
           }       
@@ -133,7 +114,7 @@ router.get('/admin', (req, res, next) => {
           if(admin = null) {
             return res.status(404).json({"message" : "Admin not found"});
           }
-          res.status(200).json(admin);
+          res.status(200).json(newadmin);
         });
       });
     });
@@ -169,52 +150,5 @@ router.delete('/admins/:id', function(req, res, next) {
       res.json(admin);
   });
 });
-
-//posts a post with and admin id
-
-
-/*
-//Delete a specific post with id
-router.delete('/posts/:id', function(req, res, next) {
-    var id = req.params.id;
-    Post.findOneAndDelete({_id: id}, function(err, post) {
-        if (err) { return next(err); }
-        if (post == null) {
-            return res.status(404).json(
-                    {"message": "post not found"});
-        }
-        res.json(post);
-    });
-});
-
-//Get a specific post with an id
-router.get('/posts/:id', function(req, res, next) {
-    var id = req.params.id;
-    Post.findById(req.params.id, function(err, post) {
-        if (err) { return next(err); }
-        if (post == null) {
-            return res.status(404).send(
-                    {"message": "post not found"});
-        }
-        res.send(post);
-        console.log(post);
-    });
-});
-  //Delete a specfic user
-
-  we do not need this
-router.get("/users/:id", function (req, res, next) {
-    User.findOne({ _id: req.params.id })
-      .populate("posts")
-      .populate("reviews")
-      .exec(function (err, user) {
-        if (err) {
-          return res.status(500).send(err);
-        }
-        return res.status(200).send(user);
-      });
-      
-  });
-*/
 
   module.exports = router;

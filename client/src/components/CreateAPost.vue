@@ -69,7 +69,7 @@ export default {
         instructions: this.instructions,
         img: this.img
       }
-      Api.post(`/users/${this.user._id}/posts/image`, newPost).then(
+      Api.post(`/users/${this.user._id}/posts`, newPost).then(
         (response) => {
           this.newPost = response.data
           this.stores = []
