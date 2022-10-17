@@ -60,27 +60,3 @@
       method: "POST"
       href: "/users"
 
-/users/:oid:
-  GET: 
-    - rel: "self"
-      method: "PUT"
-      href: "/users/:1"
-    - rel: "self"
-      method: "PATCH"
-      href: "/users/:1"
-    - rel: "self"
-      method: "DELETE"
-      href: "/users/:1"
-    - rel: "posts"
-      method: "POST"
-      href: "/users/:1/posts"
-    - rel: "posts"
-      method: "GET"
-      href: "/users/:1/posts"
-
-   
-
-
-
-
-
