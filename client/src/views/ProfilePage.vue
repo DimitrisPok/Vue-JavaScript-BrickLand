@@ -17,9 +17,9 @@
       <p>Created account on: {{user.entryDate}}</p>
     </div>
     <div class="details">
-        <p class="urPost">Your Posts:</p>
+        <p class="urPost">Your Post Captions:</p>
         <div>
-        <users-posts/>
+          <users-posts/>
         </div>
         </div>
         <div class="editFields">
@@ -146,5 +146,6 @@ export default {
 }
 .logOutB {
   background-color: grey;
+  border-color: gray;
 }
 </style>
