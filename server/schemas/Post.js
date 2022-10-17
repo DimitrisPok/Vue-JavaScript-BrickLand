@@ -5,9 +5,6 @@ var Schema = mongoose.Schema;
 
 var PostSchema = new Schema(
     {
-       // postId : {
-           // type: Number
-       // },
 
         caption : {
             type: String
@@ -31,15 +28,6 @@ var PostSchema = new Schema(
             ref: "review" 
         }],
         
-        legoPieces : [{
-        category : {type: String },
-
-        subCategory : {type: String},
-
-        elementId : {type: Number},
-
-        DesignId : {type: Number}
-        }]
     
     },
 

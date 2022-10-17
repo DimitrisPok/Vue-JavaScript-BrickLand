@@ -3,9 +3,6 @@ var Schema = mongoose.Schema;
 
 var ReviewSchema = new Schema(
     {
-        //postId : {
-           // type: Number
-        //},
 
         comment : {
             type: String,
@@ -22,15 +19,6 @@ var ReviewSchema = new Schema(
             ref: "post" 
         }
 
-        /*user: { 
-            type: Schema.Types.ObjectId, 
-            ref: "users" 
-        },
-
-        post: {
-            type: Schema.Types.ObjectId, 
-            ref: "posts"
-        }*/
     },
     { timestamps : true },
 
@@ -39,5 +27,3 @@ var ReviewSchema = new Schema(
 
 const review = mongoose.model('review', ReviewSchema);
 module.exports = review;
-
-// you need 'reviews'

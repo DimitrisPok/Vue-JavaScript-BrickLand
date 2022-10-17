@@ -43,17 +43,23 @@ router.get('/reviews/:id', function(req, res, next) {
 
 //to update an entire review 
 router.put('/reviews/:id', function(req, res, next) {
-    var id = req.params.id;
-    Review.findById(id, function(err, review) {
-        if (err) { return next(err); }
-        if (review == null) {
-            return res.status(404).json({"message": "Review not found"});
-        }
-        review.comment = req.body.comment;
-        review.like = req.body.like;
-        review.save();
-        res.json(review);
+  var id = req.params.id;
+  Review.findById(id, function(err, review) {
+      if (err) { return next(err); }
+      if (review == null) {
+          return res.status(404).json({"message": "Review not found"});
+      }
+      const newReview = {
+      comment: req.body.comment,  
+      }       
+    Review.findOneAndReplace({_id: id}, newReview, {option: true}, function(err, review) {
+      if(err) {return res.status(500).send(err);}
+      if(review = null) {
+        return res.status(404).json({"message" : "Review not found"});
+      }
+      res.status(200).json(newReview);
     });
+  });
 });
 
 // to delete a review 
@@ -78,7 +84,6 @@ router.patch('/reviews/:id', function(req, res, next) {
             return res.status(404).json({"message": "review not found"});
         }
         review.comment = req.body.comment || review.comment;
-        review.like = req.body.like || review.like;
         review.save();
         res.json(review);
     });
@@ -97,7 +102,6 @@ router.delete('/reviews', function(req, res, next) {
 });
 
 
-  //Hello
 // post reviews(s) with post ID 
 router.post("/posts/:id/reviews", function (req, res, next) {
     var id = req.params.id
@@ -120,11 +124,9 @@ router.post("/posts/:id/reviews", function (req, res, next) {
         console.log("Review was added to ", post.caption);
         return res.status(201).json(post);
       });
-    //hello
       
     });
 });
-
 
 
 // get all reviews from a post.
@@ -146,11 +148,5 @@ router.get("/posts/:id/reviews", function (req, res, next) {
         return res.status(200).send(post.reviews);
       });
 });
-
-
-
-
-
-
 
 module.exports = router;

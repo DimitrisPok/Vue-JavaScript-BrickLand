@@ -1,11 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-
-//generate user id
-
-//this is the schema 
-
 var UserSchema = new Schema(
     {
         name : {
@@ -39,11 +34,9 @@ var UserSchema = new Schema(
             ref: 'review', 
         }],
         
-        //likedPosts : {type: Array}
     },
     
 );
 
-//this is the model, where users is the name of it
 const user = mongoose.model('users', UserSchema);
 module.exports = user;
