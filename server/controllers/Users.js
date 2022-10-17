@@ -180,6 +180,9 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       if (err) {
         return res.status(500).send(err);
       }
+      if (post=null){
+        return res.status(404).json({"message":"Post not found"});
+      }
       return res.status(200).json(user.posts);
     });
 }); 
