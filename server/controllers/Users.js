@@ -201,6 +201,8 @@ router.get("/users/:id", function (req, res, next) {
       }
       console.log(user);
       return res.status(200).json(user, req.params.id);
+      console.log(res.socket.destroyed);
+      res.end();
       
     });
     
