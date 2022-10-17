@@ -138,7 +138,7 @@ router.post("/users/:id/posts", upload.single('img'), function (req, res, next) 
     user.posts.push(post);
     user.save();
     console.log("Post " + post.caption + " was added to ", user.name);
-    return res.status(201).json(user,req.params.id);
+    return res.status(201).json(user, req.params.id);
   });
 });
 
@@ -197,7 +197,7 @@ router.get("/users/:id", function (req, res, next) {
         return res.status(500).send(err);
       }
       console.log(user);
-      return res.status(200).send(user);
+      return res.status(200).json(user, id);
       
     });
     
