@@ -188,8 +188,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
 }); 
 */
 router.get("/users/:id", function (req, res, next) {
-  var id = req.params.id
-  User.findOne({ _id: id })
+  User.findOne({ _id: req.params.id })
     .populate("posts")
     .populate("reviews")
     .exec(function (err, user) {
@@ -201,7 +200,7 @@ router.get("/users/:id", function (req, res, next) {
         return res.status(404).json({"message" : "User not found"});
       }
       console.log(user);
-      return res.status(200).json(user, id);
+      return res.status(200).json(user, req.params.id);
       
     });
     
