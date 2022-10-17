@@ -179,7 +179,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       if (err) {
         return res.status(500).send(err);
       }
-      return res.status(200).json(user.posts);
+      return res.status(200).json(user.post);
     });
 }); 
 
