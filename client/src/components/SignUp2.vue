@@ -37,7 +37,7 @@ export default {
         email: this.email
       }
       console.log(newUser)
-      Api.post('/signup', newUser)
+      Api.post('/users', newUser)
         .then(res => {
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token)

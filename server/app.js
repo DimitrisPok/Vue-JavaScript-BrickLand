@@ -6,6 +6,11 @@ var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const hateoas = require('express-hateoas-yml');
+
+const hateoasOptions = {
+    linksFile: path.join(__dirname, '/hateoasLinks.yml')
+};
 
 
 
@@ -51,6 +56,7 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use('*', (req, res, next) => hateoas(req, res, next, hateoasOptions));
 
 //using the controllers
 app.use(user);
