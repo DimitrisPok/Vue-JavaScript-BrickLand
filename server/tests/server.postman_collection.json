@@ -22,7 +22,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"\r",
 							"var jsonData = JSON.parse(responseBody);\r",
 							"pm.variables.set('user', jsonData._id);"
 						],
