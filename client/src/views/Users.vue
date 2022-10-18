@@ -7,7 +7,7 @@
       <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/adminpost">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
       <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
