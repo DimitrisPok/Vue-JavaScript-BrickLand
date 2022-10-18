@@ -28,15 +28,13 @@ router.post('/AdminSignup', async (req,res, next) => {
     const newAdmin = new Admin({
       adminName: req.body.adminName,
       password: bcrypt.hashSync(req.body.password, 10),
-      email: req.body.email,
+      email: req.body.email
     })
     newAdmin.save(err => {
       if (err) {
         return res.status(500).send(err)
       }
-      return res.status(200).json({
-        title: 'signup success'
-      })
+      return res.status(200).json(newAdmin)
     })
     return console.log(newAdmin);
   }}
