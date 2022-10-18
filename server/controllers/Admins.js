@@ -10,13 +10,6 @@ const User = require('./Users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
-router.post('/admin1', function(req,res, next){
-    var admin = new Admin(req.body);
-    admin.save(function(err){
-        if (err){return res.status(500).send(err);}
-    res.status(201).json({"admin": admin});
-    });
-});
 
 router.post('/AdminSignup', async (req,res, next) => {
   
