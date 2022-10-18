@@ -8,7 +8,7 @@
     <router-view/>
     <nav class="navbar shadow bg-white rounded justify-content-between flex-nowrap flex-row fixed-top">
       <div class="container">
-        <a class="navbar-brand float-left" href="/posts" target="_blank">
+        <a class="navbar-brand float-left" target="_blank">
            BrickLand
         </a>
         <ul class="nav navbar-nav flex-row float-right">
