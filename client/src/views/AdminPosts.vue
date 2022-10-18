@@ -9,7 +9,7 @@
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
       <router-link class="homeNav" to="/AdminPost">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
-      <b-button variant="primary" class="logOutB" @click="logout">Log out</b-button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
