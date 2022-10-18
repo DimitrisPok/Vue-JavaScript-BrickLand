@@ -60,6 +60,7 @@ export default {
         .then(response => {
           const index = this.users.findIndex(user => user._id === id)
           this.users.splice(index, 1)
+          this.$bvModal.msgBoxOk('User has been successfully deleted!')
         })
         .catch(error => {
           console.log(error)

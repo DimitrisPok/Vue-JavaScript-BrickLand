@@ -75,6 +75,7 @@ export default {
           this.stores = []
           this.stores.push(newPost)
           console.log(response.data)
+          this.$bvModal.msgBoxOk('Post has been created!')
         }
       )
       console.log(newPost)

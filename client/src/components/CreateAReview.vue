@@ -41,6 +41,7 @@ export default {
         .then(response => {
           this.newReview = response.data
           console.log(response.data)
+          this.$bvModal.msgBoxOk('Review has been created!')
         })
       console.log(newReview)
     }
