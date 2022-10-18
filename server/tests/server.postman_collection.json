@@ -3,7 +3,7 @@
 		"_postman_id": "536c0257-7bca-4cc9-a6f7-e0bc6e73c9b5",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23101146"
+		"_exporter_id": "23101459"
 	},
 	"item": [
 		{
@@ -14,6 +14,20 @@
 					"script": {
 						"exec": [
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"})\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.variables.set('user', jsonData._id);"
 						],
 						"type": "text/javascript"
 					}
@@ -30,7 +44,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"_id\": \"63245984b11b2f1f51f73895\",\n    \"name\": \"test 8\",\n    \"password\": \"test 7\",\n    \"email\": \"test6@test.com\"\n}",
+					"raw": "{\n    \"name\": \"test 12345\",\n    \"password\": \"test 777\",\n    \"email\": \"test1234567@test.com\",\n    \"posts\" : [],\n    \"reviews\" : []\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,14 +52,53 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3001/users",
+					"raw": "http://localhost:3001/signup",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
-						"users"
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /reviews",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"I like it picasso\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews"
 					]
 				}
 			},
@@ -53,12 +106,25 @@
 		},
 		{
 			"name": "POST/posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\n{\n    \"_id\": \"632459bab11b2f1f51f7389b\",\n    \"caption\" : \":test 7\",\n    \"instructions\" : \"step 7\"\n}\n",
+					"raw": "\n{\n    \"caption\" : \":test 71\",\n    \"instructions\" : \"step 7\",\n    \"img\" : \"sherry-christian-8Myh76_3M2U-unsplash.jpg\",\n    \"review\" : [],\n    \"_id\" : \"634ea72dc6a10328c412dc59\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -80,13 +146,43 @@
 			"response": []
 		},
 		{
+			"name": "POST /AdminSignup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"adminName\": \"test 12345\",\r\n    \"password\": \"test 777\",\r\n    \"email\": \"test12345687@test.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/AdminSignup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"AdminSignup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "POST /users/:id/posts",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
 						"exec": [
-							""
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -94,16 +190,10 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"caption\": \"sadhana now\",\n    \"instructions\": \"tsadhana now\"\n}",
+					"raw": "{\r\n    \"caption\" : \":test 8\",\r\n    \"instructions\" : \"step 8\",\r\n    \"img\" : \"sherry-christian-8Myh76_3M2U-unsplash.jpg\",\r\n    \"_id\" : \"634e9f5a6b4f8e600c29a04c\",\r\n    \"user\" : \"{{user}}\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -125,7 +215,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "63245984b11b2f1f51f73895"
+							"value": "{{user}}"
 						}
 					]
 				}
@@ -133,10 +223,10 @@
 			"response": []
 		},
 		{
-			"name": "GET /users",
+			"name": "POST /posts/:id/reviews",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
 						"exec": [
 							""
@@ -146,14 +236,162 @@
 				}
 			],
 			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\" : \"Looks cool\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
 					}
-				],
+				},
+				"url": {
+					"raw": "http://localhost:3001/posts/:id/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"posts",
+						":id",
+						"reviews"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "634ea72dc6a10328c412dc59"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /reviews",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /reviews/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3001/reviews/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "634eefc783d1991538bc01f1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /admins",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/admins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"admins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "http://localhost:3001/users",
 					"protocol": "http",
@@ -170,6 +408,19 @@
 		},
 		{
 			"name": "GET/posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -189,6 +440,19 @@
 		},
 		{
 			"name": "GET/posts/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -206,51 +470,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "632459bab11b2f1f51f7389b"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET /users/:id/posts",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3001/users/:id/posts",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3001",
-					"path": [
-						"users",
-						":id",
-						"posts"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "63245984b11b2f1f51f73895"
+							"value": "634ea72dc6a10328c412dc59"
 						}
 					]
 				}
@@ -265,6 +485,17 @@
 					"script": {
 						"exec": [
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -293,7 +524,89 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "63245984b11b2f1f51f73895"
+							"value": "{{user}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /users/:id/posts",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/users/:id/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"users",
+						":id",
+						"posts"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{user}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET / posts/:id/reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/posts/:posts_id/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"posts",
+						":posts_id",
+						"reviews"
+					],
+					"variable": [
+						{
+							"key": "posts_id",
+							"value": "634ea72dc6a10328c412dc59"
 						}
 					]
 				}
@@ -308,6 +621,17 @@
 					"script": {
 						"exec": [
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -350,11 +674,11 @@
 					"variable": [
 						{
 							"key": "user_id",
-							"value": "63245984b11b2f1f51f73895"
+							"value": "{{user}}"
 						},
 						{
 							"key": "post_id",
-							"value": "632459bab11b2f1f51f7389b"
+							"value": "634e9f5a6b4f8e600c29a04c"
 						}
 					]
 				}
@@ -362,21 +686,12 @@
 			"response": []
 		},
 		{
-			"name": "PUT/posts/:id",
+			"name": "GET / posts/search/:key",
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\r\n    \"caption\" : \":test 1.8\",\r\n    \"instructions\" : \"step test 1.8\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:3001/posts/:id",
+					"raw": "http://localhost:3001/posts/search/:key",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -384,12 +699,66 @@
 					"port": "3001",
 					"path": [
 						"posts",
+						"search",
+						":key"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "key",
+							"value": "te"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /reviews/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"I like it no thank you\",\n    \"like\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/reviews/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews",
 						":id"
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "632459bab11b2f1f51f7389b"
+							"value": "634eefc783d1991538bc01f1"
 						}
 					]
 				}
@@ -407,6 +776,17 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -420,7 +800,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n     \"name\": \"test 6\",\n    \"password\": \"test 6\",\n    \"email\": \"test6@test.com\"\n}",
+					"raw": "{\n     \"name\": \"test 10\",\n    \"password\": \"test 10\",\n    \"email\": \"test10@test.com\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -441,7 +821,136 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "63245984b11b2f1f51f73895"
+							"value": "{{user}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT/posts/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"caption\" : \":test 9\",\r\n    \"instructions\" : \"step 00\",\r\n    \"img\" : \"sherry-christian-8Myh76_3M2U-unsplash.jpg\",\r\n    \"review\" : []\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/posts/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"posts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "634ea72dc6a10328c412dc59"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /admin/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"adminName\": \"test 123456\",\r\n    \"password\": \"test 777\",\r\n    \"email\": \"test12345689@test.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/admins/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"admins",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "634eee179b20210744e80d3b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /reviews/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"I like it yasss queen\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/reviews/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "634eefc783d1991538bc01f1"
 						}
 					]
 				}
@@ -450,6 +959,19 @@
 		},
 		{
 			"name": "PATCH/posts/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PATCH",
 				"header": [],
@@ -476,7 +998,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "632459bab11b2f1f51f7389b"
+							"value": "634ea72dc6a10328c412dc59"
 						}
 					]
 				}
@@ -484,7 +1006,7 @@
 			"response": []
 		},
 		{
-			"name": "PATCH /users/:id",
+			"name": "DELETE /users/:user_id/posts/:post_id",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -494,10 +1016,21 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
-				"method": "PATCH",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Accept",
@@ -505,17 +1038,8 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"test new PATCH \"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:3001/users/:id",
+					"raw": "http://localhost:3001/users/:user_id/posts/:post_id",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -523,12 +1047,18 @@
 					"port": "3001",
 					"path": [
 						"users",
-						":id"
+						":user_id",
+						"posts",
+						":post_id"
 					],
 					"variable": [
 						{
-							"key": "id",
-							"value": "63245984b11b2f1f51f73895"
+							"key": "user_id",
+							"value": "{{user}}"
+						},
+						{
+							"key": "post_id",
+							"value": "634e9f5a6b4f8e600c29a04c"
 						}
 					]
 				}
@@ -536,7 +1066,121 @@
 			"response": []
 		},
 		{
+			"name": "DELETE / admins/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/admins/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"admins",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "634eee179b20210744e80d3b"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /reviews/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/reviews/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "634eefc783d1991538bc01f1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE / reviews",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE / reviews",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "DELETE/post/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -554,7 +1198,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "632459bab11b2f1f51f7389b"
+							"value": "634ea72dc6a10328c412dc59"
 						}
 					]
 				}
@@ -569,6 +1213,17 @@
 					"script": {
 						"exec": [
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -597,7 +1252,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "63245984b11b2f1f51f73895"
+							"value": "{{user}}"
 						}
 					]
 				}
@@ -631,6 +1286,17 @@
 					"script": {
 						"exec": [
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Correct status code', function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -684,6 +1350,11 @@
 		{
 			"key": "host",
 			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "user",
+			"value": "",
 			"type": "string"
 		}
 	]

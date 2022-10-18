@@ -28,10 +28,11 @@ router.post('/posts', upload.single('img'), function(req,res, next){
     var newPost = new Post({
         caption: req.body.caption,
         instructions: req.body.instructions,
-        img: req.body.img           
+        img: req.body.img, 
+        _id: req.body._id
     });
     newPost.save()
-    .then(() => res.send('successfully uploaded')).catch(err=>console.log(err))
+    .then(() => res.status(201).send('successfully uploaded')).catch(err=>console.log(err))
     console.log(newPost.img)
 });
 
@@ -41,7 +42,7 @@ router.post('/posts', upload.single('img'), function(req,res, next){
 router.get('/posts',function(req, res){
     Post.find(function(err, posts) {
          if (err){return res.status(500).send(err);}
-    res.status(201).json({"post": posts});
+    res.status(200).json({"post": posts});
     });
 });
 
@@ -83,7 +84,8 @@ router.put('/posts/:id', function(req, res, next) {
         const newPost = {
         caption: req.body.caption,  
         instructions : req.body.instructions,
-        img : req.body.img
+        img : req.body.img,
+        _id : id
         }       
       Post.findOneAndReplace({_id: id}, newPost, {option: true}, function(err, post) {
         if(err) {return res.status(500).send(err);}

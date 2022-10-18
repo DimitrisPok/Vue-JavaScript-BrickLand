@@ -14,7 +14,7 @@ const jwt = require('jsonwebtoken')
 router.get('/users',function(req, res){
   User.find(function(err, users) {
        if (err){return res.status(500).send(err);}
-  res.status(201).json({"users": users});
+  res.status(200).json({"users": users});
   });
 });
 
@@ -38,14 +38,13 @@ router.post('/signup', async (req,res, next) => {
     name: req.body.name,
     password: bcrypt.hashSync(req.body.password, 10),
     email: req.body.email,
+    _id : req.body._id
   })
   newUser.save(err => {
     if (err) {
       return res.status(500).send(err)
     }
-    return res.status(200).json({
-      title: 'signup success'
-    })
+    return res.status(201).json(newUser)
   })
   return console.log(newUser);
 }}
@@ -126,7 +125,8 @@ router.post("/users/:id/posts", upload.single('img'), function (req, res, next) 
     var post = new Post({
       caption: req.body.caption,
       instructions: req.body.instructions,  
-      img: req.body.img 
+      img: req.body.img,
+      _id: req.body._id
   });
     post.save(function (err) {
       if (err) {
@@ -170,7 +170,7 @@ router.get("/users/:id/posts", function (req, res) {
 
 // Added this methods to try out to see if it works
 //Checked this out, it works I guess? 
-/*
+
 router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   User.findOne({ _id: req.params.user_id })
     .populate({ path: "posts", model: "post", 
@@ -186,7 +186,7 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       return res.status(200).json(user.posts);
     });
 }); 
-*/
+
 router.get("/users/:id", function (req, res, next) {
   User.findOne({ _id: req.params.id })
     .populate("posts")
@@ -201,10 +201,35 @@ router.get("/users/:id", function (req, res, next) {
     });
     
 });
+/*
+router.patch('/users/:id', function(req, res, next) {
+  var id = req.params.id;
+  User.findById(id, req.body, function(err, user) {
+      if (err) { return next(err); }
+      if (user == null) {
+          return res.status(404).json({"message": "user not found"});
+      }
+      user.save();
+      res.status(200).json(user);
+  });
+});
+*/
 
 
-
-
+router.patch('/users/:id', function(req, res, next) {
+  var id = req.params.id;
+  User.findById(id, function(err, user) {
+      if (err) { return next(err); }
+      if (user == null) {
+          return res.status(404).json({"message": "user not found"});
+      }
+      user.name = req.body.name || user.name;
+      user.password = bcrypt.hashSync(req.body.password, 10),
+      user.email = req.body.email || user.email;
+      user.save();
+      res.json(user);
+  });
+});
 
 
 //to update an entire user 
@@ -225,7 +250,7 @@ router.put('/users/:id', function(req, res, next) {
       if(user = null) {
         return res.status(404).json({"message" : "User not found"});
       }
-      res.status(200).json(newUser);
+      res.status(204).json(newUser);
     });
   });
 });
@@ -251,7 +276,7 @@ router.delete('/users', function(req, res, next) {
           return res.status(404).json(
                   {"message": "There are no users!"});
       }
-      res.status(201).json({"user": users});
+      res.status(204).json({"user": users});
   });
 });
 
@@ -264,8 +289,8 @@ router.delete("/users/:user_id/posts/:post_id", function (req, res, next) {
         return res.status(404).json(
 
                   {"message": "Post not found"});
-    }});
-  User.findByIdAndUpdate(
+    }
+    User.findByIdAndUpdate(
     { _id: req.params.user_id },{ $pull: { posts: { _id: req.params.post_id } } }, function (err, user) {
         if (err) {
           return res.status(500).send(err);
@@ -276,6 +301,10 @@ router.delete("/users/:user_id/posts/:post_id", function (req, res, next) {
         }console.log("hello")
         res.status(200).send(user);}
   );
+  }
+  
+  );
+  
 });
 
 module.exports = router;
