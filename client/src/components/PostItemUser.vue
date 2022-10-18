@@ -1,6 +1,5 @@
 <template>
   <div>
-        <p> ID:{{ post._id }}</p>
         <br/>
         <img v-bind:src="require(`@/assets/${post.img}`)" alt="...">
     </div>

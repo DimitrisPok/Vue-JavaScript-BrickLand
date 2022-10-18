@@ -8,7 +8,7 @@
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <b-button class="logOutB"  variant="primary" @click="logout">Log out</b-button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <div class="details">
       <h1>Hello {{ user.name }}!</h1>
@@ -17,9 +17,9 @@
       <p>Created account on: {{user.entryDate}}</p>
     </div>
     <div class="details">
-        <p class="urPost">Your Posts:</p>
+        <p class="urPost">Your Post Captions:</p>
         <div>
-        <users-posts/>
+          <users-posts/>
         </div>
         </div>
         <div class="editFields">
@@ -146,5 +146,6 @@ export default {
 }
 .logOutB {
   background-color: grey;
+  border-color: gray;
 }
 </style>

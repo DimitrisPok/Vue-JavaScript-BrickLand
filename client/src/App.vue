@@ -19,7 +19,7 @@
             <router-link class="btn btn-outline-primary" to="/signup">Sign up</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="btn btn-outline-danger" to="/AdminChoice">Admin</router-link>
+            <router-link class="btn btn-outline-danger" to="/adminlogin">Admin</router-link>
           </li>
         </ul>
       </div>
@@ -61,5 +61,6 @@ export default {
     padding: 0;
   }
 }
+
 </style>
 {{this.$router.push(route, () => {'/welcome'})}}

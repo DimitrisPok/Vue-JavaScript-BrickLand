@@ -93,6 +93,7 @@ export default {
     deleteAllPosts() {
       Api.delete('/posts').then((res) => {
         console.log(res)
+        this.$bvModal.msgBoxOk('All posts have been successfully deleted!')
       }).catch((error) => {
         console.log(error)
       })
@@ -114,7 +115,7 @@ p {
   .video-container{
     width: 340px;
     .video-box{
-      border: 1px solid rgb(108, 45, 233);
+      border: 1px solid rgb(25, 39, 34);
       border-radius: 10px;
       margin: 10px;
       padding: 10px;
@@ -130,7 +131,7 @@ p {
     width: 340px;
     height: 340px;
     display: flex;
-    border: 1px solid rgb(108, 45, 233);
+    border: 1px solid rgb(25, 39, 34);
       border-radius: 10px;
       margin: 10px;
       padding: 10px;
@@ -156,5 +157,8 @@ p {
 .homeNav{
   color: bisque;
 }
-
+.logOutB {
+  background-color: grey;
+  border-color: gray;
+}
 </style>

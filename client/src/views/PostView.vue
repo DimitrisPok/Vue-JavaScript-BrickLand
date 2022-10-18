@@ -2,21 +2,15 @@
 <div>
   <br>
   <br>
+  <br>
   <div id="nav" class="navigation">
-  <img src="@/views/htmlPics/lego-head.png">
-      <router-link class="homeNav" to="/posts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
-      <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <b-button variant="primary" @click="logout">Log out</b-button>
       </div>
     <h1>{{ post.caption }}</h1>
     <div>
       <div class="d-flex flex-wrap">
       <b-card width="340px" hover>
         <div class="video-box">
-          <h3>Posted by: {{ id }}</h3>
           <p>Posted at: {{ post.createdAt }}</p>
-          <p>Last updated at: {{ post.updatedAt }}</p>
           <br />
           <img v-bind:src="require(`@/assets/${post.img}`)" alt="...">
           <br />
@@ -125,7 +119,7 @@ export default {
 .card {
   width: 1500px;
   display: flex;
-  border: 1px solid rgb(108, 45, 233);
+  border: 1px solid rgb(25, 39, 34);
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin: 10px;
@@ -210,6 +204,9 @@ export default {
     margin-right: auto !important;
     text-align: center !important;
 }
-
   }
+  .logOutB {
+  background-color: gray;
+  border-color: gray;
+}
 </style>

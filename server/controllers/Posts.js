@@ -55,7 +55,7 @@ router.get('/posts/:id', function(req, res, next) {
             return res.status(404).send(
                     {"message": "post not found"});
         }
-        res.send(post);
+        res.json(post, id);
         console.log(post);
     });
 });
@@ -69,7 +69,7 @@ router.get('/posts/:posts_id/reviews',function(req, res){
     if (post == null) {
         return res.status(404).json({"message": "Post not found"});
     }
-    res.status(200).send(post);
+    res.status(200).json(post, id);
     })
 });
 
@@ -92,7 +92,7 @@ router.put('/posts/:id', function(req, res, next) {
         if(post = null) {
           return res.status(404).json({"message" : "Post not found"});
         }
-        res.status(200).json(newPost);
+        res.status(200).json(newPost, id);
       });
     });
   });
@@ -106,7 +106,7 @@ router.delete('/posts/:id', function(req, res, next) {
             return res.status(404).json(
                     {"message": "post not found"});
         }
-        res.json(post);
+        res.json(post, id);
     });
 });
 
@@ -122,7 +122,7 @@ router.patch('/posts/:id', function(req, res, next) {
         post.caption = req.body.caption || post.caption;
         post.instructions = req.body.instructions || post.instructions;
         post.save();
-        res.json(post);
+        res.json(post, id);
     });
   });
 

@@ -7,7 +7,7 @@
       <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/adminpost">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
       <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
@@ -60,6 +60,7 @@ export default {
         .then(response => {
           const index = this.users.findIndex(user => user._id === id)
           this.users.splice(index, 1)
+          this.$bvModal.msgBoxOk('User has been successfully deleted!')
         })
         .catch(error => {
           console.log(error)
