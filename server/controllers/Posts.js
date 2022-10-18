@@ -60,7 +60,6 @@ router.get('/posts/:id', function(req, res, next) {
     });
 });
 
-// so this code here apperently works now, desite not working last time I tested it out
 
 router.get('/posts/:posts_id/reviews',function(req, res){
     var id = req.params.posts_id;

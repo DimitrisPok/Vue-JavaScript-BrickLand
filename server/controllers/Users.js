@@ -143,7 +143,7 @@ router.post("/users/:id/posts", upload.single('img'), function (req, res, next) 
 });
 
 
-// get the user's posts. How are the posts supposed to be displayed, because right now you can only see the id's of the posts
+// get the user's posts.
 router.get("/users/:id/posts", function (req, res) {
   User.findOne({ _id: req.params.id })
     .populate({
@@ -169,7 +169,6 @@ router.get("/users/:id/posts", function (req, res) {
 
 
 // Added this methods to try out to see if it works
-//Checked this out, it works I guess? 
 
 router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
   User.findOne({ _id: req.params.user_id })
@@ -201,19 +200,6 @@ router.get("/users/:id", function (req, res, next) {
     });
     
 });
-/*
-router.patch('/users/:id', function(req, res, next) {
-  var id = req.params.id;
-  User.findById(id, req.body, function(err, user) {
-      if (err) { return next(err); }
-      if (user == null) {
-          return res.status(404).json({"message": "user not found"});
-      }
-      user.save();
-      res.status(200).json(user);
-  });
-});
-*/
 
 
 router.patch('/users/:id', function(req, res, next) {
@@ -280,8 +266,6 @@ router.delete('/users', function(req, res, next) {
   });
 });
 
-//DELETE TASK 3 LAST - deletes in post but does not delete from user 
-//Its working?.................................................................................
 router.delete("/users/:user_id/posts/:post_id", function (req, res, next) {
   Post.findOneAndDelete({ _id: req.params.post_id }, function(err, post) {
     if (err) { return res.status(500).send(err); }
