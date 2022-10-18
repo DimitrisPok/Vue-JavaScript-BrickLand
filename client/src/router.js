@@ -1,19 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue'
 import Users from './views/Users.vue'
 import SignUp from '../src/components/SignUp2.vue'
 import Login from '../src/components/Login.vue'
-import Review from './views/Reviews.vue'
 import Post from './views/Post.vue'
 import Posts from './views/Posts.vue'
 import PostView from '../src/views/PostView.vue'
-import UserChoice from '../src/views/UserChoice.vue'
 import Profile from '../src/views/ProfilePage.vue'
 import AdminChoice from '../src/views/AdminChoice.vue'
 import AdminLogin from '../src/components/AdminLogin.vue'
 import AdminSignUp from '../src/components/AdminSignUp.vue'
-import AdminHome from '../src/views/AdminHome.vue'
 import AdminPosts from '../src/views/AdminPosts.vue'
 import Welcome from '../src/views/Welcome.vue'
 import AdminPost from '../src/views/AdminPost.vue'
@@ -45,11 +41,6 @@ export default new Router({
       component: Login
     },
     {
-      path: '/reviews',
-      name: 'reviews',
-      component: Review
-    },
-    {
       path: '/post',
       name: 'post',
       component: Post
@@ -76,11 +67,6 @@ export default new Router({
       params: true
     },
     {
-      path: '/Choice',
-      name: 'Choice',
-      component: UserChoice
-    },
-    {
       path: '/Profile',
       name: 'Profile',
       component: Profile
@@ -99,11 +85,6 @@ export default new Router({
       path: '/adminSignUp',
       name: 'adminsignup',
       component: AdminSignUp
-    },
-    {
-      path: '/adminHome',
-      name: 'adminhome',
-      component: AdminHome
     },
     {
       path: '/adminProfile',
