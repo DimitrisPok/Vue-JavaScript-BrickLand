@@ -4,7 +4,7 @@
     <div>
       <b-form-input class="center" v-model="comment" placeholder="Enter the comment"></b-form-input>
       <br/>
-            <b-button class="postButton" @click="createReview">Post a review</b-button>
+            <b-button variant="primary" @click="createReview">Post a review</b-button>
           </div>
      <br/>
 </body>

@@ -8,7 +8,7 @@
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <b-button class="logOutB"  variant="primary" @click="logout">Log out</b-button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <div class="details">
       <h1>Hello {{ user.name }}!</h1>
