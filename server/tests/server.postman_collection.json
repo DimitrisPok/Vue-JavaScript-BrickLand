@@ -22,8 +22,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var jsonData = JSON.parse(responseBody);\r",
-							"pm.variables.set('user', jsonData._id);"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -40,7 +39,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"test 12345\",\n    \"password\": \"test 777\",\n    \"email\": \"test1234567@test.com\",\n    \"posts\" : [],\n    \"reviews\" : []\n}",
+					"raw": "{\n    \"name\": \"test 12345\",\n    \"password\": \"test 777\",\n    \"email\": \"test1234567@test.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -209,7 +208,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "{{user}}"
+							"value": "634ee2b993f690689ccd93f8"
 						}
 					]
 				}
@@ -571,7 +570,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "{{user}}"
+							"value": "634ee2b993f690689ccd93f8"
 						}
 					]
 				}
@@ -664,7 +663,7 @@
 					"variable": [
 						{
 							"key": "user_id",
-							"value": "{{user}}"
+							"value": "634ee2b993f690689ccd93f8"
 						},
 						{
 							"key": "post_id",
@@ -809,7 +808,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "{{user}}"
+							"value": "634ee2b993f690689ccd93f8"
 						}
 					]
 				}
@@ -1040,7 +1039,7 @@
 					"variable": [
 						{
 							"key": "user_id",
-							"value": "{{user}}"
+							"value": "634ee2b993f690689ccd93f8"
 						},
 						{
 							"key": "post_id",
@@ -1236,7 +1235,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "{{user}}"
+							"value": "634ee2b993f690689ccd93f8"
 						}
 					]
 				}
