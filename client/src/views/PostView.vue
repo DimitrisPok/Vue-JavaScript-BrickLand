@@ -4,11 +4,6 @@
   <br>
   <br>
   <div id="nav" class="navigation">
-  <img src="@/views/htmlPics/lego-head.png">
-      <router-link class="homeNav" to="/posts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
-      <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <b-button variant="primary" @click="logout">Log out</b-button>
       </div>
     <h1>{{ post.caption }}</h1>
     <div>
@@ -16,7 +11,6 @@
       <b-card width="340px" hover>
         <div class="video-box">
           <p>Posted at: {{ post.createdAt }}</p>
-          <p>Last updated at: {{ post.updatedAt }}</p>
           <br />
           <img v-bind:src="require(`@/assets/${post.img}`)" alt="...">
           <br />
