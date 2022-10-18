@@ -7,9 +7,9 @@
       <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/Adminpost">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
-      <b-button variant="primary" class="logOutB" @click="logout">Log out</b-button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <div class="editFields">
     <p class="urPost">Enter The Details That You Want To Change Below:</p>

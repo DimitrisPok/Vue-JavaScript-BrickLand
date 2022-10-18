@@ -7,7 +7,6 @@ import Post from './views/Post.vue'
 import Posts from './views/Posts.vue'
 import PostView from '../src/views/PostView.vue'
 import Profile from '../src/views/ProfilePage.vue'
-import AdminChoice from '../src/views/AdminChoice.vue'
 import AdminLogin from '../src/components/AdminLogin.vue'
 import AdminSignUp from '../src/components/AdminSignUp.vue'
 import AdminPosts from '../src/views/AdminPosts.vue'
@@ -70,11 +69,6 @@ export default new Router({
       path: '/Profile',
       name: 'Profile',
       component: Profile
-    },
-    {
-      path: '/AdminChoice',
-      name: 'AdminChoice',
-      component: AdminChoice
     },
     {
       path: '/adminLogin',
