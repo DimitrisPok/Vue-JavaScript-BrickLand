@@ -93,6 +93,7 @@ export default {
     deleteAllPosts() {
       Api.delete('/posts').then((res) => {
         console.log(res)
+        this.$bvModal.msgBoxOk('All posts have been successfully deleted!')
       }).catch((error) => {
         console.log(error)
       })

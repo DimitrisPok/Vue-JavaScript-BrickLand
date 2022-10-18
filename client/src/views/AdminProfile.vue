@@ -22,7 +22,6 @@
     <br>
     <b-button class="deleteAcc" @click="deleteAdmin">delete account</b-button> <br />
     <br/>
-    <b-button class = "deletePosts" @click="deleteAllPosts">delete all the posts</b-button> <br />
   </div>
 </template>
 
