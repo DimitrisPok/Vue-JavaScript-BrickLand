@@ -7,20 +7,21 @@
       <img src="@/views/htmlPics/lego-head.png">
       <router-link class="homeNav" to="users">| Users </router-link>
       <router-link class="homeNav" to="/AdminPosts">| Posts </router-link>
-      <router-link class="homeNav" to="/post">| Post </router-link>
+      <router-link class="homeNav" to="/Adminpost">| Post </router-link>
       <router-link class="homeNav" to="/AdminProfile">| Profile </router-link>
       <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
-    <br>
+    <div class="editFields">
+    <p class="urPost">Enter The Details That You Want To Change Below:</p>
     <input type="adminName" placeholder="adminName" v-model="adminName" required/> <br />
     <input type="password" placeholder="password" v-model="password" required/> <br />
     <input type="text" placeholder="email" v-model="email" required/> <br />
+    </div>
     <br>
     <b-button @click="updateAdmin">update</b-button> <br />
     <br>
     <b-button class="deleteAcc" @click="deleteAdmin">delete account</b-button> <br />
     <br/>
-    <b-button class = "deletePosts" @click="deleteAllPosts">delete all the posts</b-button> <br />
   </div>
 </template>
 
@@ -120,6 +121,17 @@ export default {
   background-color: rgb(25, 39, 34);
 }
 .homeNav{
+  color: bisque;
+}
+.logOutB {
+  background-color: grey;
+  border-color: gray;
+}
+.editFields{
+  background-color: bisque;
+}
+.urPost {
+  background-color: rgb(18, 43, 18);
   color: bisque;
 }
 </style>

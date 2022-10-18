@@ -8,7 +8,7 @@
       <router-link class="homeNav" to="/posts">| Posts </router-link>
       <router-link class="homeNav" to="/post">| Post </router-link>
       <router-link class="homeNav" to="/Profile">| Profile </router-link>
-      <b-button variant="primary" class="logOutB" @click="logout">Log out</b-button>
+      <b-button variant="primary" @click="logout">Log out</b-button>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -130,7 +130,7 @@ p {
   .video-container{
     width: 340px;
     .video-box{
-      border: 1px solid rgb(108, 45, 233);
+      border: 1px solid rgb(25, 39, 34);
       border-radius: 10px;
       margin: 10px;
       padding: 10px;
@@ -144,7 +144,7 @@ p {
     width: 340px;
     height: 340px;
     display: flex;
-    border: 1px solid rgb(108, 45, 233);
+    border: 1px solid rgb(25, 39, 34);
       border-radius: 10px;
       margin: 10px;
       padding: 10px;
@@ -169,6 +169,7 @@ p {
 }
 .logOutB {
   background-color: gray;
+  border-color: gray;
 
 }
 @media (min-width: 420px) and (max-width: 768px) {
@@ -176,7 +177,7 @@ p {
     width: 50%;
     height: 340px;
     display: flex;
-    border: 1px solid rgb(108, 45, 233);
+    border: 1px solid rgb(25, 39, 34);
     border-radius: 10px;
     margin: 10px;
     padding: 10px;

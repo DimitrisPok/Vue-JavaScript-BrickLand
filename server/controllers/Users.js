@@ -20,7 +20,7 @@ router.get('/users',function(req, res){
 
 
 // post user
-router.post('/signup', async (req,res, next) => {
+router.post('/users', async (req,res, next) => {
   
   const registeredUser = await User.findOne({email: req.body.email}, function(err, regUser){
     if(err){res.status(500).send(err)}
@@ -138,7 +138,7 @@ router.post("/users/:id/posts", upload.single('img'), function (req, res, next) 
     user.posts.push(post);
     user.save();
     console.log("Post " + post.caption + " was added to ", user.name);
-    return res.status(201).json(user);
+    return res.status(201).json(user, req.params.id);
   });
 });
 
@@ -163,7 +163,7 @@ router.get("/users/:id/posts", function (req, res) {
           {"message": "There are no posts to this user!"});
       }
       //console.log(user.posts);
-      return res.status(200).send(user.posts);
+      return res.status(200).json(user.posts, req.params.id);
     });
 });
 
@@ -180,10 +180,10 @@ router.get("/users/:user_id/posts/:post_id", function (req, res, next) {
       if (err) {
         return res.status(500).send(err);
       }
-      if (posts=null){
-        return res.status(404).json({"message":"Post not found"});
-      }
-      return res.status(200).json(user.posts);
+      if (user == null) {
+        return res.status(404).json({"message": "User not found"});
+    }
+      return res.status(200).send(user.posts);
     });
 }); 
 
@@ -250,7 +250,7 @@ router.put('/users/:id', function(req, res, next) {
       if(user = null) {
         return res.status(404).json({"message" : "User not found"});
       }
-      res.status(204).json(newUser);
+      res.status(200).json(newUser, id);
     });
   });
 });
@@ -264,7 +264,7 @@ router.delete('/users/:id', function(req, res, next) {
           return res.status(404).json(
                   {"message": "User not found"});
       }
-      res.json(user);
+      res.json(user, id);
   });
 });
 
@@ -299,7 +299,7 @@ router.delete("/users/:user_id/posts/:post_id", function (req, res, next) {
           return res.status(404).json(
           {"message": "User not found"});
         }console.log("hello")
-        res.status(200).send(user);}
+        res.status(200).json(user);}
   );
   }
   

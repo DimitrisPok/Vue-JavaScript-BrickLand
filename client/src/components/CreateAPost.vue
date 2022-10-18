@@ -5,7 +5,7 @@
       <b-form-input class="center" v-model="caption" placeholder="Enter the caption"></b-form-input>
       <b-form-input class="center" v-model="instructions" placeholder="Enter the instructions"></b-form-input>
       <input type="file" id="itemFile" v-on:change="readImage()" />
-      <b-button class="postButton" @click="createPost">
+      <b-button variant="primary" @click="createPost">
         Create New Post</b-button
       >
     </div>
@@ -75,6 +75,7 @@ export default {
           this.stores = []
           this.stores.push(newPost)
           console.log(response.data)
+          this.$bvModal.msgBoxOk('Post has been created!')
         }
       )
       console.log(newPost)

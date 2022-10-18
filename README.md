@@ -66,22 +66,35 @@ The purpose of this website is to provide lego owners with instructions to build
 
 ### Pages
 
-* Login as user / guest: Users can either choose to log in or sign up. The signup will lead the users to another page. Users can either log in with their username and password or log in as a guest and enter the website.  
+* Welcome: The page has the logo of our website, shows buttons "Login", "Signup" and "Admin".
 
-* Sign up: If users don't have an account and don't want to log in as guests they can create a new account by writing their username, password and email address. 
+* Admin: In this page, an admin can log in to the admin version of the website. 
 
-* Home: The home page will show the latest trending posts, a sidebar menu that shows different categories, a search bar to look for specific posts and a button that leads the user to their profile. 
+* Signup: If users don't have an account they can create a new account by writing their username, password and email address. 
 
-* Specific category: All posts will be part of categories so that they can be easily found by all users that are looking for a specific theme (for example fantasy). Each category page will contain their posts according to the most liked order. 
+* Login as user: Users can log in with an existing account or they must create an account on the sign up page and get here to log in and enter the website.  
 
-* Specific post: If a user clicks on a post they want to view, they will be redirected to a page dedicated to that post & its instructions. The users then can rate and comment on the post.
+* Posts: The posts page will show the latest trending posts, with a navigation button on the top that has buttons "post", "profile", and "logout". 
 
-* Profile page: The users can change their email address, password and log out.
+* Post page: is the page where you can create a new post by giving a post caption, instructions and image. 
+
+* Profile page: The users can see and change their details, the posts the have created and delete their account.
+
+* Specific post: If a user clicks on a post they want to view, they will be redirected to a page dedicated to that post & its instructions. The users can then comment on the post and view the comments. 
+
+* (Admin) Posts: The posts page will show the latest trending posts with delete button on it, with a navigation button on the top that has buttons "user", "post", "profile", and "logout". There will also be a delete all posts button on the page.
+
+* (Admin) Users: All the users in the database will be shown here along with their emails, when their accounts were created and a delete button for each user. 
+
+* (Admin) Post: is the page where admin can create a new post by giving a post caption, instructions and image. 
+
+* (Admin) Profile page: The admin can change their details and delete their account.
+
 
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/NEW_DIAGRAM.png)
+![ER Diagram](./images/ER%20Diagram%20New.png)
 
 ## Teaser (MS3)
 
